@@ -211,6 +211,25 @@
 	padding-top: 100px;
   }
   
+  .card {
+	width: 18rem;
+	margin-bottom: 20px;
+  }
+
+
+  .card-body {
+    justify-content: space-between;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+  }
+
+.card-img-top {
+    width: 80%;
+    height: 10vw;
+    object-fit: cover;
+}
+
   #testimonials h2 {
 	color: #fff;
 	text-align: center;
