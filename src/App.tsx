@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import CarCard from './components/CarCard/CarCard';
+import Cars from './pages/Cars';
 
 function App() {
   return (
@@ -15,10 +16,11 @@ function App() {
 			<Route path="/about" element={<About/>} />
 			<Route path="/" element={<Index/>} />
 			<Route path="/contact" element={<Contact/>} />
+			{ <Route path='cars' element={<Cars/>} /> }
 		</Routes>
-		<div className="App">
+		{/* <div className="App">
      	 <CarCard/>
-   		 </div>
+   		 </div> */}
 		<Footer/>
 	  </>
   );
