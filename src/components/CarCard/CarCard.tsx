@@ -39,6 +39,7 @@ function CarCard() {
 			<div className="container">
 				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4">
 					{data ? data.map((car: Car) => (
+						car.kilometer !== 123 && (
 						<div key={car.id} className="mb-3 col">
 							<motion.div whileHover={{ scale: 1.05 }}>
 								<div className="card">
@@ -62,6 +63,7 @@ function CarCard() {
 								</div>
 							</motion.div>
 						</div>
+						)
 					)) :
 						<p>Loading...</p>
 					}
