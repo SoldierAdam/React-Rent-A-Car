@@ -212,23 +212,24 @@
   }
   
   .card {
-	width: 18rem;
-	margin-bottom: 20px;
+	width: 100%; /* Kartın genişliğini ayarlar */
+	margin-bottom: 20px; /* Kartlar arasındaki dikey boşluğu ayarlar */
+  }
+  
+  .card-img-top {
+	width: 100%; /* Resmin genişliğini ayarlar */
+	height: 15vw; /* Resmin yüksekliğini ayarlar */
+	object-fit: cover; /* Resmin boyutlarını korur ve resmi kırpabilir */
+  }
+  
+  .col {
+	padding: 0 15px; /* Sütunlar arasındaki yatay boşluğu ayarlar */
   }
 
-
-  .card-body {
-    justify-content: space-between;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
+  .row {
+	flex-wrap: nowrap;
+	overflow-x: auto;
   }
-
-.card-img-top {
-    width: 80%;
-    height: 10vw;
-    object-fit: cover;
-}
 
   #testimonials h2 {
 	color: #fff;
