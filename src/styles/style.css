@@ -13,7 +13,6 @@
   
   a {
 	color: #333;
-	margin-left: auto;
 	text-decoration: none;
   }
   
@@ -28,13 +27,15 @@
   /* Utility Classes */
   .container {
 	margin: auto;
-	max-width: 1100px;
+	/* max-width: 1100px; */
 	overflow: auto;
 	padding: 0 20px;
+	display: flex;
+    justify-content: space-between;
   }
   
   .text-primary {
-	color: #f7c08a;
+	color: #900C3F;
   }
   
   .lead {
@@ -82,6 +83,7 @@
   
   .l-heading {
 	font-size: 40px;
+	line-height: 1.2;
   }
   
   /* Padding */
@@ -98,38 +100,62 @@
   
   #navbar a {
 	color: #fff;
+	padding: 0 10px;
+  }
+
+  #navbar .menu{
+	display: flex;
+	align-items: flex-end;
+	position: relative;
+  }
+
+  #navbar .menu-link{
+	height: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+  }
+
+  #navbar .menu-link a{
+	text-decoration: none;
+  }
+
+  
+  #navbar .logo {
+	display: flex;
+	align-items: center;
+	font-size: 40px;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: -2px;
   }
   
-  #navbar h1 {
-	float: left;
-	padding-top: 20px;
-  }
-  
-  #navbar ul {
+  /* #navbar ul {
 	list-style: none;
 	float: right;
-  }
+  } */
   
-  #navbar ul li {
+  /* #navbar ul li {
 	float: left;
-  }
+  } */
   
-  #navbar ul li a {
+  /* #navbar ul li a {
 	display: block;
 	padding: 20px;
 	text-align: center;
-  }
+  } */
   
-  #navbar ul li a:hover, 
-  #navbar ul li a.current {
+  #navbar .menu-link:hover, 
+  #navbar .menu-link.current {
 	background: #444;
 	color: #f7c08a;
   }
   
   /* Showcase */
   #showcase {
-	background: url('../../public/images/showcase.jpg') no-repeat center center/cover;
+	background: url("") no-repeat center center/cover;
 	height: 600px;
+	width: 100%;
   }
   
   #showcase .showcase-content {
@@ -150,13 +176,13 @@
   
   /* Home Info */
   #home-info {
-	height: 400px;
+	height: 450px;
   }
   
   #home-info .info-img {
 	float: left;
 	width: 50%;
-	background: url('../../public/images/photo-1.jpg') no-repeat;
+	background: url() no-repeat;
 	min-height: 100%;
   }
   
@@ -207,31 +233,11 @@
   
   /* Testimonials */
   #testimonials {
-	height: 600px;
-	background: url('../../public/images/test-bg.jpg') no-repeat center center/cover;
+	height: 100%;
+	background: url('') no-repeat center center/cover;
 	padding-top: 100px;
   }
   
-  .card {
-	width: 100%; /* Kartın genişliğini ayarlar */
-	margin-bottom: 20px; /* Kartlar arasındaki dikey boşluğu ayarlar */
-  }
-  
-  .card-img-top {
-	width: 100%; /* Resmin genişliğini ayarlar */
-	height: 15vw; /* Resmin yüksekliğini ayarlar */
-	object-fit: cover; /* Resmin boyutlarını korur ve resmi kırpabilir */
-  }
-  
-  .col {
-	padding: 0 15px; /* Sütunlar arasındaki yatay boşluğu ayarlar */
-  }
-
-  .row {
-	flex-wrap: nowrap;
-	overflow-x: auto;
-  }
-
   #testimonials h2 {
 	color: #fff;
 	text-align: center;
