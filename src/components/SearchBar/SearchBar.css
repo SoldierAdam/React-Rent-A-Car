@@ -1,0 +1,51 @@
+.search-bar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+	margin: 20px auto;
+	width: 80%; /* Adjust this value to change the width of the form */
+	max-width: 800px; /* This will prevent the form from becoming too wide on large screens */
+	flex-wrap: wrap; /* This will allow the form elements to wrap to the next line on small screens */
+}
+
+.search-bar label {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	flex: 1 1 200px; /* This will make the labels and input fields flexible */
+}
+
+.search-bar input,
+.search-bar button {
+	padding: 10px;
+	font-size: 1em;
+	width: 100%;
+}
+
+.search-bar button {
+	flex: 0 0 auto; /* This will prevent the button from growing and shrinking */
+	background-color: #007BFF;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.search-bar button:hover {
+	background-color: #0056b3;
+}
+
+.form-input {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-top: 5px;
+}
+
+.form-input[type="date"] {
+	background: #fff;
+}
+
+.form-input:focus {
+	border-color: #007BFF;
+	outline: none;
+}

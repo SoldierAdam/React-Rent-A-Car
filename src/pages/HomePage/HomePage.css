@@ -1,0 +1,56 @@
+.home-page {
+	font-family: Arial, sans-serif;
+  }
+  
+  .home-header {
+	height: 60vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	text-align: center;
+	padding: 0 20px;
+  }
+  
+  .home-header h1 {
+	font-size: 2.5em;
+	background-position: center bottom;
+	margin-top: -150px;
+  }
+  
+  .home-header p {
+	font-size: 1.2em;
+  }
+  
+  .cta-button {
+	margin-top: 10px;
+	padding: 10px 20px;
+	font-size: 1em;
+	color: white;
+	background-color: #007BFF;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  .home-section {
+	padding: 40px 20px;
+	text-align: center;
+  }
+  
+  .features {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 40px;
+  }
+  
+  .feature {
+	width: 30%;
+  }
+  
+  .home-footer {
+	background-color: #f8f9fa;
+	padding: 20px 0;
+	text-align: center;
+  }

@@ -1,6 +1,6 @@
 import './App.css';
 import About from './pages/About';
-import Index from './pages/HomePage';
+import Index from './pages/HomePage/HomePage';
 import Contact from './pages/Contact';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
