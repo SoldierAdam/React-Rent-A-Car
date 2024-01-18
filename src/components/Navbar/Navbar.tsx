@@ -30,11 +30,17 @@ function Navbar() {
 		Cars
 	  </NavLink>
 	  	</div>
+		  <div className='menu-link'>
+	  <NavLink to="/signIn" className={location.pathname === "/signIn" ? "current" : ""} >
+		Login
+	  </NavLink>
+	  	</div>
 		<div className='menu-link'>
 	  <NavLink to="/basket" className={location.pathname === "/basket" ? "current" : ""} >
 		<FontAwesomeIcon icon={faCartShopping as IconProp} />
       </NavLink>
 	  </div>
+	 
 	  </div>
 	</div>
   </nav>
