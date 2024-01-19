@@ -1,0 +1,32 @@
+:root {
+	--mobile-menu-bg: #30404a;
+	--mobile-menu-bg-active: #3f5460;
+	--mobile-menu-border: #4B6473;
+	--mobile-menu-text: #f9f9f9;
+}
+
+/* Panels - Mobile */
+.filter-menu.mobile {
+	.btn-link {
+		color: var(--mobile-menu-text);
+	}
+
+	hr {
+		margin-top: 0;
+		border-top-color: var(--mobile-menu-border);
+	}
+
+	.panel-group .panel-heading + .panel-collapse > .panel-body {
+		border-color: var(--mobile-menu-border);
+	}
+
+	.panel {
+		border-color: var(--mobile-menu-border);
+		background: var(--mobile-menu-bg);
+		color: var(--mobile-menu-text);
+	}
+
+	.panel-heading {
+		background: var(--mobile-menu-bg);
+	}
+}

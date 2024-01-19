@@ -1,12 +1,12 @@
 import './App.css';
-import About from './pages/About';
+import About from './pages/About/About';
 import Index from './pages/HomePage/HomePage';
-import Contact from './pages/Contact';
+import Contact from './pages/Contact/Contact';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import CarCard from './components/CarCard/CarCard';
-import Cars from './pages/Cars';
+import Cars from './pages/Cars/Cars';
 import SignIn from './pages/SignIn/SignIn';
 
 function App() {
