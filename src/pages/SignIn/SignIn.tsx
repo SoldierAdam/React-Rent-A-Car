@@ -2,6 +2,8 @@ import { Formik,Form } from 'formik'
 import React from 'react'
 import FormikInput from '../../components/FormikInput/FormikInput';
 import "./SignIn.css";
+
+
 type Props = {}
 
 interface SignInForm{
@@ -23,18 +25,19 @@ const SignIn = (props: Props) => {
 
 
   return (
-    <div className='container'>
+    <div className='container mt-5 mb-5 d-flex justify-content-center align-items-center'>
       <Formik initialValues={initialValues} onSubmit={values => {
         console.log(values);
       }}>
-      <Form>
+      <Form className="custom-form">
         <FormikInput name='firstName' label='Name'></FormikInput>
+        <div className='mb-3'></div>
         <FormikInput name='lastName' label='Lastname'></FormikInput>
-        <FormikInput name='email' label='email'></FormikInput>
-        <FormikInput name='password' label='password'></FormikInput>
-        <button type="submit" className="btn btn-black">
-						Login
-					</button>
+        <div className='mb-3'></div>
+        <FormikInput name='email' label='Email'></FormikInput>
+        <div className='mb-3'></div>
+        <FormikInput name='password' label='Password'></FormikInput>
+        <button type="button" className="btn btn-dark mt-3">Login</button>
         </Form>
 
       </Formik>

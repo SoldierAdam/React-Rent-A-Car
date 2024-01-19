@@ -14,6 +14,37 @@ type Props = {
 	car: Car;
 };
 
+function CarCard() {
+	type Car = {
+		id: number;
+		kilometer: number;
+		plate: string;
+		modelYear: number;
+		dailyPrice: number;
+		minFindeksRate: number;
+		imagePath: string;
+		modelName: string;
+		colorName: string;
+	};
+
+	const [data, setData] = useState<Car[] | null>(null);
+
+	useEffect(() => {
+		const fetchData = async () => {
+		  try {
+			const response = await axios.get('http://localhost:8080/api/cars/getAll');
+			// Eğer response.data içindeki data özelliği bir dizi ise, bu diziyi setData'ya atayın
+			setData(response.data.data || []);
+			console.log(response.data);
+		  } catch (error) {
+			console.error('There was an error!', error);
+		  }
+		};
+	  
+		fetchData();
+	  }, []);
+	  
+
 function CarCard({ car }: Props) {
 	return (
 		<div key={car.id} className="col-md3l">
