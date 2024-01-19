@@ -22,17 +22,19 @@ function CarCard() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			try {
-				const response = await axios.get('http://localhost:8080/api/cars/getAll');
-				setData(response.data);
-				console.log(response.data);
-			} catch (error) {
-				console.error('There was an error!', error);
-			}
+		  try {
+			const response = await axios.get('http://localhost:8080/api/cars/getAll');
+			// Eğer response.data içindeki data özelliği bir dizi ise, bu diziyi setData'ya atayın
+			setData(response.data.data || []);
+			console.log(response.data);
+		  } catch (error) {
+			console.error('There was an error!', error);
+		  }
 		};
-
+	  
 		fetchData();
-	}, []);
+	  }, []);
+	  
 
 	return (
 		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-2">
