@@ -15,7 +15,6 @@ const HomePage = () => {
       <header style={backgroundImageStyle} className="home-header">
         <h1>Welcome to Our Car Rental</h1>
         <p>We offer a wide range of cars for your convenience. Choose the one that suits your needs the best.</p>
-        <button className="cta-button">Explore Our Cars</button>
       </header>
 	  <SearchBar />
       <section className="home-section">
