@@ -1,5 +1,6 @@
 import React from 'react';
 import './CarCard.css';
+import { Button } from 'react-bootstrap';
 
 type Car = {
 	id: number;
@@ -19,7 +20,10 @@ const CarCard: React.FC<CarListingProps> = ({ car }) => (
 		{car &&
 			<div key={car.id} className="car-card">
 				<b className="car-model">{car.modelName}</b>
-
+				<button className="rent-button">
+               		<span>Hemen Kirala</span>
+                	<i className="icon icon-arrow-right"></i> 
+            	</button>
 				<img src={car.imagePath} alt={`${car.modelName}`} className="car-image" />
 				<div className="car-info">
 					<p className="car-year">{car.modelYear}</p>
