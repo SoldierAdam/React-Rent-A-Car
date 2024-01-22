@@ -15,6 +15,20 @@
 	overflow: hidden;
 	border: 0.1px solid rgb(246, 223, 223);
   }
+
+  .rent-button {
+	background-color: #f44336;
+	color: #ffffff;
+
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: none;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	float:right;
+  }
+
   
   .car-image {
 	width: 100%;
