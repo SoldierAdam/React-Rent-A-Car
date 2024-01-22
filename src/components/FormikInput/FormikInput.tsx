@@ -10,11 +10,9 @@ type Props = {
 
 const FormikInput = (props: Props) => {
   return (
-    <div className="input-group mb-3">
-    <div className="input-group-text">
-      <Field className="form-check-input mt-0" type="checkbox" name={props.name} aria-label={props.label}/>
-    </div>
-    <Field type={props.type || "text"} className="form-control" aria-label={props.label}/>
+    <div className="input-group flex-nowrap">
+    <span className="input-group-text" id="addon-wrapping">{props.label}</span>
+    <Field type={props.type || "text"} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping"/>
   </div>
   )
 }
