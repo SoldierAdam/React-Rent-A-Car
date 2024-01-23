@@ -1,8 +1,5 @@
-import React from 'react'
-import CarCard from '../../components/CarCard/CarCard'
-import Navbar from '../../components/Navbar/Navbar'
-import Footer from '../../components/Footer/Footer'
 import CarCardList from '../../components/CarCardList/CarCardList'
+import DataChart from '../../components/CarCardList/DataChart'
 
 type Props = {}
 

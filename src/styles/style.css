@@ -91,65 +91,6 @@
   .py-2 { padding: 20px 0; }
   .py-3 { padding: 30px 0; }
   
-  /* Navbar */
-  #navbar {
-	background: #333;
-	color: #fff;
-	overflow: auto;
-  }
-  
-  #navbar a {
-	color: #fff;
-	padding: 0 10px;
-  }
-
-  #navbar .menu{
-	display: flex;
-	align-items: flex-end;
-	position: relative;
-  }
-
-  #navbar .menu-link{
-	height: 100%;
-	position: relative;
-	display: flex;
-	align-items: center;
-  }
-
-  #navbar .menu-link a{
-	text-decoration: none;
-  }
-
-  
-  #navbar .logo {
-	display: flex;
-	align-items: center;
-	font-size: 40px;
-	text-decoration: none;
-	font-weight: bold;
-	letter-spacing: -2px;
-  }
-  
-  /* #navbar ul {
-	list-style: none;
-	float: right;
-  } */
-  
-  /* #navbar ul li {
-	float: left;
-  } */
-  
-  /* #navbar ul li a {
-	display: block;
-	padding: 20px;
-	text-align: center;
-  } */
-  
-  #navbar .menu-link:hover, 
-  #navbar .menu-link.current {
-	background: #444;
-	color: #f7c08a;
-  }
   
   /* Showcase */
   #showcase {

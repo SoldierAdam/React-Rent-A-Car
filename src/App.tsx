@@ -5,10 +5,10 @@ import Contact from './pages/Contact/Contact';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import CarCard from './components/CarCard/CarCard';
 import Cars from './pages/Cars/Cars';
 import Login from "./pages/Login/Login"
 import SignUp from './pages/Login/SignUp';
+
 
 
 
