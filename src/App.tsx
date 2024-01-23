@@ -7,7 +7,10 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import CarCard from './components/CarCard/CarCard';
 import Cars from './pages/Cars/Cars';
-import SignIn from './pages/SignIn/SignIn';
+import Login from "./pages/Login/Login"
+import SignUp from './pages/Login/SignUp';
+
+
 
 function App() {
   return (
@@ -18,11 +21,13 @@ function App() {
 			<Route path="/" element={<Index/>} />
 			<Route path="/contact" element={<Contact/>} />
 			{ <Route path='cars' element={<Cars/>} /> }
-			<Route path='/signIn' element={<SignIn/>}/>
+			<Route path='/login' element = {<Login/>}/>
+			<Route path='/singUp' element= {<SignUp/>}/>
+		
 		</Routes>
-		{/* <div className="App">
+		{ <div className="App">
      	 <CarCard/>
-   		 </div> */}
+   		 </div>}
 		<Footer/>
 	  </>
   );
