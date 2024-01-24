@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import Slider from '../../components/Slider/Slider';
 
 const HomePage = () => {
   const backgroundImageStyle = {
@@ -17,6 +18,7 @@ const HomePage = () => {
         <p className='lead'>We offer a wide range of cars for your convenience. Choose the one that suits your needs the best.</p>
       </header>
 	  <SearchBar />
+	  {/* <Slider /> */}
       <section className="home-section">
         <h2>Why Choose Us?</h2>
         <div className="features">

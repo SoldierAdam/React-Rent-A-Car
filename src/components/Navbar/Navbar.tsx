@@ -1,20 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import './Navbar.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
-
-	const location = useLocation();
+  const location = useLocation();
 
 	return (
 		<nav id="navbar">
 			<div className='navbar'>
-				<div className='container'>
 				<div className="logo"><Link to="/" className='logo'>CarRent</Link></div>
 				<div className='menu'>
 					<div className='menu-link'>
@@ -40,11 +37,10 @@ function Navbar() {
 					{/* <div className='menu-link'>
 						<NavLink to="/basket" className={location.pathname === "/basket" ? "current" : ""} >
 							<FontAwesomeIcon icon={faCartShopping as IconProp} />
-						</NavLink>	
+						</NavLink>
 					</div> */}
 					</div>
 				</div>
-			</div>
 		</nav>
 	)
 }
