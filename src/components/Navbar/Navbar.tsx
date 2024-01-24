@@ -14,6 +14,7 @@ function Navbar() {
 	return (
 		<nav id="navbar">
 			<div className='navbar'>
+				<div className='container'>
 				<div className="logo"><Link to="/" className='logo'>CarRent</Link></div>
 				<div className='menu'>
 					<div className='menu-link'>
@@ -39,10 +40,11 @@ function Navbar() {
 					{/* <div className='menu-link'>
 						<NavLink to="/basket" className={location.pathname === "/basket" ? "current" : ""} >
 							<FontAwesomeIcon icon={faCartShopping as IconProp} />
-						</NavLink>
+						</NavLink>	
 					</div> */}
 					</div>
 				</div>
+			</div>
 		</nav>
 	)
 }

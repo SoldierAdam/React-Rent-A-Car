@@ -44,10 +44,6 @@ const Contact = () => {
 					</div>
 				</div>
 			</section>
-
-			<footer id="main-footer">
-				<p>Hotel BT &copy; 2019, All RIghts Reserved</p>
-			</footer>
 		</div>
 	);
 }
