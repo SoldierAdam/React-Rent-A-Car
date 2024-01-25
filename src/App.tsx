@@ -25,9 +25,6 @@ function App() {
 			<Route path='/singUp' element= {<SignUp/>}/>
 		
 		</Routes>
-		{ <div className="App">
-     	 <CarCard/>
-   		 </div>}
 		<Footer/>
 	  </>
   );

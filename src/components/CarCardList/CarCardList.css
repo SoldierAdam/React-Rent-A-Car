@@ -1,7 +1,9 @@
 .filter-panel {
-	background-color: #f5f5f5;
+	background-color: #f6e2e2;
 	padding: 15px;
 	border-radius: 5px;
+	height: 1000px;
+	margin-top: 58px;
 }
 
 .filter-panel .filter-title {
@@ -13,7 +15,7 @@
 .filter-panel .filter-range-inputs {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .filter-panel input[type="number"] {
@@ -26,8 +28,8 @@
 
 .filter-panel button {
 	padding: 5px 10px;
-	font-size: 14px;
-	background-color: #007bff;
+	font-size: 18px;
+	background-color: #f44336;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
