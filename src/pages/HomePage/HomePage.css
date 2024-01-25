@@ -14,9 +14,18 @@
   }
   
   .home-header h1 {
-	font-size: 2.5em;
+	font-size: 60px;
+  	line-height: 1.2em;
 	background-position: center bottom;
 	margin-top: -150px;
+  }
+
+  .text-primary {
+	color: #154c79;
+  }
+
+  .lead {
+	font-size: 20px;
   }
   
   .home-header p {
@@ -28,7 +37,7 @@
 	padding: 10px 20px;
 	font-size: 1em;
 	color: white;
-	background-color: #007BFF;
+	background-color:  #f44336;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;

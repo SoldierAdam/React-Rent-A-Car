@@ -1,0 +1,71 @@
+.car-listing {
+	/* display: flex; 
+	 flex-wrap: wrap; 
+	justify-content: space-between;
+	margin: 0 -10px; */
+  }
+  
+  .car-card {
+	box-sizing: border-box;
+	width: calc(100%);
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	margin: 5%;
+	overflow: hidden;
+	border: 0.1px solid rgb(246, 223, 223);
+  }
+
+  .rent-button {
+	background-color: #f44336;
+	color: #ffffff;
+
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: none;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	float:right;
+  }
+
+  
+  .car-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+  }
+  
+  .car-info {
+	padding: 15px;
+  }
+  
+  .car-brand {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 5px;
+  }
+  
+  .car-model {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	color: #666;
+  }
+  
+  .car-year {
+	font-size: 14px;
+	color: #999;
+	margin-bottom: 5px;
+  }
+  
+  .car-price {
+	font-size: 18px;
+	font-weight: bold;
+  }
+
+  .item-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+  }
