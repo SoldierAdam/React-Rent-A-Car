@@ -6,22 +6,25 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Cars from './pages/Cars/Cars';
-import SignIn from './pages/SignIn/SignIn';
+import Login from "./pages/Login/Login"
+import SignUp from './pages/Login/SignUp';
+
+
 
 
 function App() {
   return (
 	<>
 		<Navbar/>
-		<div style={{minHeight:'100vh'}}>
-			<Routes>
-				<Route path="/about" element={<About/>} />
-				<Route path="/" element={<Index/>} />
-				<Route path="/contact" element={<Contact/>} />
-				{ <Route path='cars' element={<Cars/>} /> }
-				<Route path='/signIn' element={<SignIn/>}/>
-			</Routes>
-		</div>
+		<Routes>
+			<Route path="/about" element={<About/>} />
+			<Route path="/" element={<Index/>} />
+			<Route path="/contact" element={<Contact/>} />
+			{ <Route path='cars' element={<Cars/>} /> }
+			<Route path='/login' element = {<Login/>}/>
+			<Route path='/singUp' element= {<SignUp/>}/>
+		
+		</Routes>
 		<Footer/>
 	  </>
   );
