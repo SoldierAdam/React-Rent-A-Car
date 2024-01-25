@@ -3,6 +3,8 @@
 	background: #333;
 	color: #fff;
 	overflow: auto;
+	padding-right: 50px;
+	padding-left: 50px;
   }
   
   #navbar a {
@@ -35,9 +37,8 @@
 	align-items: center;
 	font-size: 60px;
 	text-decoration: none;
-	font-weight: bold;
+	/* font-weight: bold; */
 	letter-spacing: -2px;
-	padding: 0;
 	margin: 0;
   }
 
