@@ -1,8 +1,7 @@
 import React from 'react';
 import './CarCard.css';
-import { Button, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion'
-import  { Car, Model, Brand, Color}  from '../../models/model';
+import  { Car}  from '../../models/model';
 
 interface CarListingProps {
 	car: Car;
@@ -74,7 +73,7 @@ const CarCard: React.FC<CarListingProps> = ({ car }) => (
 					<div className="car-info">
 						<p className='car-name'>{car.model.name} {car.modelYear}</p>
 						<p className="car-price">{car.dailyPrice} TL</p>
-						<div className='item-container d-none d-lg-flex d-xlarge-block ' >
+						<div className='item-container d-none d-lg-flex d-xlarge-block ' > {/* doesn't appear on small screens*/}
 							<div className="item col-6">
 								{vehicleFeatures}
 							</div>

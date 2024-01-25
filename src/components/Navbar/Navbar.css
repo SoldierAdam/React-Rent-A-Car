@@ -10,11 +10,6 @@
 	padding: 0 10px;
   }
   
-  #navbar .logo {
-	margin: 0;
-	padding: 0;
-
-  }
 
   #navbar .menu{
 	display: flex;
@@ -38,13 +33,14 @@
   #navbar .logo {
 	display: flex;
 	align-items: center;
-	font-size: 45px;
+	font-size: 60px;
 	text-decoration: none;
 	font-weight: bold;
 	letter-spacing: -2px;
 	padding: 0;
 	margin: 0;
   }
+
   
   #navbar ul {
 	list-style: none;

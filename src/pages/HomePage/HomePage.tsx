@@ -14,8 +14,8 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <header style={backgroundImageStyle} className="home-header">
-        <h1>Welcome to Our Car Rental</h1>
-        <p>We offer a wide range of cars for your convenience. Choose the one that suits your needs the best.</p>
+        <h1 className='showcase-content'>Welcome to Our <span className='text-primary'>Car Rental</span> </h1>
+        <p className='lead'>We offer a wide range of cars for your convenience. Choose the one that suits your needs the best.</p>
       </header>
 	  <SearchBar />
 	  {/* <Slider /> */}
