@@ -1,7 +1,7 @@
 import React from 'react';
 import './CarCard.css';
 import { motion } from 'framer-motion'
-import  { Car}  from '../../models/model';
+import  { Car}  from '../../models/Model';
 
 interface CarListingProps {
 	car: Car;
