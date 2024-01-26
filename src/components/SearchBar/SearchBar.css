@@ -3,10 +3,11 @@
 	flex-direction: row;
 	justify-content: center;
 	gap: 10px;
-	margin: 20px auto;
+	margin: 50px auto;
 	width: 80%; /* Adjust this value to change the width of the form */
 	max-width: 800px; /* This will prevent the form from becoming too wide on large screens */
 	flex-wrap: wrap; /* This will allow the form elements to wrap to the next line on small screens */
+	box-shadow: 5px 20px 15px -5px #b39588;
 }
 
 .search-bar label {

@@ -1,15 +1,17 @@
-import { Form, FormikProps, withFormik } from "formik";
+import { Field, Form, FormikProps, withFormik,FormikHelpers } from "formik";
 import { basicSchema } from "./LoginValidation";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import axios from "axios";
+import UserService from "../../services/abstracts/userService";
 
 
 interface FormValues {
-  email?: string;
-  password?: string;
+  email: string;
+  password: string;
 }
 
 interface OtherProps {
@@ -17,8 +19,8 @@ interface OtherProps {
   ref?: any;
 }
 interface MyFormprops {
-  initialiEmail?: string;
-  initialPassword?: string;
+  initialEmail: string;
+  initialPassword: string;
   login?: any;
 }
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
@@ -30,11 +32,29 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
     handleBlur,
     handleSubmit,
     isSubmitting,
+    submitCount,
   } = props;
 
+  const successMessage = (
+    <div className="success-message">
+      Login successful!
+    </div>
+  );
+  const errorMessage = (
+    <div className="error-message">
+      Sign up failed! Please check your information and try again.
+    </div>
+  );
+  
+  
+  
   return (
+    
     <div className="container ">
-        <Form onSubmit={handleSubmit} className="form card">
+      
+          <Form  onSubmit={handleSubmit} className="form card">
+          {submitCount > 0 && Object.keys(errors).length === 0 ? successMessage : submitCount > 0 && Object.keys(errors).length !== 0 && errorMessage}
+
         <div className="header">
           <div className="text">
             <FaUser />
@@ -43,13 +63,13 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
           <div className="sign-up">
             Don't have an account?
-            <Link to="/singUp" className="sing-up-button">Sign Up</Link>
+            <Link to="/signUp" className="sign-up-button">Sign Up</Link>
           </div>
         </div>
         <div className="inputs">
           <div className="input">
             <MdEmail className="icon-email" />
-            <input
+            <Field
               className="input"
               name="email"
               type="email"
@@ -57,7 +77,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.email}
-            ></input>
+            ></Field>
           </div>
           {touched.email && errors.email && (
             <div className="invalid-feedback">{errors.email}</div>
@@ -65,7 +85,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
           <div className="input">
             <RiLockPasswordFill className="icon-password" />
-            <input
+            <Field
               className="input"
               name="password"
               type="password"
@@ -73,7 +93,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
-            ></input>
+            ></Field>
           </div>
           {touched.password && errors.password && (
             <div className="invalid-feedback">{errors.password}</div>
@@ -96,31 +116,52 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
             }
             type="submit"
             className="submit"
+            
           >
             Login
           </button>
         </div>
       </Form>
     </div>
+   
   );
+
 };
 const LoginForm = withFormik<MyFormprops, FormValues>({
   mapPropsToValues: (props) => ({
-    email: props.initialiEmail,
+    email: props.initialEmail,
     password: props.initialPassword,
   }),
   validationSchema: basicSchema,
-  handleSubmit({ email, password }: FormValues) {
-    console.log("Email", email);
-    console.log("Password", password);
+  handleSubmit: async (
+    values: FormValues,
+    { setSubmitting }: FormikHelpers<FormValues>
+  ) => {
+    try {
+      const response = await UserService.loginUser(values.email, values.password);
+
+      if (response.success) {
+        console.log("Login successful");
+       
+      } else {
+        console.error("Login failed:", response.message);
+        
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      
+    } finally {
+      setSubmitting(false); 
+    }
   },
 })(InnerForm);
 
-const Login: React.FC<{}> = (props: any) => {
+const Login: React.FC<MyFormprops> = (props: MyFormprops) => {
   return (
     <div>
-      <LoginForm />
+      <LoginForm {...props} />
     </div>
+    
   );
 };
 
