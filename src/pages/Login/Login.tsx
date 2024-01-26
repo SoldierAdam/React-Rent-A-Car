@@ -32,14 +32,29 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
     handleBlur,
     handleSubmit,
     isSubmitting,
+    submitCount,
   } = props;
 
+  const successMessage = (
+    <div className="success-message">
+      Login successful!
+    </div>
+  );
+  const errorMessage = (
+    <div className="error-message">
+      Sign up failed! Please check your information and try again.
+    </div>
+  );
+  
+  
   
   return (
     
     <div className="container ">
       
           <Form  onSubmit={handleSubmit} className="form card">
+          {submitCount > 0 && Object.keys(errors).length === 0 ? successMessage : submitCount > 0 && Object.keys(errors).length !== 0 && errorMessage}
+
         <div className="header">
           <div className="text">
             <FaUser />
@@ -48,7 +63,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
           <div className="sign-up">
             Don't have an account?
-            <Link to="/singUp" className="sing-up-button">Sign Up</Link>
+            <Link to="/signUp" className="sign-up-button">Sign Up</Link>
           </div>
         </div>
         <div className="inputs">
@@ -144,7 +159,7 @@ const LoginForm = withFormik<MyFormprops, FormValues>({
 const Login: React.FC<MyFormprops> = (props: MyFormprops) => {
   return (
     <div>
-      <LoginForm {... props} />
+      <LoginForm {...props} />
     </div>
     
   );

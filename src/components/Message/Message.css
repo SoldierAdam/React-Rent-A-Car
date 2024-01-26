@@ -1,0 +1,32 @@
+.success-message {
+    background-color: #d4edda; /* Başarı mesajı kutusunun arka plan rengi */
+    border: 2px solid #155724; /* Kenar çizgisi rengi ve kalınlığı */
+    color: #155724; /* Başarı mesajının metin rengi */
+    padding: 20px; /* Başarı mesajı kutusunun iç boşluğu */
+    border-radius: 8px; /* Başarı mesajı kutusunun köşe yarıçapı */
+    width: 400px; /* Başarı mesajı kutusunun genişliği */
+    margin: auto; /* Dikey ve yatayda ortala */
+    text-align: center; /* Başarı mesajını metni ortala */
+    position: fixed; /* Sabit bir konumda tut */
+    top: 50%; /* Sayfanın üstünden ortalama */
+    left: 50%; /* Sayfanın solundan ortalama */
+    transform: translate(-50%, -50%); /* Yatay ve dikeyde ortala */
+    z-index: 999; /* Diğer elemanların üzerinde gözüksün */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Hafif bir gölgelendirme ekleyin */
+  }
+  .error-message {
+    background-color: #d4edda; /* Başarı mesajı kutusunun arka plan rengi */
+    border: 2px solid #155724; /* Kenar çizgisi rengi ve kalınlığı */
+    color: #155724; /* Başarı mesajının metin rengi */
+    padding: 20px; /* Başarı mesajı kutusunun iç boşluğu */
+    border-radius: 8px; /* Başarı mesajı kutusunun köşe yarıçapı */
+    width: 400px; /* Başarı mesajı kutusunun genişliği */
+    margin: auto; /* Dikey ve yatayda ortala */
+    text-align: center; /* Başarı mesajını metni ortala */
+    position: fixed; /* Sabit bir konumda tut */
+    top: 50%; /* Sayfanın üstünden ortalama */
+    left: 50%; /* Sayfanın solundan ortalama */
+    transform: translate(-50%, -50%); /* Yatay ve dikeyde ortala */
+    z-index: 999; /* Diğer elemanların üzerinde gözüksün */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Hafif bir gölgelendirme ekleyin */
+  }
