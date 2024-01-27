@@ -1,4 +1,4 @@
-import { Field, Form, FormikProps, withFormik,FormikHelpers } from "formik";
+import { Field, Form, FormikProps, withFormik, FormikHelpers } from "formik";
 import { basicSchema } from "./LoginValidation";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
@@ -8,161 +8,123 @@ import "./Login.css";
 import axios from "axios";
 import UserService from "../../services/abstracts/userService";
 
-
 interface FormValues {
-  email: string;
-  password: string;
+	userName: string;
+	password: string;
 }
 
 interface OtherProps {
-  title?: string;
-  ref?: any;
+	title?: string;
+	ref?: any;
 }
 interface MyFormprops {
-  initialEmail: string;
-  initialPassword: string;
-  login?: any;
+	initialUserName: string;
+	initialPassword: string;
+	login?: any;
 }
-const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmitting,
-    submitCount,
-  } = props;
 
-  const successMessage = (
-    <div className="success-message">
-      Login successful!
-    </div>
-  );
-  const errorMessage = (
-    <div className="error-message">
-      Sign up failed! Please check your information and try again.
-    </div>
+const ErrorMessage: React.FC<{ message: string }> = ({ message }) => (
+	<div className="error-message">{message}</div>
   );
   
-  
-  
-  return (
-    
-    <div className="container ">
-      
-          <Form  onSubmit={handleSubmit} className="form card">
-          {submitCount > 0 && Object.keys(errors).length === 0 ? successMessage : submitCount > 0 && Object.keys(errors).length !== 0 && errorMessage}
-
-        <div className="header">
-          <div className="text">
-            <FaUser />
-          </div>
-          <div className="underline"></div>
-
-          <div className="sign-up">
-            Don't have an account?
-            <Link to="/signUp" className="sign-up-button">Sign Up</Link>
-          </div>
-        </div>
-        <div className="inputs">
-          <div className="input">
-            <MdEmail className="icon-email" />
-            <Field
-              className="input"
-              name="email"
-              type="email"
-              placeholder="Email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            ></Field>
-          </div>
-          {touched.email && errors.email && (
-            <div className="invalid-feedback">{errors.email}</div>
-          )}
-
-          <div className="input">
-            <RiLockPasswordFill className="icon-password" />
-            <Field
-              className="input"
-              name="password"
-              type="password"
-              placeholder="Password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            ></Field>
-          </div>
-          {touched.password && errors.password && (
-            <div className="invalid-feedback">{errors.password}</div>
-          )}
-        </div>
-        <div className="forget-password">
-          Forget Password?{" "}
-          <Link className="forget-password-link" to="/">
-            {" "}
-            Click Here!
-          </Link>
-        </div>
-
-        <div className="button">
-          <button
-            disabled={
-              isSubmitting ||
-              (errors.email && touched.email) ||
-              !!(errors.password && touched.password)
-            }
-            type="submit"
-            className="submit"
-            
-          >
-            Login
-          </button>
-        </div>
-      </Form>
-    </div>
-   
+  const SuccessMessage: React.FC<{ message: string }> = ({ message }) => (
+	<div className="success-message">{message}</div>
   );
+  
+  const FormField: React.FC<{
+	name: string;
+	type: string;
+	placeholder: string;
+	icon: JSX.Element;
+  }> = ({ name, type, placeholder, icon }) => (
+	<div className="input">
+	  {icon}
+	  <Field className="input" name={name} type={type} placeholder={placeholder} />
+	</div>
+  );
+  
 
-};
+  const InnerForm: React.FC<OtherProps & FormikProps<FormValues>> = (props) => {
+	const { values, errors, touched, handleSubmit, isSubmitting, submitCount } = props;
+  
+	return (
+	  <div className="container">
+		<Form onSubmit={handleSubmit} className="form card">
+		  {submitCount > 0 && Object.keys(errors).length === 0 && (
+			<SuccessMessage message="Login successful!" />
+		  )}
+		  {submitCount > 0 && Object.keys(errors).length !== 0 && (
+			<ErrorMessage message="Sign up failed! Please check your information and try again." />
+		  )}
+  
+		  <div className="header">
+			<div className="text">
+			  <FaUser />
+			</div>
+			<div className="underline"></div>
+			<div className="sign-up">
+			  Don't have an account?
+			  <Link to="/signUp" className="sign-up-button">Sign Up</Link>
+			</div>
+		  </div>
+  
+		  <FormField name="userName" type="text" placeholder="username" icon={<MdEmail className="icon-email" />} />
+		  {touched.userName && errors.userName && <ErrorMessage message={errors.userName} />}
+  
+		  <FormField name="password" type="password" placeholder="Password" icon={<RiLockPasswordFill className="icon-password" />}/>
+		  {touched.password && errors.password && <ErrorMessage message={errors.password} />}
+  
+		  <div className="forget-password">
+			Forget Password?{" "}
+			<Link className="forget-password-link" to="/">Click Here!</Link>
+		  </div>
+  
+		  <div className="button">
+			<button disabled={isSubmitting || !!Object.keys(errors).length} type="submit" className="submit">
+			  Login
+			</button>
+		  </div>
+		</Form>
+	  </div>
+	);
+  };
+  
+
 const LoginForm = withFormik<MyFormprops, FormValues>({
-  mapPropsToValues: (props) => ({
-    email: props.initialEmail,
-    password: props.initialPassword,
-  }),
-  validationSchema: basicSchema,
-  handleSubmit: async (
-    values: FormValues,
-    { setSubmitting }: FormikHelpers<FormValues>
-  ) => {
-    try {
-      const response = await UserService.loginUser(values.email, values.password);
+	mapPropsToValues: (props) => ({
+	  userName: props.initialUserName,
+	  password: props.initialPassword,
+	}), 
+	handleSubmit: async (
+	  values: FormValues,
+	  { setSubmitting }: FormikHelpers<FormValues>
+	) => {
+	  try {
+		const token = await UserService.loginUser(values.userName, values.password);
+		if (token) {
+		  console.log("Login successful, Token:", token);
+		  // Burada giriş başarılı işlemleri yapabilirsiniz (token ile)
+		} else {
+		  console.error("Login failed: No token received");
+		}
+	  } catch (error) {
+		console.error("Error during login:", error);
+	  } finally {
+		setSubmitting(false);
+	  }
+	}
+  })(InnerForm);
+  
+  export default LoginForm;
+  
 
-      if (response.success) {
-        console.log("Login successful");
-       
-      } else {
-        console.error("Login failed:", response.message);
-        
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      
-    } finally {
-      setSubmitting(false); 
-    }
-  },
-})(InnerForm);
 
-const Login: React.FC<MyFormprops> = (props: MyFormprops) => {
-  return (
-    <div>
-      <LoginForm {...props} />
-    </div>
-    
-  );
-};
 
-export default Login;
+
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@ import { m, motion } from 'framer-motion';
 import './CarCardList.css';
 import CarCard from '../CarCard/CarCard';
 import '../../pages/HomePage/HomePage.css';
-import { Car } from '../../models/Model';
+import { Car } from '../../models/model';
 
 type FilterCriteria = {
 	minDailyPrice: number;
