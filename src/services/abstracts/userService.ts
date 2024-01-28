@@ -1,7 +1,5 @@
 import axios, { AxiosError } from "axios";
 
-
-
 export interface LoginResponse {
 	success: boolean;
 	message: string;
@@ -27,12 +25,10 @@ class UserService {
 		}
 	  }
   
-	static async signUp(email: string, password: string, role: string[]): Promise<SignUpResponse> {
+	static async signUp(email: string, password: string, username: string): Promise<SignUpResponse> {
 	  try {
-		const response = await axios.post<SignUpResponse>("http://localhost:8080/api/users/signUp", {
-		  email,
-		  password,
-		  role
+		const response = await axios.post("http://localhost:8080/api/users/signUp", {
+		  email, password, username
 		});
 		return response.data;
 	  } catch (error) {

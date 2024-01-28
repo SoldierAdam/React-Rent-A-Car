@@ -31,7 +31,7 @@ function Navbar() {
 						</NavLink>
 					</div>
 					<div className='menu-link'>
-						<NavLink to="/login" className={location.pathname === "/login" ? "current" : ""} >
+						<NavLink to="/signUp" className={location.pathname === "/login" ? "current" : ""} >
 							Login
 						</NavLink>
 					</div>
