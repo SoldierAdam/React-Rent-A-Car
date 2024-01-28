@@ -14,5 +14,5 @@ export const basicSchemaSignUp = yup.object().shape({
         "one uppercase letter, one special character, must be 8-16 characters",
     })
     .required("Required"),
-  role: yup.string().required("required"),
+ 	userName: yup.string().required("Required"),	
 });

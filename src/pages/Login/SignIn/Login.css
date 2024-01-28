@@ -17,8 +17,7 @@
   align-items: center;
   border-radius: 30px;
   border-style: solid;
-  border-width: 5px;
-  
+  border-width: 5px; 
 }
 
 .header {
@@ -129,13 +128,13 @@
   border: hidden;
 }
 
-.singUp{
+.login{
  display: flex;
  align-items: center;
  justify-content: center;
 
 }
-.sign-up .sing-up-button{
+.login .login-button{
   margin-left: 5px;
   color: blue ;
   text-decoration: none;
