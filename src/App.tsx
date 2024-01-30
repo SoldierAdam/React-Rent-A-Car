@@ -14,6 +14,7 @@ import Login from './pages/Login/SignIn/Login';
 
 
 
+
 function App() {
 	const handleLoginSuccess = () => {
 		// window.location.href = '/';
@@ -22,11 +23,15 @@ function App() {
 	const handleSignUpSuccess = () => {
 		window.location.href = '/login';
 	}
+	
+	
+
+	
 
 
   return (
 	<>
-		<Navbar/>
+		<Navbar  />
 		<Routes>
 			<Route path="/about" element={<About/>} />
 			<Route path="/" element={<Index/>} />

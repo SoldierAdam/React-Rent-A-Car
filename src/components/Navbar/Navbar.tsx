@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
-import {MenuItem, Dropdown, DropdownItem, DropdownMenu} from 'semantic-ui-react';
+
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/userSlice';
-import { Menu, MenuMenu } from 'semantic-ui-react';
-// semantic ui
-import "semantic-ui-css/semantic.min.css";
+
+
+
 
 
 
@@ -29,31 +29,16 @@ const loginVariable = (user: any, currentLocation: any) => {
 	}
 }
 
-const handleSignOut = () => {
-	const dispatch = useDispatch();
-	dispatch(logout());
-}
 
-const dropdownLogin = (user:any, currentLocation: any) => (
-<Menu size='tiny'>
 
-        <MenuMenu position='right'>
-          <Dropdown item text='Language'>
-            <DropdownMenu>
-              <DropdownItem>English</DropdownItem>
-              <DropdownItem>Russian</DropdownItem>
-              <DropdownItem>Spanish</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </MenuMenu>
-      </Menu>
-)
 
 
 function Navbar() {
 	const currentLocation = useLocation();
 	const user = useSelector((state: any) => state.user);
 	console.log(user);
+
+ 
 	return (
 		<nav id="navbar">
 			<div className='navbar'>
@@ -76,12 +61,7 @@ function Navbar() {
 					</div>
 					<div className='menu-link'>
 				
-						{dropdownLogin(user, currentLocation)}
-
-
-
-
-
+                    {loginVariable(user, currentLocation)}
 
 						{/* <div className='menu-link'>
 						<NavLink to="/basket" className={location.pathname === "/basket" ? "current" : ""} >
@@ -95,4 +75,6 @@ function Navbar() {
 	)
 }
 
-export default Navbar;
+export default Navbar
+
+
