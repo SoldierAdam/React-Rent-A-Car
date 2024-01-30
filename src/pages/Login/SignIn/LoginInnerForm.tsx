@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
-import { Form, Field, FormikProps } from 'formik';
+import { Form, Field, FormikProps, FormikErrors } from 'formik';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 interface FormValues {
-	userName: string;
-	password: string;
+    userName: string;
+    password: string;
 }
 
 const ErrorMessage: React.FC<{ message: string }> = ({ message }) => (
@@ -27,7 +27,7 @@ const FormField: React.FC<{
 }> = ({ name, type, placeholder, icon }) => (
     <div className="input">
         {icon}
-        <Field className="input" name={name} type={type} placeholder={placeholder} />
+        <Field name={name} type={type} placeholder={placeholder} />
     </div>
 );
 
@@ -35,29 +35,35 @@ interface InnerFormProps extends FormikProps<FormValues> {
     isSubmitSuccessful: boolean;
 }
 
+const header = (
+    <div className="header">
+        <div className="text"><FaUser /></div>
+        <div className="underline"></div>
+        <div className="login">
+            Don't have an account?
+            <Link to="/signUp" className="login-button">Register</Link>
+        </div>
+    </div>
+);
+
+const SubmitMessage: React.FC<{ isSubmitSuccessful: boolean, errors: FormikErrors<FormValues> }> = ({ isSubmitSuccessful, errors }) => {
+    if (isSubmitSuccessful) {
+        return <SuccessMessage message="Login successful!" />
+    }
+    else if (Object.keys(errors).length !== 0) {
+        return <ErrorMessage message="Login failed! Please check your information and try again." />
+    }
+    return null;
+};
+
 const InnerForm: React.FC<InnerFormProps> = ({
-    errors,
-    touched,
-    handleSubmit,
-    isSubmitting,
-    isSubmitSuccessful,
+    errors, touched, handleSubmit, isSubmitting, isSubmitSuccessful
 }) => {
     return (
         <div className="container">
             <Form onSubmit={handleSubmit} className="form card">
-                <div className="header">
-                    <div className="text"><FaUser /></div>
-                    <div className="underline"></div>
-                    <div className="login">
-                        Don't have an account?
-                        <Link to="/signUp" className="login-button">Register</Link>
-                    </div>
-                </div>
-
-                {isSubmitSuccessful && <SuccessMessage message="Login successful!" />}
-                {!isSubmitSuccessful && Object.keys(errors).length !== 0 && (
-                    <ErrorMessage message="Login failed! Please check your information and try again." />
-                )}
+                {header}
+                <SubmitMessage isSubmitSuccessful={isSubmitSuccessful} errors={errors} />
 
                 <FormField name="userName" type="text" placeholder="username" icon={<MdEmail className="icon-email" />} />
                 {touched.userName && errors.userName && <ErrorMessage message={errors.userName} />}

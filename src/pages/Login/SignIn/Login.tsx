@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { withFormik, FormikProps } from "formik";
+import { withFormik } from "formik";
 import InnerForm from "./LoginInnerForm";
 import UserService from "../../../services/abstracts/userService";
 import { basicSchema } from "./LoginValidation";
+import { useDispatch } from 'react-redux';
+import { login } from '../../../features/userSlice';
 
 interface FormValues {
-	userName: string;
-	password: string;
+    userName: string;
+    password: string;
 }
 
 interface MyFormProps {
@@ -17,17 +19,14 @@ interface MyFormProps {
 
 const LoginForm = withFormik<MyFormProps, FormValues>({
     mapPropsToValues: ({ initialUserName, initialPassword }) => ({
-        userName: initialUserName,
-        password: initialPassword,
-    }),
-	// validationSchema: basicSchema,
-    handleSubmit: async (values, { setSubmitting, setFieldError, props }
-		) => {
+        userName: initialUserName, password: initialPassword}),
+    validationSchema: basicSchema,
+    handleSubmit: async (values, { setSubmitting, setFieldError, setStatus, props }) => {
         try {
             const token = await UserService.loginUser(values.userName, values.password);
             if (token) {
                 props.onSubmitSuccess();
-                // TODO: Handle token (e.g., store in context or local storage)
+                setStatus({ isSubmitSuccessful: true }); // Set status here
             } else {
                 setFieldError('general', 'Login failed: No token received');
             }
@@ -38,8 +37,15 @@ const LoginForm = withFormik<MyFormProps, FormValues>({
         }
     },
 })(props => {
-    const [isSubmitSuccessful, setSubmitSuccessful] = useState(false);
-    return <InnerForm {...props} isSubmitSuccessful={isSubmitSuccessful} />;
+    const dispatch = useDispatch();
+
+
+    // Check the submission status using props.status
+    if (props.status?.isSubmitSuccessful) {
+        dispatch(login(props.values.userName));
+    }
+
+    return <InnerForm {...props} isSubmitSuccessful={props.status?.isSubmitSuccessful || false} />;
 });
 
 export default LoginForm;
