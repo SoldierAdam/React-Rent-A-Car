@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Cars from './pages/Cars/Cars';
+import { useState } from 'react';
 
 import SignUp from './pages/Login/SignUp/SignUp';
 import Login from './pages/Login/SignIn/Login';
@@ -15,12 +16,13 @@ import Login from './pages/Login/SignIn/Login';
 
 function App() {
 	const handleLoginSuccess = () => {
-		window.location.href = '/';
+		// window.location.href = '/';
 	};
 
 	const handleSignUpSuccess = () => {
 		window.location.href = '/login';
 	}
+
 
   return (
 	<>
