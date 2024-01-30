@@ -1,10 +1,11 @@
 import React from 'react';
-import { FormikProps, Form, Field } from 'formik';
+import { FormikProps, Form } from 'formik';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import './SignUp.css';
+import FormikInput from '../../../components/FormikInput/FormikInput';
 
 interface FormValues {
 	userName: string;
@@ -20,14 +21,6 @@ const SuccessMessage: React.FC<{ message: string }> = ({ message }) => (
 	<div className="success-message">{message}</div>
 );
 
-
-const FormField: React.FC<{ name: string; type: string; placeholder: string; icon: JSX.Element;}> = (
-	{ name, type, placeholder, icon }) => (
-	<div className="input">
-		{icon}
-		<Field className="input-field" name={name} type={type} placeholder={placeholder} />
-	</div>
-);
 
 interface InnerFormProps extends FormikProps<FormValues> {
 	isSubmitSuccessful: boolean;
@@ -47,9 +40,9 @@ const SignUpInnerForm: React.FC<InnerFormProps> = ({
 				<div className="header">
 					<div className="text"><FaUser /></div>
 					<div className="underline"></div>
-					<div className="login">
+					<div className="login mb-3">
 						Already have an account?
-						<Link to="/login" className="login-button">Log In</Link>
+						<Link to="/login" className="login-button">Login</Link>
 					</div>
 				</div>
 
@@ -58,27 +51,26 @@ const SignUpInnerForm: React.FC<InnerFormProps> = ({
 					<ErrorMessage message="Sign up failed! Please check your information and try again." />
 				)}
 
-				<FormField name="email" type="email" placeholder="Email" icon={<MdEmail className="icon-email" />} />
+				<FormikInput name="email" type="email" placeholder="Email" icon={<MdEmail className="icon-email" />} />
 				{touched.email && errors.email && <ErrorMessage message={errors.email} />}
 
-				<FormField name="userName" type="text" placeholder="Username" icon={<FaUser className="icon-email" />} />
+				<FormikInput name="userName" type="text" placeholder="Username" icon={<FaUser className="icon-email" />} />
 				{touched.userName && errors.userName && <ErrorMessage message={errors.userName} />}
 
-				<FormField name="password" type="password" placeholder="Password" icon={<RiLockPasswordFill className="icon-password" />} />
+				<FormikInput name="password" type="password" placeholder="Password" icon={<RiLockPasswordFill className="icon-password" />} />
 				{touched.password && errors.password && <ErrorMessage message={errors.password} />}
+				<div className="sign-up mb-3">
+					<button
+						disabled={isSubmitting || !!(errors.userName && touched.userName) || !!(errors.password && touched.password) || !!(errors.email && touched.email)}
+						type="submit"
+						className={`submit-button ${isSubmitting ? 'loading' : ''}`}
+					>
+						{isSubmitting ? 'Logging In...' : 'Login'}
+					</button>
+				</div>
 
-				<div className="sign-up">
-                    <button
-                        disabled={isSubmitting || 
-							!!(errors.userName && touched.userName) || 
-							!!(errors.password && touched.password) ||
-							!!(errors.email && touched.email)}
-                        type="submit"
-                        className="submit-button"
-                    >
-                        Login
-                    </button>
-                </div>
+
+
 			</Form>
 		</div>
 	);

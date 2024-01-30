@@ -5,6 +5,8 @@ import { Form, Field, FormikProps, FormikErrors } from 'formik';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import FormikInput from '../../../components/FormikInput/FormikInput';
+
 
 interface FormValues {
     userName: string;
@@ -19,17 +21,7 @@ const SuccessMessage: React.FC<{ message: string }> = ({ message }) => (
     <div className="success-message">{message}</div>
 );
 
-const FormField: React.FC<{
-    name: string;
-    type: string;
-    placeholder: string;
-    icon: JSX.Element;
-}> = ({ name, type, placeholder, icon }) => (
-    <div className="input">
-        {icon}
-        <Field name={name} type={type} placeholder={placeholder} />
-    </div>
-);
+
 
 interface InnerFormProps extends FormikProps<FormValues> {
     isSubmitSuccessful: boolean;
@@ -60,38 +52,40 @@ const InnerForm: React.FC<InnerFormProps> = ({
     errors, touched, handleSubmit, isSubmitting, isSubmitSuccessful
 }) => {
     return (
+       
         <div className="container">
-            <Form onSubmit={handleSubmit} className="form card">
-                {header}
-                <SubmitMessage isSubmitSuccessful={isSubmitSuccessful} errors={errors} />
+        <Form onSubmit={handleSubmit} className="form card">
+            {header}
+            <SubmitMessage isSubmitSuccessful={isSubmitSuccessful} errors={errors} />
 
-                <FormField name="userName" type="text" placeholder="username" icon={<MdEmail className="icon-email" />} />
-                {touched.userName && errors.userName && <ErrorMessage message={errors.userName} />}
+            <FormikInput name="userName" type="text" placeholder="username" icon={<MdEmail className="icon-email" />} />
+            {touched.userName && errors.userName && <ErrorMessage message={errors.userName} />}
 
-                <FormField name="password" type="password" placeholder="Password" icon={<RiLockPasswordFill className="icon-password" />} />
-                {touched.password && errors.password && <ErrorMessage message={errors.password} />}
+            <FormikInput name="password" type="password" placeholder="Password" icon={<RiLockPasswordFill className="icon-password" />} />
+            {touched.password && errors.password && <ErrorMessage message={errors.password} />}
 
-                <div className="submit-container">
-                    <button
-                        disabled={isSubmitting || !!(errors.userName && touched.userName) || !!(errors.password && touched.password)}
-                        type="submit"
-                        className="sign-up"
-                    >
-                        Login
-                    </button>
-                </div>
+            <div className="sign-up">
+    <button
+        disabled={isSubmitting || !!(errors.userName && touched.userName) || !!(errors.password && touched.password)}
+        type="submit"
+        className={`submit-button ${isSubmitting ? 'loading' : ''}`}
+    >
+        {isSubmitting ? 'Logging In...' : 'Login'}
+    </button>
+</div>
 
-                <div className="remember-me">
-                    <input type="checkbox" className="checkbox" />
-                    Remember me
-                </div>
-                <div className="forget-password">
-                    Forget Password?{" "}
-                    <Link className="forget-password-link" to="/reset-password">Click Here!</Link>
-                </div>
-            </Form>
-        </div>
-    );
+
+            <div className="remember-me">
+                <input type="checkbox" className="checkbox" />
+                Remember me
+            </div>
+            <div className="forget-password">
+                Forget Password?{" "}
+                <Link className="forget-password-link" to="/reset-password">Click Here!</Link>
+            </div>
+        </Form>
+    </div>
+);
 };
 
 export default InnerForm;

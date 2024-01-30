@@ -53,6 +53,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 13px;
+	
   }
   .input {
 	display: flex;
@@ -62,6 +63,7 @@
 	height: 75px;
 	background: #eeeded;
 	border-radius: 6px;
+	
   }
   
   .icon-password {
@@ -129,13 +131,13 @@
 	border: hidden;
   }
   
-  .singUp{
+  .signUp{
    display: flex;
    align-items: center;
    justify-content: center;
   
   }
-  .sign-up .sing-up-button{
+  .sign-up .sign-up-button{
 	margin-left: 5px;
 	color: blue ;
 	text-decoration: none;
@@ -147,6 +149,28 @@
 	display: block !important;
 	margin-top: -10px !important;
   }
+  .submit-button {
+    width: 150px;
+    height: 50px;
+    background-color:#f44336;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+	
+}
+
+.submit-button:hover {
+    background-color: #d32f2f;
+}
+
+.submit-button.loading {
+    cursor: not-allowed;
+    background-color: #6c757d;
+}
+
   
   
   
