@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
-
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/userSlice';
 
@@ -42,6 +41,9 @@ function Navbar() {
 	return (
 		<nav id="navbar">
 			<div className='navbar'>
+				{/* <div className="navbar-logo">
+					<img src={require("../../assets/images/navbarlogo.png")} className="navbar-png"/>
+				</div> */}
 				<div className="logo"><Link to="/" className='logo'>CarRent</Link></div>
 				<div className='menu'>
 					<div className='menu-link'>

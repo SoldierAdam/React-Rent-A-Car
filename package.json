@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "@types/d3": "^7.4.3",
-    "@types/react-slick": "^0.23.13"
+    "@types/react-slick": "^0.23.13",
+    "react-app-alias": "^2.2.2"
   }
 }
