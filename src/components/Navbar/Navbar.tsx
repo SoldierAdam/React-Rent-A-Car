@@ -5,7 +5,10 @@ import "./Navbar.css";
 import { useSelector } from "react-redux";
 
 import { useDispatch } from 'react-redux';
-import { logout } from '../../features/userSlice';
+import { logout } from '../../store/user/userSlice';
+
+import DropdownList from "../Dropdown/DropdownList";
+
 
 
 
@@ -60,8 +63,8 @@ function Navbar() {
 						</NavLink>
 					</div>
 					<div className='menu-link'>
-				
-                    {loginVariable(user, currentLocation)}
+					<DropdownList  {...loginVariable(user, currentLocation)}/>
+                   
 
 						{/* <div className='menu-link'>
 						<NavLink to="/basket" className={location.pathname === "/basket" ? "current" : ""} >
@@ -69,6 +72,7 @@ function Navbar() {
 						</NavLink>
 					</div> */}
 					</div>
+				
 				</div>
 			</div>
 		</nav>

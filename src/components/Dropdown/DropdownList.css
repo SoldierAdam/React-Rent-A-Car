@@ -1,0 +1,14 @@
+ .dropdown-menu {
+    z-index: 1000;
+}
+.dropdown-container {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    margin: 10px; /* İstediğiniz kadar boşluk ekleyebilirsiniz */
+  }
+  
+  .dropdown-menu {
+    position: relative;
+  }
+  

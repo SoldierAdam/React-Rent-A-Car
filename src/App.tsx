@@ -2,11 +2,12 @@ import './App.css';
 import About from './pages/About/About';
 import Index from './pages/HomePage/HomePage';
 import Contact from './pages/Contact/Contact';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Cars from './pages/Cars/Cars';
 import { useState } from 'react';
+import OverlayLoader from "./components/OverlayLoader/OverlayLoader";
 
 import SignUp from './pages/Login/SignUp/SignUp';
 import Login from './pages/Login/SignIn/Login';
@@ -31,7 +32,8 @@ function App() {
 
   return (
 	<>
-		<Navbar  />
+		 <Navbar  />
+		  <OverlayLoader />
 		<Routes>
 			<Route path="/about" element={<About/>} />
 			<Route path="/" element={<Index/>} />
@@ -40,7 +42,8 @@ function App() {
 			<Route path="/login" element={<Login initialUserName="" initialPassword="" onSubmitSuccess={handleLoginSuccess} />} />
 			<Route path='/signUp' element= {<SignUp initialEmail="" initialPassword="" initialUserName="" onSubmitSuccess={handleSignUpSuccess} /> }/>
 		</Routes>
-		<Footer/>
+		
+		<Footer/> 
 	  </>
   );
 }
