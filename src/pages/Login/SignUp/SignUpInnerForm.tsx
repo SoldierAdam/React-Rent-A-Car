@@ -69,8 +69,6 @@ const SignUpInnerForm: React.FC<InnerFormProps> = ({
 					</button>
 				</div>
 
-
-
 			</Form>
 		</div>
 	);
