@@ -31,7 +31,7 @@ const SignUpForm = withFormik<MyFormprops, FormValues>({
 		console.log("Submitting form:", values)
 		try {
 			const response = await UserService.signUp(values.email, values.password, values.userName);
-			console.log("Response:", response);
+			// console.log("Response:", response);
 			console.log("Sign up successful");
 		} catch (error) {
 			console.error("Error during login:", error);

@@ -3,9 +3,9 @@
 	background: #333;
 	color: #fff;
 	overflow: visible;
-	padding-right: 50px;
-	padding-left: 50px;
-	z-index: 1000;
+	padding-right: 250px;
+	padding-left: 250px;
+
   }
   
   #navbar a {
@@ -36,11 +36,19 @@
   #navbar .logo {
 	display: flex;
 	align-items: center;
-	font-size: 60px;
+	font-size: 40px;
 	text-decoration: none;
 	/* font-weight: bold; */
 	letter-spacing: -2px;
 	margin: 0;
+  }
+
+  .navbar-logo{
+	
+  }
+
+  .navbar-png{
+
   }
 
   
