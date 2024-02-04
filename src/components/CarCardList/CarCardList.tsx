@@ -5,6 +5,8 @@ import './CarCardList.css';
 import CarCard from '../CarCard/CarCard';
 import '../../pages/HomePage/HomePage.css';
 import { Car } from '../../models/model';
+import { useDispatch } from 'react-redux';
+import { decreaseRequestCount, increaseRequestCount } from '../../store/loading/loadingSlice';
 
 type FilterCriteria = {
 	minDailyPrice: number;
@@ -13,6 +15,7 @@ type FilterCriteria = {
 };
 
 const CarCardList: React.FC = () => {
+	// const dispatch = useDispatch();
 	const [data, setData] = useState<Car[] | null>(null);
 	const [filter, setFilter] = useState<FilterCriteria>({
 		minDailyPrice: 0,
@@ -37,16 +40,23 @@ const CarCardList: React.FC = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+				// dispatch(increaseRequestCount());
 				const response = await axios.get('http://localhost:8080/api/cars/getAll');
 				setData(response.data.data);
 				console.log(response.data);
 			} catch (error) {
 				console.error('There was an error!', error);
 			}
+			// dispatch(decreaseRequestCount());
 		};
 
 		fetchData();
 	}, []);
+
+		//eklenecek
+		// useEffect(() => {
+			// 	carService.getAll().then(response => console.log(response));
+			// }, []);
 
 	const handleFilterChange = (newFilter: FilterCriteria) => {
 		setFilter(newFilter);
