@@ -3,21 +3,19 @@ import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Slider from '../../components/Slider/Slider';
 
+
+
 const HomePage = () => {
-	const backgroundImageStyle = {
-		backgroundImage: "url('https://www.sixt.com.tr/storage/cache/0dbb6065ef9782661e4e5089ace294e187a0201d.webp')",
-		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-		height: '56vh',
-	};
 
 	return (
 		<div className="home-page">
-			<header style={backgroundImageStyle} className="home-header">
-				<h1 className='showcase-content'>Find Your est car rental with us </h1>
+			<div className='home-header'>
+				<img src={require("../../assets/images/backgroundwebsite.png")} className='image-header' />
+				<div className='header-text'>
+				<h1 className='showcase-content'><span className='header-colored-text'>Fast & Easy</span> Way To Rent A Car</h1>
 				<p className='lead'>We offer a wide range of cars for your convenience. Choose the one that suits your needs the best.</p>
-			</header>
+				</div>
+			</div>
 			<SearchBar />
 			{/* <Slider /> */}
 			<section className="home-section container">
