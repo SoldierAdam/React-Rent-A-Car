@@ -2,7 +2,7 @@
   #navbar {
 	background: #333;
 	color: #fff;
-	overflow: auto;
+	overflow: visible;
 	padding-right: 250px;
 	padding-left: 250px;
 
