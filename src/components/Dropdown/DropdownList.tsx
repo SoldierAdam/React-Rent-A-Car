@@ -8,20 +8,25 @@ interface Props {
   currentLocation: any;
 }
 
+const logout = () => {
+	localStorage.removeItem("userName");
+	localStorage.removeItem("token");
+}
+
 const DropdownList = (props: Props) => {
   return (
     <div className="dropdown-container">
    
     <NavDropdown
     id="nav-dropdown-dark-example"
-    title= {props.user.userName ? props.user.userName : "Login" }
+    title= {props.user ? props.user : "Login" }
     menuVariant="dark"
   >
 
-	{props.user.userName ? 
+	{props.user ? 
 	<>
 		<NavDropdown.Item as={NavLink} to="/profile">Profile</NavDropdown.Item> 
-		<NavDropdown.Item href="/">Logout</NavDropdown.Item>
+		<NavDropdown.Item href="/" onClick={()=>logout()} >Logout</NavDropdown.Item>
 	</> :
 	<>
 		<NavDropdown.Item as={NavLink} to="/login">Login</NavDropdown.Item>
