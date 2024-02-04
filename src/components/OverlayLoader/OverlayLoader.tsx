@@ -1,15 +1,14 @@
-import React from "react";
-import "./overlayloader.css";
-import {useSelector} from "react-redux";
+import "./OverlayLoader.css";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 const OverlayLoader = (props: Props) => {
-	const loadingState = useSelector((state: any) => state.loading);
+	const requestCount = useSelector((state: any) => state.loading.requestCount);
 
 	return (
 		<>
-			{loadingState.requestCount > 0 && (
+			{requestCount > 0 && (
 				<div className="overlay">
 					<div className="overlay__inner">
 						<div className="overlay__content">
@@ -19,7 +18,7 @@ const OverlayLoader = (props: Props) => {
 				</div>
 			)}
 		</>
-	);
-};
+	)
+}
 
 export default OverlayLoader;

@@ -6,45 +6,31 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Cars from './pages/Cars/Cars';
-import { useState } from 'react';
-import OverlayLoader from "./components/OverlayLoader/OverlayLoader";
+import { useNavigate } from 'react-router-dom';
 
 import SignUp from './pages/Login/SignUp/SignUp';
 import Login from './pages/Login/SignIn/Login';
-
-
-
+import OverlayLoader from './components/OverlayLoader/OverlayLoader';
 
 
 function App() {
-	const handleLoginSuccess = () => {
-		// window.location.href = '/';
-	};
-
-	const handleSignUpSuccess = () => {
-		window.location.href = '/login';
-	}
-	
-	
-
-	
-
 
   return (
 	<>
-		 <Navbar  />
-		  <OverlayLoader />
+		<BrowserRouter>
+		<OverlayLoader/>
+		<Navbar  />
 		<Routes>
 			<Route path="/about" element={<About/>} />
 			<Route path="/" element={<Index/>} />
 			<Route path="/contact" element={<Contact/>} />
-			{ <Route path='cars' element={<Cars/>} /> }
-			<Route path="/login" element={<Login initialUserName="" initialPassword="" onSubmitSuccess={handleLoginSuccess} />} />
-			<Route path='/signUp' element= {<SignUp initialEmail="" initialPassword="" initialUserName="" onSubmitSuccess={handleSignUpSuccess} /> }/>
+			<Route path='cars' element={<Cars/>} />
+			<Route path="/login" element={<Login initialUserName="" initialPassword="" />} />
+			<Route path='/signUp' element= {<SignUp initialEmail="" initialPassword="" initialUserName="" /> }/>
 		</Routes>
-		
-		<Footer/> 
-	  </>
+		<Footer/>
+		</BrowserRouter>
+	</>
   );
 }
 

@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = { requestCount: 0 };
+
 const loadingSlice = createSlice({
-    name: "loading",
-    initialState: {requestCount: 0},
-    reducers:  {
-        increaseRequestCount: state => {
-            state.requestCount++;
-            console.log(increaseRequestCount);
-        },
-        decreaseRequestCount: state =>{
-            state.requestCount--;
-        },
-    },
+  name: "loading",
+  initialState,
+  reducers: {
+	increaseRequestCount: (state: any) => {
+	  state.requestCount++;
+	},
+	decreaseRequestCount: (state: any) => {
+	  state.requestCount--;
+	},
+  }
 });
-export const loadingReducer = loadingSlice.reducer;
-export const {increaseRequestCount, decreaseRequestCount} =
-	loadingSlice.actions;
+
+export const { increaseRequestCount, decreaseRequestCount } = loadingSlice.actions;
+export default loadingSlice.reducer;

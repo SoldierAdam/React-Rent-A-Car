@@ -12,7 +12,7 @@ export interface SignUpResponse {
 class UserService {
 	static async loginUser(userName: string, password: string): Promise<string> {
 		try {
-		  const response = await axios.post("http://localhost:8080/api/users/login", {
+		  const response = await axios.post("http://localhost:8080/api/auth/login", {
 			userName, password
 		  });
 		  console.log('Başarılı Yanıt:', response.data);
@@ -27,7 +27,7 @@ class UserService {
   
 	static async signUp(email: string, password: string, username: string): Promise<SignUpResponse> {
 	  try {
-		const response = await axios.post("http://localhost:8080/api/users/signUp", {
+		const response = await axios.post("http://localhost:8080/api/auth/signUp", {
 		  email, password, username
 		});
 		return response.data;

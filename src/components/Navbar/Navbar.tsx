@@ -4,36 +4,7 @@ import { useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
 
-import { useDispatch } from 'react-redux';
-import { logout } from '../../store/user/userSlice';
-
 import DropdownList from "../Dropdown/DropdownList";
-
-
-
-
-
-
-
-// user varsa user yazdır yoksa login yazdır
-const loginVariable = (user: any, currentLocation: any) => {
-	if (user.userName) {
-		return <div className='menu-link'>
-			<NavLink to="/profile" className={currentLocation.pathname === "/profile" ? "current" : ""} >
-				{user.userName}
-			</NavLink>
-		</div>
-	} else{
-		return <div className='menu-link'>
-			<NavLink to="/login" className={currentLocation.pathname === "/login" ? "current" : ""} >
-				Login
-			</NavLink>
-		</div>
-	}
-}
-
-
-
 
 
 function Navbar() {
@@ -63,14 +34,7 @@ function Navbar() {
 						</NavLink>
 					</div>
 					<div className='menu-link'>
-					<DropdownList  {...loginVariable(user, currentLocation)}/>
-                   
-
-						{/* <div className='menu-link'>
-						<NavLink to="/basket" className={location.pathname === "/basket" ? "current" : ""} >
-							<FontAwesomeIcon icon={faCartShopping as IconProp} />
-						</NavLink>
-					</div> */}
+						<DropdownList user={user} currentLocation={currentLocation} />
 					</div>
 				
 				</div>
@@ -80,5 +44,4 @@ function Navbar() {
 }
 
 export default Navbar
-
 
