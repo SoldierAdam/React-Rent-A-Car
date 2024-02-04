@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+import { local } from "d3-selection";
 
 export interface LoginResponse {
 	success: boolean;
@@ -10,12 +11,25 @@ export interface SignUpResponse {
 }
 
 class UserService {
+
+	// getUser(){
+	// 	return localStorage.getItem("user");
+	// }
+	// setUser(user: any){
+	// 	localStorage.setItem("user", user);
+	// }
+	// removeUser(){
+	// 	localStorage.removeItem("user");
+	// }
+
+
 	static async loginUser(userName: string, password: string): Promise<string> {
 		try {
 		  const response = await axios.post("http://localhost:8080/api/auth/login", {
 			userName, password
 		  });
 		  console.log('Başarılı Yanıt:', response.data);
+		//   localStorage.setItem("user", userName);
 		  // Token veya başka bir değeri döndürün
 		  return response.data; // Örneğin, JWT token
 		} catch (error) {

@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import "./Navbar.css";
 import { useSelector } from "react-redux";
 import DropdownList from "../Dropdown/DropdownList";
-
+import "./Navbar.css";
 
 function Navbar() {
 	const currentLocation = useLocation();
-	const user = useSelector((state: any) => state.user);
-	console.log(user);
-
+	const user = useSelector((state: any) => state.user.user);
+	// const user = localStorage.getItem('user');
+	// console.log(user);
  
 	return (
 		<nav id="navbar">
