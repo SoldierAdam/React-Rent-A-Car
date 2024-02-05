@@ -18,20 +18,23 @@ function App() {
 
 	return (
 		<>
+				<div className='app'>
 			<BrowserRouter>
 				<OverlayLoader />
 				<Navbar />
-				<Routes>
-					<Route path="/about" element={<About />} />
-					<Route path="/" element={<Index />} />
-					<Route path="/contact" element={<Contact />} />
-					{/* <Route path="/admin" element={<Admin/>} /> */}
-					<Route path='cars' element={<Cars />} />
-					<Route path="/login" element={<Login initialUserName="" initialPassword="" />} />
-					<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
-				</Routes>
-				<Footer />
+					<Routes>
+						<Route path="/about" element={<About />} />
+						<Route path="/" element={<Index />} />
+						<Route path="/contact" element={<Contact />} />
+						{/* <Route path="/admin" element={<Admin/>} /> */}
+						<Route path='cars' element={<Cars pickupDate="" dropoffDate="" location="" days={-1} />} />
+						<Route path="/login" element={<Login initialUserName="" initialPassword="" />} />
+						<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
+					</Routes>
 			</BrowserRouter>
+				</div>
+				<Footer />
+
 		</>
 	);
 }

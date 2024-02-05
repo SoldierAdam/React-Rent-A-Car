@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+ 
+}
+
+.app {
+	background: linear-gradient(to left, rgb(252, 227, 212) 40%, rgb(243, 244, 250) 80%);
+	min-height: 100vh;
 }
 
 .App-logo {
