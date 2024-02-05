@@ -6,6 +6,7 @@ import { basicSchema } from "./LoginValidation";
 import { useDispatch } from 'react-redux';
 import { login } from '../../../store/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { local } from "d3-selection";
 
 interface FormValues {
     userName: string;
@@ -26,6 +27,8 @@ const LoginForm = withFormik<MyFormProps, FormValues>({
             const token = await UserService.loginUser(values.userName, values.password);
             if (token) {
                 setStatus({ isSubmitSuccessful: true }); // Set status here
+				localStorage.setItem('token', token);
+				localStorage.setItem('userName', values.userName);
             } else {
                 setFieldError('general', 'Login failed: No token received');
             }

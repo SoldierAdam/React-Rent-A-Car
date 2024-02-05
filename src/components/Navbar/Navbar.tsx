@@ -7,9 +7,8 @@ import "./Navbar.css";
 
 function Navbar() {
 	const currentLocation = useLocation();
-	const user = useSelector((state: any) => state.user);
-	// const user = localStorage.getItem('user');
-	// console.log(user);
+	const user = localStorage.getItem("userName");
+	console.log(user);
  
 	return (
 		<nav id="navbar">
