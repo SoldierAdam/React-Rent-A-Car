@@ -4,7 +4,7 @@ import bgDesktop from "./images/bg-main-desktop.png";
 import logo from "./images/card-logo.svg";
 import tick from "./images/icon-complete.svg";
 import { format } from "date-fns";
-import './CreditCard.css';
+import "./CreditCard.css"
 
 export default function CreditCard() {
   const [confirmed, setConfirmed] = useState(false);
