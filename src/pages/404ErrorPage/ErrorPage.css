@@ -1,0 +1,10 @@
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+  background-color: #f5f5f5;
+  border: 0px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}

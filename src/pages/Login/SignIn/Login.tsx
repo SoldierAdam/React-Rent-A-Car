@@ -4,7 +4,8 @@ import InnerForm from "./LoginInnerForm";
 import UserService from "../../../services/abstracts/userService";
 import { basicSchema } from "./LoginValidation";
 import { useDispatch } from 'react-redux';
-import { login } from '../../../features/userSlice';
+import { login } from '../../../store/user/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface FormValues {
     userName: string;
@@ -14,7 +15,6 @@ interface FormValues {
 interface MyFormProps {
     initialUserName: string;
     initialPassword: string;
-    onSubmitSuccess: () => void;
 }
 
 const LoginForm = withFormik<MyFormProps, FormValues>({
@@ -25,7 +25,6 @@ const LoginForm = withFormik<MyFormProps, FormValues>({
         try {
             const token = await UserService.loginUser(values.userName, values.password);
             if (token) {
-                props.onSubmitSuccess();
                 setStatus({ isSubmitSuccessful: true }); // Set status here
             } else {
                 setFieldError('general', 'Login failed: No token received');
@@ -38,11 +37,13 @@ const LoginForm = withFormik<MyFormProps, FormValues>({
     },
 })(props => {
     const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 
     // Check the submission status using props.status
     if (props.status?.isSubmitSuccessful) {
         dispatch(login(props.values.userName));
+		navigate('/');
     }
 
     return <InnerForm {...props} isSubmitSuccessful={props.status?.isSubmitSuccessful || false} />;
