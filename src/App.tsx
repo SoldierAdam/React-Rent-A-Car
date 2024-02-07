@@ -11,6 +11,7 @@ import { useState } from 'react';
 import SignUp from './pages/Login/SignUp/SignUp';
 import Login from './pages/Login/SignIn/Login';
 import Admin from './components/Admin/Admin';
+import AddCar from './components/Admin/AddCar';
 
 
 
@@ -38,6 +39,7 @@ function App() {
 			<Route path="/" element={<Index/>} />
 			<Route path="/contact" element={<Contact/>} />
 			<Route path="/admin" element={<Admin/>} />
+			<Route path="/admin/addcar" element={<AddCar/>} />
 			{ <Route path='cars' element={<Cars/>} /> }
 			<Route path="/login" element={<Login initialUserName="" initialPassword="" onSubmitSuccess={handleLoginSuccess} />} />
 			<Route path='/signUp' element= {<SignUp initialEmail="" initialPassword="" initialUserName="" onSubmitSuccess={handleSignUpSuccess} /> }/>
