@@ -8,6 +8,7 @@ const axiosInstance =  axios.create({
 });
 
 axiosInstance.interceptors.request.use(config => {
+	console.log('Request sent', config);
 	let token = tokenService.getToken();
 	if (token) config.headers.Authorization = 'Bearer ${token}';
 
