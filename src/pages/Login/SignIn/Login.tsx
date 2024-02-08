@@ -42,7 +42,6 @@ const LoginForm = withFormik<MyFormProps, FormValues>({
     const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-
     // Check the submission status using props.status
     if (props.status?.isSubmitSuccessful) {
         dispatch(login(props.values.userName));

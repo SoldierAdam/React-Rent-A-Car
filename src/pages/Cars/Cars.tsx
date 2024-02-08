@@ -1,12 +1,10 @@
+import { useEffect, useState } from 'react'
 import CarCardList from '../../components/CarCardList/CarCardList'
-import DataChart from '../../components/CarCardList/DataChart'
+import SearchBar from '../../components/SearchBar/SearchBar';
+import SelectedDate from '../../components/CarCardList/SelectedDates'
 
-type Props = {}
 
-export default function Cars({}: Props) {
-  return (
-	<>
-		<CarCardList/>
-	</>
-  )
+export default function Cars() {
+
+  return (<CarCardList /> )
 }

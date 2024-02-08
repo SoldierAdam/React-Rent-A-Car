@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Footer() {
   return (
 		<footer id="main-footer" >
@@ -8,4 +6,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footer;

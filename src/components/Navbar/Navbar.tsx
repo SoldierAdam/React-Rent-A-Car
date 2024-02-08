@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import DropdownList from "../Dropdown/DropdownList";
 import "./Navbar.css";
 
@@ -9,7 +8,7 @@ function Navbar() {
 	const currentLocation = useLocation();
 	const user = localStorage.getItem("userName");
 	console.log(user);
- 
+
 	return (
 		<nav id="navbar">
 			<div className='navbar'>
@@ -17,6 +16,7 @@ function Navbar() {
 					<img src={require("../../assets/images/navbarlogo.png")} className="navbar-png"/>
 				</div> */}
 				<div className="logo"><Link to="/" className='logo'>CarRent</Link></div>
+			
 				<div className='menu'>
 					<div className='menu-link'>
 						<NavLink to="/contact" className={currentLocation.pathname === "/contact" ? "current" : ""} >
@@ -36,7 +36,7 @@ function Navbar() {
 					<div className='menu-link'>
 						<DropdownList user={user} currentLocation={currentLocation} />
 					</div>
-				
+
 				</div>
 			</div>
 		</nav>
