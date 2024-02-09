@@ -12,6 +12,7 @@ import SelectedDates from './SelectedDates';
 
 import VehicleSelector from './Vehicleselector';
 import { local } from 'd3';
+import axiosInstance from '../../core/utils/interceptors/axiosInterceptors';
 
 type FilterCriteria = {
 	minDailyPrice: number;
@@ -70,7 +71,8 @@ const CarCardList: React.FC = () => {
 		const fetchData = async () => {
 			try {
 				dispatch(increaseRequestCount());
-				const response = await axios.get('http://localhost:8080/api/cars/getAll');
+				const response = await axiosInstance.get('/cars/getAll');
+				// const response = await axios.get('http://localhost:8080/api/cars/getAll');
 				setData(response.data.data);
 				console.log(response.data);
 			} catch (error) {
@@ -186,7 +188,6 @@ const CarCardList: React.FC = () => {
 						{/* filter panel yan da değil  */}
 						<div className={`item-container d-none d-md-flex d-lg-none`}>
 							{filterPanel}
-							<VehicleSelector />
 						</div>
 
 						<div className='col-12 d-flex justify-content-end'>
