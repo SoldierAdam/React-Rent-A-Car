@@ -1,10 +1,11 @@
 import "./SignUp.css";
 import UserService from "../../../services/abstracts/userService";
 import SignUpInnerForm from "./SignUpInnerForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { withFormik } from "formik";
 import { basicSchemaSignUp } from "./SignUpValidation";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { stat } from "fs";
 
 
 interface FormValues {
@@ -26,16 +27,17 @@ const SignUpForm = withFormik<MyFormprops, FormValues>({
 		userName: initialUserName,
 	}),
 	validationSchema: basicSchemaSignUp,
-	handleSubmit: async ( values, {setSubmitting, setFieldError, props}
+	handleSubmit: async ( values, {setSubmitting, setFieldError, setStatus, props}
 	) => {
 		console.log("Submitting form:", values)
 		try {
 			const response = await UserService.signUp(values.email, values.password, values.userName);
 			console.log("Response:", response);
 			console.log("Sign up successful");
+			setStatus({isSubmitSuccessful: true})
 		} catch (error) {
 			console.error("Error during login:", error);
-			setFieldError('general', 'Error during login');
+			setFieldError('general', 'Error during sign up');
 		} finally {
 			setSubmitting(false);
 		}
@@ -44,11 +46,13 @@ const SignUpForm = withFormik<MyFormprops, FormValues>({
 	const [isSubmitSuccessful, setSubmitSuccessful] = useState(false);
 	const navigate = useNavigate();
 	
-	// Check the submission status using props.status
-	if (props.status?.isSubmitSuccessful) {
-		setSubmitSuccessful(true);
-		navigate('/login');
-	}
+	useEffect(() => {
+			if (props.status?.isSubmitSuccessful) {
+				console.log("Props:", props.status);
+				setSubmitSuccessful(true);
+				navigate('/login');
+			}
+		}, [isSubmitSuccessful, props.status]);
 	
 	return <SignUpInnerForm {...props} isSubmitSuccessful={isSubmitSuccessful} />;
 });

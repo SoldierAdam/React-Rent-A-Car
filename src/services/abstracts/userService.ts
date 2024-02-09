@@ -10,7 +10,7 @@ export interface SignUpResponse {
 }
 
 class UserService {
-	static async loginUser(userName: string, password: string): Promise<string> {
+	static async loginUser(userName: string, password: string): Promise<{ accessToken: string, refreshToken: string }> {
 		try {
 		  const response = await axios.post("http://localhost:8080/api/auth/login", {
 			userName, password
@@ -40,4 +40,3 @@ class UserService {
   }
   
   export default UserService;
-  

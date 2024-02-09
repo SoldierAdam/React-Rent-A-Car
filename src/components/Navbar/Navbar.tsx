@@ -4,10 +4,20 @@ import { useLocation } from "react-router-dom";
 import DropdownList from "../Dropdown/DropdownList";
 import "./Navbar.css";
 
+
+
+import tokenService from "../../services/abstracts/tokenService";
+import jwt from 'jsonwebtoken';
+
 function Navbar() {
 	const currentLocation = useLocation();
-	const user = localStorage.getItem("userName");
-	console.log(user);
+
+	let user;
+	if  (tokenService.getToken())
+		user = localStorage.getItem("userName");
+	else
+		user = null;
+	console.log("navbarda user ", user);
 
 	return (
 		<nav id="navbar">
