@@ -1,252 +1,219 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { m, motion } from 'framer-motion';
-import './CarCardList.css'
-import SideBar from './SideBar';
-import DataChart from './DataChart';
-import RangeBar from './RangeBar';
+import './CarCardList.css';
 import CarCard from '../CarCard/CarCard';
-import '../../pages/HomePage/HomePage.css'
-import { Car, Model, Brand, Color } from '../../models/model';
+import '../../pages/HomePage/HomePage.css';
+import { Car } from '../../models/model';
+import { useDispatch } from 'react-redux';
+import { decreaseRequestCount, increaseRequestCount } from '../../store/loading/loadingSlice';
+import SearchBar from '../SearchBar/SearchBar';
+import SelectedDates from './SelectedDates';
+
+import VehicleSelector from './Vehicleselector';
+import { local } from 'd3';
+import axiosInstance from '../../core/utils/interceptors/axiosInterceptors';
 
 type FilterCriteria = {
 	minDailyPrice: number;
 	maxDailyPrice: number;
+	selectedBrand?: string;
 };
 
-const CarCardList: React.FC = () => {
 
+
+const CarCardList: React.FC = () => {
+	const dispatch = useDispatch();
 	const [data, setData] = useState<Car[] | null>(null);
-	const [filter, setFilter] = useState<FilterCriteria>({ minDailyPrice: 0, maxDailyPrice: 1000 });
-	const [minPriceInput, setMinPriceInput] = useState<number>();
-	const [maxPriceInput, setMaxPriceInput] = useState<number>();
+	const [filter, setFilter] = useState<FilterCriteria>({
+		minDailyPrice: 0,
+		maxDailyPrice: 10000,
+		selectedBrand: '',
+	});
+	const [minPriceInput, setMinPriceInput] = useState<number>(0);
+	const [maxPriceInput, setMaxPriceInput] = useState<number>(10000);
+	const [selectedBrandInput, setSelectedBrandInput] = useState<string>();
+
+	const [sortOrder, setSortOrder] = useState<string>('');
+
+
+	const [days, setDays] = useState(localStorage.getItem('days') || '');
+ 
+	useEffect(() => {
+		const handleStorageChange = () => {
+			setDays(localStorage.getItem('days') || '');
+		}
+		window.addEventListener('storage', handleStorageChange);
+		return () => {
+			window.removeEventListener('storage', handleStorageChange);
+		}
+	}
+	, [days]);
+
+    const removeSelected = () => {
+        localStorage.setItem('pickupDate', '');
+        localStorage.setItem('dropoffDate', '');
+        localStorage.setItem('location', '');
+        localStorage.setItem('days', '');
+        window.location.reload();
+    }	
+
+	const sortCars = (cars: Car[]): Car[] => {
+		if (sortOrder === 'asc') {
+			return [...cars].sort((a, b) => a.dailyPrice - b.dailyPrice);
+		} else if (sortOrder === 'desc') {
+			return [...cars].sort((a, b) => b.dailyPrice - a.dailyPrice);
+		}
+		return cars;
+	};
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get('http://localhost:8080/api/cars/getAll');
+				dispatch(increaseRequestCount());
+				const response = await axiosInstance.get('/cars/getAll');
+				// const response = await axios.get('http://localhost:8080/api/cars/getAll');
 				setData(response.data.data);
 				console.log(response.data);
 			} catch (error) {
 				console.error('There was an error!', error);
 			}
+			dispatch(decreaseRequestCount());
 		};
 
 		fetchData();
 	}, []);
 
-	const handleFilterChange = (newFilter: FilterCriteria) => {
-		setFilter(newFilter);
-	}
+	//eklenecek
+	// useEffect(() => {
+	// 	carService.getAll().then(response => console.log(response));
+	// }, []);
 
-	const filteredData = Array.isArray(data) ? data.filter(car => car.dailyPrice >= filter.minDailyPrice && car.dailyPrice <= filter.maxDailyPrice) : [];
+	const handleFilterChange = (minPriceInput, maxPriceInput, selectedBrandInput) => {
+		setFilter({
+			...filter,
+			minDailyPrice: minPriceInput ?? 0,
+			maxDailyPrice: maxPriceInput ?? 0,
+			selectedBrand: selectedBrandInput ?? '',
+		});
+	};
 
+	const filteredData = useMemo(() => {
+		if (!data) return null;
 
-	// içerisine data'yı alacak bir fonksiyon yazılacak
-	// data içerisindeki brandName'leri alıp bir array'e atacak
-		// array içerisindeki brandName'lerden unique olanları alıp bir array'e atacak
-		// array içerisindeki unique brandName'lerden bir select oluşturacak
-		// select içerisindeki option'lara unique brandName'leri yazacak
-		// select'i return edecek
+		return data.filter(
+			(car) =>
+				car.dailyPrice >= filter.minDailyPrice &&
+				car.dailyPrice <= filter.maxDailyPrice &&
+				(filter.selectedBrand ? car.model.brand.name === filter.selectedBrand || filter.selectedBrand === "All Brand" : true)
+		);
+	}, [data, filter]);
+
 	const brandFilter = (data: Car[]) => {
 		const brandNames = data.map(car => car.model.brand.name);
 		const uniqueBrandNames = brandNames.filter((value, index, self) => {
 			return self.indexOf(value) === index;
-		  });
-		  console.log(uniqueBrandNames);
-		const select = 
-		<select>
-			{uniqueBrandNames.map((brandName, index) => <option key={index} value={brandName}>{brandName}</option>)}
-		</select>
-		return select;
+		});
 
+		return uniqueBrandNames;
 	}
 
-	const filterPanel =
-		<div className='filter-panel'>
-			<div className='filter-title'>Fiyat Aralığı</div>
-			<div className='filter-range-inputs'>
-				<input type="number" onChange={(e) => setMinPriceInput(parseFloat(e.target.value))} />
-				<input type="number" onChange={(e) => setMaxPriceInput(parseFloat(e.target.value))} />
-			</div>
-			<button onClick={() => setFilter({ ...filter, minDailyPrice: minPriceInput ?? 0, maxDailyPrice: maxPriceInput ?? 0 })}>Filtrele</button>
+	const dropdownMenu = (
+		<div className='sort-dropdown' style={{ fontSize: '20px' }}>
+			<label htmlFor='sort-order' style={{ padding: '5px' }}>Sort by Price </label>
+			<select id='sortOrder' onChange={(e) => setSortOrder(e.target.value)}>
+				<option style={{ color: 'black', fontSize: '18px' }} value=''>Select</option>
+				<option style={{ color: 'black', fontSize: '18px' }} value='asc'>Low to High</option>
+				<option style={{ color: 'black', fontSize: '18px' }} value='desc'>High to Low</option>
+			</select>
+		</div>
+	)
 
+
+
+	const filterPanel = (
+		<div className='filter-panel text-center'>
+
+			<div className='filter-title'>Fiyat Aralığı</div>
+			<div>
+				<input type='number' onChange={(e) => setMinPriceInput(parseFloat(e.target.value))} />
+				<br />
+				<input type='number' className='filter-range-input' onChange={(e) => setMaxPriceInput(parseFloat(e.target.value))} />
+			</div>
+			<br />
 			<div className='filter-title'>Marka</div>
 			<div className='filter-range-inputs'>
-					{brandFilter(data || [])}
+				<select onChange={(e) => setSelectedBrandInput(e.target.value)}>
+					<option value="All Brand">Tüm Markalar</option>
+					{brandFilter(data || []).map((brandName, index) => (
+						<option key={index} value={brandName}>
+							{brandName}
+						</option>
+					))}
+				</select>
 			</div>
-			<button>Filtrele</button>
-
-
-
-
-
-
-
+			<button onClick={() => handleFilterChange(minPriceInput, maxPriceInput, selectedBrandInput)}>
+				Filtrele
+			</button>
 		</div>
+	);
+
+	const sortedAndFilteredData = useMemo(() => {
+		const filtered = filteredData ? filteredData : [];
+		return sortCars(filtered);
+	}, [filteredData, sortOrder]);
 
 
-	useEffect(() => {
-		console.log(data);
-		console.log(filteredData);
-	}, [data, filteredData]);
+	const isLargeScreen = window.innerWidth > 1200;
 
 	return (
-		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-2">
+		<>
+		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='pt-2'>
 			<div className='container-fluid' style={{ padding: '10px' }}>
 				<div className='row'>
 					<div className='col-2'>
-						<div className='col-1'></div>
-						{filterPanel}
+						<div className={`item-container ${isLargeScreen ? 'd-none d-lg-flex d-xlarge-block filter-panel-fixed' 
+										: 'd-none d-lg-none '}`}>
+							{filterPanel}
+						</div>
 					</div>
 
 					<div className='col-8'>
-						<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-							{
-								filteredData
-									? filteredData.map((car: Car) => (
-										<div className="col-9 col-sm-6 col-md-6 col-lg-4">
-											<CarCard car={car} />
-										</div>
-									))
-									: <p>Loading...</p>
-							}
+
+						{ SelectedDates() ? <SelectedDates />
+							: <SearchBar />
+						}
+						
+
+						{/* filter panel yan da değil  */}
+						<div className={`item-container d-none d-md-flex d-lg-none`}>
+							{filterPanel}
+						</div>
+
+						<div className='col-12 d-flex justify-content-end'>
+							{dropdownMenu}
+						</div>
+						<div className='row row-cols-1 row-cols-sm-2 row-cols-md-3'>
+							{sortedAndFilteredData ? (
+								sortedAndFilteredData.map((car: Car) => (
+									<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
+										<CarCard car={car} />
+									</div>
+								))
+							) : (
+								<p>Loading...</p>
+							)}
 						</div>
 					</div>
-					<div className='col-1'></div>
+					<div className='col-2'>
+						{/* <VehicleSelector /> */}
+					</div>
 				</div>
 			</div>
 		</motion.div>
+		</>
 	);
-}
+};
 
 export default CarCardList;
 
-
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import { m, motion } from 'framer-motion';
-// import './../../styles/style.css'
-// import SideBar from './SideBar';
-// import DataChart from './DataChart';
-// import RangeBar from './RangeBar';
-// import CarCard from '../CarCard/CarCard';
-
-// type Car = {
-// 	id: number;
-// 	kilometer: number;
-// 	plate: string;
-// 	modelYear: number;
-// 	dailyPrice: number;
-// 	minFindeksRate: number;
-// 	imagePath: string;
-// 	modelName: string;
-// 	colorName: string;
-// };
-
-// type FilterCriteria = {
-// 	minDailyPrice: number;
-// 	maxDailyPrice: number;
-// };
-
-// const CarCardList: React.FC = () => {
-// 	type Car = {
-// 		id: number;
-// 		kilometer: number;
-// 		plate: string;
-// 		modelYear: number;
-// 		dailyPrice: number;
-// 		minFindeksRate: number;
-// 		imagePath: string;
-// 		modelName: string;
-// 		colorName: string;
-// 		brandName: string;
-// 	};
-
-// 	const [data, setData] = useState<Car[] | null>(null);
-// 	const [filter, setFilter] = useState<FilterCriteria>({ minDailyPrice: 0, maxDailyPrice: 1000 });
-// 	const [minPriceInput, setMinPriceInput] = useState<number>();
-// 	const [maxPriceInput, setMaxPriceInput] = useState<number>();
-
-
-// 	useEffect(() => {
-// 		const fetchData = async () => {
-// 			try {
-// 				const response = await axios.get('http://localhost:8080/api/cars/getAll');
-// 				setData(response.data.data);
-// 				console.log(response.data);
-// 			} catch (error) {
-// 				console.error('There was an error!', error);
-// 			}
-// 		};
-
-// 		fetchData();
-// 	}, []);
-
-
-
-// 	const handleFilterChange = (newFilter: FilterCriteria) => {
-// 		setFilter(newFilter);
-// 	}
-
-
-// 	const filteredData = Array.isArray(data) ? data.filter(car => car.dailyPrice >= filter.minDailyPrice && car.dailyPrice <= filter.maxDailyPrice) : [];
-
-// 	useEffect(() => {
-// 		console.log(data);
-// 		console.log(filteredData);
-// 	}, [data, filteredData]);
-
-
-// 	return (
-// 		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-2">
-// 			<div className='container'>
-// 				<div className='row'>
-// 					<div className='col-1'>
-// 						<div className='row'>
-// 							<input type="number" onChange={(e) => setMinPriceInput(parseFloat(e.target.value))} />
-// 							<input type="number" onChange={(e) => setMaxPriceInput(parseFloat(e.target.value))} />
-// 							<button onClick={() => setFilter({ ...filter, minDailyPrice: minPriceInput ?? 0, maxDailyPrice: maxPriceInput ?? 0 })}>Filtrele</button>
-// 						</div>
-// 					</div>
-// 					<div className='col-11'>
-
-// 						<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-// 							{
-// 								filteredData
-// 									? filteredData.map((car: Car) => (
-// 										<div className="col mb-4">
-// 											<CarCard car={car} />
-// 										</div>
-// 									))
-// 									: <p>Loading...</p>
-// 							}
-// 						</div>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</motion.div>
-// 	);
-// }
-
-// export default CarCardList;
-
-
-
-
-// // <div className='container'>
-// // {/* <div className='col'>
-// // 	<div className='row'> */}
-// // 	{/* <DataChart data={data || []} />  */}
-// // {/* <RangeBar data={data || []} onFilterChange={handleFilterChange} /> */}
-
-// // </div>
-
-// // 	<div className='row'>
-// // 		{/*
-// //  */}
-// // {/* </div>
-// // </div> */}
-
-
-// // {/* <SideBar /> } */}

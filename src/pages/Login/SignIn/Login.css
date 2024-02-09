@@ -2,24 +2,22 @@
   display: flex;
   flex-direction: column;
   margin-top: 100px;
-  background: #ffffff;
-  padding-bottom: 20px;
+  padding-bottom: 70px;
   align-items: center;
   justify-content: center;
   width: 500px;
-  padding-bottom: 20px;
+
 }
 .form.card {
   width: 100%;
   max-width: 700px;
+  margin-bottom: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 30px;
   border-style: solid;
-  border-width: 4px;
-  padding-bottom: 0px;
-  border-color:  #ece3e3;
+  border-width: 5px; 
 }
 
 .header {
@@ -35,7 +33,7 @@
   color: #f44336;
   font-size: 48px;
   font-weight: 700;
-  padding-left: 15px;
+  padding-right: 8px;
 }
 
 .underline {
@@ -54,6 +52,8 @@
   display: flex;
   flex-direction: column;
   gap: 13px;
+  
+
 }
 .input {
   display: flex;
@@ -93,7 +93,7 @@
 }
 
 .forget-password {
-  margin-left: 160px;
+  margin-left: 10px;
   margin-top: 20px;
   color: black;
   font-size: 15px !important;
@@ -121,7 +121,7 @@
   align-items: center;
   width: 180px;
   height: 59px;
-  color: #fff;
+  color: #ffffff;
   background: #f44336;
   border-radius: 50px;
   font-size: 19px;
@@ -144,11 +144,30 @@
   cursor: pointer;
 }
 
-.grey {
-  background: rgb(181, 180, 180);
-}
-
 .invalid-feedback {
   display: block !important;
   margin-top: -10px !important;
 }
+
+.submit-button {
+  width: 150px;
+  height: 50px;
+  background-color:#f44336;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+.submit-button:hover {
+  background-color: #d32f2f;
+}
+
+.submit-button.loading {
+  cursor: not-allowed;
+  background-color: #6c757d;
+}
+

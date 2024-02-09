@@ -2,35 +2,42 @@ import './App.css';
 import About from './pages/About/About';
 import Index from './pages/HomePage/HomePage';
 import Contact from './pages/Contact/Contact';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Cars from './pages/Cars/Cars';
-import Login from "./pages/Login/Login"
-import SignUp from './pages/Login/SignUp';
 
-
+import SignUp from './pages/Login/SignUp/SignUp';
+import Login from './pages/Login/SignIn/Login';
+//import Admin from './components/Admin/Admin';
+import OverlayLoader from './components/OverlayLoader/OverlayLoader';
+import Paypal from './pages/PayPal/Payment.1';
+import CreditCard from './components/CreditCard/CreditCard';
 
 
 function App() {
-  return (
-	<>
-		<Navbar/>
-		<Routes>
-			<Route path="/about" element={<About/>} />
-			<Route path="/" element={<Index/>} />
-			<Route path="/contact" element={<Contact/>} />
-			{ <Route path='cars' element={<Cars/>} /> }
-			<Route path='/login' element = {<Login/>}/>
-			<Route path='/singUp' element= {<SignUp/>}/>
-		
-		</Routes>
-		{ <div className="App">
-     	 <CarCard/>
-   		 </div>}
-		<Footer/>
-	  </>
-  );
+
+	return (
+		<>
+			<div className='app'>
+				<BrowserRouter>
+					<OverlayLoader />
+					<Navbar />
+					<Routes>
+						<Route path="/about" element={<About />} />
+						<Route path="/" element={<Index />} />
+						<Route path="/contact" element={<Contact />} />
+						{/* <Route path="/admin" element={<Admin/>} /> */}
+						<Route path='cars' element={<Cars/>} />
+						<Route path="/login" element={<Login initialUserName="" initialPassword="" />} />
+						<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
+					</Routes>
+				</BrowserRouter>
+			</div>
+			<Footer />
+
+		</>
+	);
 }
 
 export default App;

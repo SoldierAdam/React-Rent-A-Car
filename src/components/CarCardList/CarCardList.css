@@ -1,19 +1,40 @@
 .filter-panel {
-	background-color: #f5f5f5;
+	background-color: #f6f4f2;
 	padding: 15px;
 	border-radius: 5px;
+	height:700px;
+	margin-top: 58px;
+	border: 0.1px solid #f5e3d4;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  @media (min-width: 1700px) {
+	.filter-panel {
+	  width: 300px;
+	}
+  }
+
+
+.filter-panel-fixed {
+	position: fixed;
 }
 
-.filter-panel .filter-title {
+ .filter-title {
 	font-size: 18px;
 	font-weight: bold;
 	margin-bottom: 10px;
+	justify-content: center;
+	align-items: center;
 }
 
 .filter-panel .filter-range-inputs {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	justify-content: center;
+	align-items: center;
 }
 
 .filter-panel input[type="number"] {
@@ -22,14 +43,37 @@
 	font-size: 14px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
 }
 
 .filter-panel button {
 	padding: 5px 10px;
-	font-size: 14px;
-	background-color: #007bff;
+	font-size: 18px;
+	background-color: #f27a1a;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+
+}
+
+.number-range {
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+	margin-right: 10px;
+}
+
+.filter-range-input {
+	margin-top: 2px;
+}
+
+.sort-dropdown {
+	font-size: 14px; /* Butonun içerisindeki yazı boyutu */
+	justify-content: center; /* Butonu ortalar */
+	align-items: center; /* Butonu ortalar */
+	cursor: pointer; /* Üzerine gelindiğinde el işareti */
+	padding: 5px 10px; /* Butonun içerisindeki yazı ile kenar arasındaki boşluk */
+	margin-right: 10px; /* Sağdan boşluk bırakır */
 }
