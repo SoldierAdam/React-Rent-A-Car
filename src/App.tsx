@@ -13,6 +13,10 @@ import Login from './pages/Login/SignIn/Login';
 import OverlayLoader from './components/OverlayLoader/OverlayLoader';
 import Paypal from './pages/PayPal/Payment.1';
 import CreditCard from './components/CreditCard/CreditCard';
+import Admin from './components/Admin/Admin';
+
+
+
 
 
 function App() {

@@ -5,6 +5,9 @@ import { mdiCarKey, mdiChartAreaspline,mdiAccountAlert,mdiFaceAgent,mdiPalette,m
 type Props = {}
 
 function Admin({ }: Props) {
+
+    
+
     return (
         <div>
             <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white">
@@ -60,7 +63,7 @@ function Admin({ }: Props) {
                         <a href="#" className="list-group-item list-group-item-action py-2 ripple">
                             <Icon path={mdiCash} size={1} /><span>Sales</span>
                         </a>
-                        
+
                     </div>
                 </div>
             </nav>
