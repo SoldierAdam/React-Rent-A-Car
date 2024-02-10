@@ -1,6 +1,7 @@
 import "../Admin/Admin.css";
 import Icon from '@mdi/react';
 import { mdiCarKey, mdiChartAreaspline,mdiAccountAlert,mdiFaceAgent,mdiPalette,mdiBasket, mdiCarInfo, mdiInvoiceText, mdiOfficeBuildingOutline, mdiCash, mdiAccountGroup } from '@mdi/js';
+import AddCar from "./AddCar";
 
 type Props = {}
 
@@ -9,7 +10,8 @@ function Admin({ }: Props) {
     
 
     return (
-        <div>
+        <div className="height">
+
             <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white">
                 <div className="position-sticky">
                     <div className="list-group list-group-flush mx-3 mt-4">
@@ -67,6 +69,11 @@ function Admin({ }: Props) {
                     </div>
                 </div>
             </nav>
+
+            <div className="addcar-container">
+            <AddCar/>  
+            </div>
+
         </div>
     )
 }
