@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { number, object, string } from "yup";
+import "../Admin/Admin.css";
 
 const AddCar = () => {
 
@@ -14,7 +16,17 @@ const AddCar = () => {
         colorid: 0
     };
 
-  const [state, setState] = useState({
+    const validationSchema = object({
+      carname: string().required().min(2).max(50),
+      carbrand: string().required().min(2).max(50),
+      carmodel: string().required().min(1).max(50),
+      carkilometer: number().required().min(0).max(500000).integer(),
+      caryear: number().required().min(1900).max(2024).integer(),
+      dailyprice: number().required().min(10).max(100000),
+      colorid:  number().required().integer().min(1).max()
+    });
+
+  const [modalOpen, setModalOpen] = useState({
     carname: "",
     carbrand: "",
     carmodel: "",
@@ -26,8 +38,8 @@ const AddCar = () => {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setState({
-      ...state,
+    setModalOpen({
+      ...modalOpen,
       [e.target.CarName]: value
     });
   };
@@ -35,56 +47,74 @@ const AddCar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
-        carname: state.carname,
-        carbrand: state.carbrand,
-        dailyprice: state.dailyprice,
-        carmodel: state.carmodel,
-        carkilometer: state.carkilometer,
-        caryear: state.caryear,
-        colorid: state.colorid
+        carname: modalOpen.carname,
+        carbrand: modalOpen.carbrand,
+        dailyprice: modalOpen.dailyprice,
+        carmodel: modalOpen.carmodel,
+        carkilometer: modalOpen.carkilometer,
+        caryear: modalOpen.caryear,
+        colorid: modalOpen.colorid
     };
-
-    axios.post("http://localhost:8080/api/cars/add")
-      .then((response) => {
-        console.log(response.status, response.data);
-      })
-      .catch((error) => {
-        console.error("Error occurred while adding car:", error);
-      });
   };
+
+    useEffect(()=> {
+      axios.post("http://localhost:8080/api/cars/add")
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+    })
+
   return (
       <div className="container">
-        <Formik initialValues={initialValues} onSubmit={() => {}}>
+        <Formik initialValues={initialValues} onSubmit={(values) => {console.log(values)}} validationSchema={validationSchema}>
           <Form>
-              <div class="mb-3">
-                  <label class="form-label">Add Car Name</label>
-                  <Field name="carname" type="text" class="form-control" onChange={handleChange} value={state}/>
+              <div className="mb-3">
+                  <label className="form-label">Add Car Name</label>
+                  <Field name="carname" type="text" className="form-control"/>
+                  <ErrorMessage name="carname">
+                    {message => <p className="text-danger">{message}</p>}
+                  </ErrorMessage>
               </div>
-              <div class="mb-3">
-                  <label class="form-label">Add Car Brand</label>
-                  <Field name="carbrand" type="text" class="form-control" onChange={handleChange} value={state}/>
+              <div className="mb-3">
+                  <label className="form-label">Add Car Brand</label>
+                  <Field name="carbrand" type="text" className="form-control"/>
+                  <ErrorMessage name="carbrand">
+                    {message => <p className="text-danger">{message}</p>}
+                  </ErrorMessage>
               </div>
-              <div class="mb-3">
-                  <label class="form-label">Add Car Price</label>
-                  <Field name="carprice" type="text" class="form-control" onChange={handleChange} value={state}/>
+              <div className="mb-3">
+                  <label className="form-label">Add Car Price</label>
+                  <Field name="dailyprice" type="text" className="form-control"/>
+                  <ErrorMessage name="dailyprice">
+                    {message => <p className="text-danger">{message}</p>}
+                  </ErrorMessage>
               </div>
-              <div class="mb-3">
-                  <label class="form-label">Car Model</label>
-                  <Field name="carmodel" type="text" class="form-control" onChange={handleChange} value={state}/>
+              <div className="mb-3">
+                  <label className="form-label">Car Model</label>
+                  <Field name="carmodel" type="text" className="form-control"/>
+                  <ErrorMessage name="carmodel">
+                  {message => <p className="text-danger">{message}</p>}
+                  </ErrorMessage>
               </div>
-              <div class="mb-3">
-                  <label class="form-label">Car Kilometer</label>
-                  <Field name="carkilometer" type="text" class="form-control" onChange={handleChange} value={state}/>
+              <div className="mb-3">
+                  <label className="form-label">Car Kilometer</label>
+                  <Field name="carkilometer" type="text" className="form-control"/>
+                  <ErrorMessage name="carkilometer">
+                  {message => <p className="text-danger">{message}</p>}
+                  </ErrorMessage>
               </div>
-              <div class="mb-3">
-                  <label class="form-label">Car Year</label>
-                  <Field name="caryear" type="text" class="form-control" onChange={handleChange} value={state}/>
+              <div className="mb-3">
+                  <label className="form-label">Car Year</label>
+                  <Field name="caryear" type="text" className="form-control"/>
+                  <ErrorMessage name="caryear">
+                  {message => <p className="text-danger">{message}</p>}
+                  </ErrorMessage>
               </div>
-              <div class="mb-3">
-                  <label class="form-label">Car Color Id</label>
-                  <Field name="colorid" type="text" class="form-control" onChange={handleChange} value={state}/>
+              <div className="mb-3">
+                  <label className="form-label">Car Color Id</label>
+                  <Field name="colorid" type="text" as="select" className="form-select"/>
               </div>
-              <button type="submit" class="btn btn-primary">Add</button>
+              
+              <button type="submit" className="btn btn-primary" onClick={() => {setModalOpen(true)}}>Submit</button>
           </Form>
         </Formik>
       </div>
