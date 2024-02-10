@@ -17,7 +17,9 @@
   align-items: center;
   border-radius: 30px;
   border-style: solid;
-  border-width: 5px; 
+  border-width: 1px;
+  border-color: #f27a1a;
+	box-shadow: 0 0 5px #f27a1a;
 }
 
 .header {
@@ -28,9 +30,13 @@
   width: 50%;
   margin-top: 30px;
 }
+.login{
+  margin-top: -20px;
+  margin-bottom: 10px;
+}
 
 .text {
-  color: #f44336;
+  color: #f27a1a;
   font-size: 48px;
   font-weight: 700;
   padding-right: 8px;
@@ -39,7 +45,7 @@
 .underline {
   width: 61px;
   height: 6px;
-  background: #f44336;
+  background: #f27a1a;
   border-radius: 9px;
   margin-top: 5px;
   margin-bottom: 55px;
@@ -60,7 +66,7 @@
   align-items: center;
   margin: auto;
   width: 400px;
-  height: 75px;
+  height: 68px;
   background: #eeeded;
   border-radius: 6px;
 }
@@ -68,18 +74,18 @@
 .icon-password {
   margin: 0px 30px;
   font-size: 30px;
-  color: #f44336;
+  color: #f27a1a;
 }
 .icon-email {
   margin: 0px 30px;
   font-size: 30px;
-  color: #f44336;
+  color: #f27a1a;
 }
 
 .icon-user {
   margin: 0px 30px;
   font-size: 30px;
-  color: #f44336;
+  color: #f27a1a;
 }
 
 .input input {
@@ -101,7 +107,7 @@
 
 .forget-password.link {
   
-  color: rgb(4, 4, 112);
+  color: #f27a1a;
   cursor: pointer;
 }
 
@@ -122,7 +128,7 @@
   width: 180px;
   height: 59px;
   color: #ffffff;
-  background: #f44336;
+  background: #f27a1a;
   border-radius: 50px;
   font-size: 19px;
   font-weight: 700;
@@ -138,7 +144,11 @@
 }
 .login .login-button{
   margin-left: 5px;
+<<<<<<< HEAD
   color: rgb(171, 171, 190) ;
+=======
+  color: #f27a1a ;
+>>>>>>> a8d8dd66aa195a8c906063b1e2cc111aca03687b
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
@@ -152,7 +162,7 @@
 .submit-button {
   width: 150px;
   height: 50px;
-  background-color:#f44336;
+  background-color:#f27a1a;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -162,7 +172,7 @@
 }
 
 .submit-button:hover {
-  background-color: #d32f2f;
+  background-color: #f27a1a;
 }
 
 .submit-button.loading {
@@ -170,3 +180,31 @@
   background-color: #6c757d;
 }
 
+.selection.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selection.row .col {
+  flex: 1;
+}
+
+.parent-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.forget-password {
+  text-align: left;
+  margin-top: -15px;
+  margin-right: 85px;
+}
+
+.remember-me {
+  text-align: right;
+  margin-top: 5px;
+  margin-top: -18px;
+}

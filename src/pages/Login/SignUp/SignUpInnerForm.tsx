@@ -4,7 +4,6 @@ import { RiLockPasswordFill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import './SignUp.css';
 import FormikInput from '../../../components/FormikInput/FormikInput';
 
 interface FormValues {
@@ -36,7 +35,7 @@ const SignUpInnerForm: React.FC<InnerFormProps> = ({
 }) => {
 	return (
 		<div className="container">
-			<Form onSubmit={handleSubmit} className="form card">
+			<Form onSubmit={handleSubmit} className="form-card">
 				<div className="header">
 					<div className="text"><FaUser /></div>
 					<div className="underline"></div>
@@ -53,6 +52,7 @@ const SignUpInnerForm: React.FC<InnerFormProps> = ({
 
 				<FormikInput name="email" type="email" placeholder="Email" icon={<MdEmail className="icon-email" />} />
 				{touched.email && errors.email && <ErrorMessage message={errors.email} />}
+				
 
 				<FormikInput name="userName" type="text" placeholder="Username" icon={<FaUser className="icon-email" />} />
 				{touched.userName && errors.userName && <ErrorMessage message={errors.userName} />}

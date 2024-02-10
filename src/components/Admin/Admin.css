@@ -17,6 +17,19 @@ body {
     width: 240px;
     z-index: 600;
   }
+
+  .height{
+    display: flex;
+    height: 100vh;
+  }
+
+  .addcar-container{
+    display: flex;
+    justify-content: center;
+    /* padding-left: 50vh; */
+    margin: auto;
+    border-radius: 2px;
+  }
   
   @media (max-width: 991.98px) {
     .sidebar {
