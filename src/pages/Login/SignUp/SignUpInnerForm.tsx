@@ -65,7 +65,7 @@ const SignUpInnerForm: React.FC<InnerFormProps> = ({
 						type="submit"
 						className={`submit-button ${isSubmitting ? 'loading' : ''}`}
 					>
-						{isSubmitting ? 'Logging In...' : 'Login'}
+						{isSubmitting ? 'Logging In...' : 'Sign Up'}
 					</button>
 				</div>
 

@@ -5,41 +5,38 @@ import { useNavigate } from 'react-router-dom';
 
 // Token decode eden fonksiyon
 const decodeToken = (token: string) => {
-  return jwtDecode(token);
+	return jwtDecode(token);
 };
 
 // Token'ın süresi dolmuş mu diye kontrol eden fonksiyon
 const isTokenExpired = (token: string) => {
-  const decoded: any = decodeToken(token);
-  const currentUnixTimestamp = Math.floor(Date.now() / 1000);
-  return decoded.exp < currentUnixTimestamp;
+	console.log('isTokenExpired:', token);
+	const decoded: any = decodeToken(token);
+	const currentUnixTimestamp = Math.floor(Date.now() / 1000);
+	return decoded.exp < currentUnixTimestamp;
 };
 
 // Yeni bir access token almak için refresh token ile istek gönderen fonksiyon
 const refreshToken = async () => {
-	const refreshToken = tokenService.getRefreshToken();
-	if (!refreshToken) {
-	  throw new Error('No refresh token found');
-	}
 	try {
-		const response = await axios.post('http://localhost:8080/api/auth/refreshToken', {}, {
+		console.log('refreshTokendanöncekontrol:', localStorage.getItem('userName'));
+		const response = await axios.post(`http://localhost:8080/api/auth/refreshToken?userName=${localStorage.getItem("userName")}`, null, {
 			headers: {
-			  'accept': '*/*',
-			  'refreshToken': refreshToken
+				'accept': '*/*'
 			}
-		  });
-		  console.log('Token refreshed', response.data);
-	  tokenService.setToken(response.data);
-	  return response.data.accessToken;
-	} catch (error) {
-		console.log("Refresh Tokenın süresi bitti", isTokenExpired(tokenService.getToken()));
-		tokenService.removeToken();
-		tokenService.removeRefreshToken();
-		localStorage.removeItem('userName');
-	  	console.error('Error during token refresh', error);
-		throw error;
-	}
-};
+		});
+		console.log('Token refreshed', response.data);
+			tokenService.setToken(response.data);
+			return response.data.accessToken;
+		} catch (error) {
+			alert('Oturumunuzun süresi doldu. Lütfen tekrar giriş yapınız.');
+			tokenService.removeToken();
+			tokenService.removeRefreshToken();
+			localStorage.removeItem('userName');
+			console.error('Error during token refresh', error);
+			throw error;
+		}
+	};
 
 
-export { decodeToken, isTokenExpired, refreshToken };
+	export { decodeToken, isTokenExpired, refreshToken };
