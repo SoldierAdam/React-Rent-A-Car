@@ -7,7 +7,6 @@ import "./Navbar.css";
 
 
 import tokenService from "../../services/abstracts/tokenService";
-import jwt from 'jsonwebtoken';
 
 function Navbar() {
 	const currentLocation = useLocation();
