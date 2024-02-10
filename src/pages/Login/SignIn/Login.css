@@ -144,11 +144,8 @@
 }
 .login .login-button{
   margin-left: 5px;
-<<<<<<< HEAD
-  color: rgb(171, 171, 190) ;
-=======
+  /* color: rgb(171, 171, 190) ; */
   color: #f27a1a ;
->>>>>>> a8d8dd66aa195a8c906063b1e2cc111aca03687b
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
