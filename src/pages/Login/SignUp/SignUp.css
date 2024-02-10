@@ -8,7 +8,7 @@
 	width: 500px;
   
   }
-  .form.card {
+  .form-card {
 	width: 100%;
 	max-width: 700px;
 	margin-bottom: 320px;
@@ -17,21 +17,27 @@
 	align-items: center;
 	border-radius: 30px;
 	border-style: solid;
-	border-width: 5px;
-	
+	border-width: 1px; 
+	border-color: #f27a1a;
+	box-shadow: 0 0 5px #f27a1a;
   }
   
+  .login{
+	margin-top: -20px;
+
+  }
   .header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 10px;
+	gap: 5px !important;
 	width: 50%;
-	margin-top: 30px;
+	margin-top: 10px !important;
+	margin-bottom : 0px !important;
   }
   
   .text {
-	color: #f44336;
+	color: #f27a1a;
 	font-size: 48px;
 	font-weight: 700;
 	padding-right: 8px;
@@ -40,7 +46,7 @@
   .underline {
 	width: 61px;
 	height: 6px;
-	background: #f44336;
+	background: #f27a1a;
 	border-radius: 9px;
 	margin-top: 5px;
 	margin-bottom: 55px;
@@ -54,33 +60,33 @@
 	flex-direction: column;
 	gap: 13px;
 	
+  
   }
   .input {
 	display: flex;
 	align-items: center;
 	margin: auto;
 	width: 400px;
-	height: 75px;
+	height: 60px;
 	background: #eeeded;
 	border-radius: 6px;
-	
   }
   
   .icon-password {
 	margin: 0px 30px;
 	font-size: 30px;
-	color: #f44336;
+	color: #f27a1a;
   }
   .icon-email {
 	margin: 0px 30px;
 	font-size: 30px;
-	color: #f44336;
+	color: #f27a1a;
   }
   
   .icon-user {
 	margin: 0px 30px;
 	font-size: 30px;
-	color: #f44336;
+	color: #f27a1a;
   }
   
   .input input {
@@ -94,7 +100,7 @@
   }
   
   .forget-password {
-	margin-left: 160px;
+	margin-left: 10px;
 	margin-top: 20px;
 	color: black;
 	font-size: 15px !important;
@@ -102,7 +108,7 @@
   
   .forget-password.link {
 	
-	color: rgb(4, 4, 112);
+	color: #f27a1a;
 	cursor: pointer;
   }
   
@@ -123,7 +129,7 @@
 	width: 180px;
 	height: 59px;
 	color: #ffffff;
-	background: #f44336;
+	background: #f27a1a;
 	border-radius: 50px;
 	font-size: 19px;
 	font-weight: 700;
@@ -131,13 +137,13 @@
 	border: hidden;
   }
   
-  .signUp{
+  .login{
    display: flex;
    align-items: center;
    justify-content: center;
   
   }
-  .sign-up .sign-up-button{
+  .login .login-button{
 	margin-left: 5px;
 	color: blue ;
 	text-decoration: none;
@@ -149,28 +155,33 @@
 	display: block !important;
 	margin-top: -10px !important;
   }
+  
   .submit-button {
-    width: 150px;
-    height: 50px;
-    background-color:#f44336;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-	
-}
-
-.submit-button:hover {
-    background-color: #d32f2f;
-}
-
-.submit-button.loading {
-    cursor: not-allowed;
-    background-color: #6c757d;
-}
-
+	width: 150px;
+	height: 50px;
+	background-color:#f27a1a;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;  
+	margin-top: 20px;
+  }
   
+  .submit-button:hover {
+	background-color: #f27a1a;
+  }
   
+  .submit-button.loading {
+	cursor: not-allowed;
+	background-color: #6c757d;
+  }
   
+  .error-message{
+	color: #f27a1a; 
+	font-size: 12px; 
+	margin-top: -15px; 
+	margin-left: 28px;
+	margin-bottom: 5px;
+  }
