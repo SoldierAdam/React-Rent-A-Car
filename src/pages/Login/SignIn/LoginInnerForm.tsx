@@ -23,6 +23,7 @@ const SuccessMessage: React.FC<{ message: string }> = ({ message }) => (
 
 
 
+
 interface InnerFormProps extends FormikProps<FormValues> {
     isSubmitSuccessful: boolean;
 }
@@ -33,7 +34,7 @@ const header = (
         <div className="underline"></div>
         <div className="login">
             Don't have an account?
-            <Link to="/signUp" className="login-button">Register</Link>
+            <Link to="/signUp" className="login-button">Sign Up</Link>
         </div>
     </div>
 );
@@ -63,8 +64,18 @@ const InnerForm: React.FC<InnerFormProps> = ({
 
             <FormikInput name="password" type="password" placeholder="Password" icon={<RiLockPasswordFill className="icon-password" />} />
             {touched.password && errors.password && <ErrorMessage message={errors.password} />}
-
-            <div className="sign-up">
+    
+            <div className='parent-container'>
+            <div className="forget-password">
+                Forget Password?{" "}
+                <Link className="forget-password-link" to="/reset-password">Click Here!</Link>
+            </div>
+            <div className="remember-me">
+                <input type="checkbox" className="checkbox" />
+                Remember me
+            </div>
+            </div>
+            <div className="login">
     <button
         disabled={isSubmitting || !!(errors.userName && touched.userName) || !!(errors.password && touched.password)}
         type="submit"
@@ -72,17 +83,8 @@ const InnerForm: React.FC<InnerFormProps> = ({
     >
         {isSubmitting ? 'Logging In...' : 'Login'}
     </button>
+
 </div>
-
-
-            <div className="remember-me">
-                <input type="checkbox" className="checkbox" />
-                Remember me
-            </div>
-            <div className="forget-password">
-                Forget Password?{" "}
-                <Link className="forget-password-link" to="/reset-password">Click Here!</Link>
-            </div>
         </Form>
     </div>
 );

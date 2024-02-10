@@ -2,8 +2,8 @@
   #navbar {
 	background: #333;
 	color: #fff;
-	overflow: auto;
-	padding-right: 250px;
+	overflow: visible;
+	padding-right: 310px;
 	padding-left: 250px;
 
   }
@@ -30,6 +30,7 @@
 
   #navbar .menu-link a{
 	text-decoration: none;
+	color: #f27a1a
   }
 
   
@@ -38,17 +39,10 @@
 	align-items: center;
 	font-size: 40px;
 	text-decoration: none;
-	/* font-weight: bold; */
+	font-weight: bold;
 	letter-spacing: -2px;
 	margin: 0;
-  }
-
-  .navbar-logo{
-	
-  }
-
-  .navbar-png{
-
+	color: #f27a1a;
   }
 
   
@@ -70,4 +64,33 @@
   #navbar .menu-link.current {
 	background: #444;
 	color: #f7c08a;
+  }
+
+  @media (max-width: 1200px) {
+	/* Ekran genişliği 768px'den küçük olduğunda navbar'ın padding'ini azaltır */
+	#navbar {
+	  padding-right: 20px;
+	  padding-left: 20px;
+	}
+  
+	/* Ekran genişliği 768px'den küçük olduğunda menü linklerinin font boyutunu küçültür */
+	#navbar .menu-link {
+	  font-size: large;
+	}
+  
+	/* Ekran genişliği 768px'den küçük olduğunda logonun font boyutunu küçültür */
+	#navbar .logo {
+	  font-size: 30px;
+	}
+  
+	/* Ekran genişliği 768px'den küçük olduğunda navbar'ın listesini merkeze alır */
+	#navbar ul {
+	  float: none;
+	  text-align: center;
+	}
+  
+	/* Ekran genişliği 768px'den küçük olduğunda navbar'ın listesindeki her bir öğeyi blok olarak görüntüler (yani, her bir öğe kendi satırında görünür) */
+	#navbar ul li {
+	  display: block;
+	}
   }

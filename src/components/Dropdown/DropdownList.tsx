@@ -1,11 +1,18 @@
 import { NavDropdown } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
 import './DropdownList.css'
+import tokenService from '../../services/abstracts/tokenService';
 
 
 interface Props {
   user: any;
   currentLocation: any;
+}
+
+const logout = () => {
+	tokenService.removeRefreshToken();
+	tokenService.removeToken();
+	localStorage.removeItem("userName");
 }
 
 const DropdownList = (props: Props) => {
@@ -14,14 +21,14 @@ const DropdownList = (props: Props) => {
    
     <NavDropdown
     id="nav-dropdown-dark-example"
-    title= {props.user.userName ? props.user.userName : "Login" }
+    title= {props.user ? props.user : "Login" }
     menuVariant="dark"
   >
 
-	{props.user.userName ? 
+	{props.user ? 
 	<>
 		<NavDropdown.Item as={NavLink} to="/profile">Profile</NavDropdown.Item> 
-		<NavDropdown.Item href="/">Logout</NavDropdown.Item>
+		<NavDropdown.Item href="/" onClick={()=>logout()} >Logout</NavDropdown.Item>
 	</> :
 	<>
 		<NavDropdown.Item as={NavLink} to="/login">Login</NavDropdown.Item>
@@ -29,13 +36,6 @@ const DropdownList = (props: Props) => {
 	</>
 	}
 
-
-    {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-    <NavDropdown.Item href="#action/3.2">
-      Another action
-    </NavDropdown.Item>
-    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-     */}
 	</NavDropdown>
     </div>
   )
