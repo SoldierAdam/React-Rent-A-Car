@@ -1,8 +1,8 @@
 .car-listing {
-	/* display: flex; 
-	 flex-wrap: wrap; 
+	display: flex; 
+	flex-wrap: wrap; 
 	justify-content: space-between;
-	margin: 0 -10px; */
+	margin: 0 -10px;
   }
   
   .car-card {
@@ -13,20 +13,22 @@
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	margin: 5%;
 	overflow: hidden;
-	border: 0.1px solid rgb(246, 223, 223);
+	border: 0.1px solid #f5e3d4;
+	padding: 10px;
   }
 
   .rent-button {
-	background-color: #f44336;
+	background-color: #f27a1a;
 	color: #ffffff;
-
-	padding: 10px 20px;
+	width: 95%;
+	padding: 10px;
 	border-radius: 5px;
 	border: none;
 	font-size: 14px;
 	font-weight: bold;
 	cursor: pointer;
-	float:right;
+	display: block;
+	margin: auto;
   }
 
   
@@ -37,7 +39,7 @@
   }
   
   .car-info {
-	padding: 15px;
+	padding: 10px;
   }
   
   .car-brand {
@@ -62,6 +64,11 @@
   .car-price {
 	font-size: 18px;
 	font-weight: bold;
+	margin-bottom: 5px;
+	color: #f27a1a;
+	text-align: center;
+	float: right;
+	padding-right: 15px;
   }
 
   .item-container {
@@ -69,3 +76,19 @@
 	flex-direction: row;
 	justify-content: space-between;
   }
+
+  .icon-list {
+	padding: 15%;
+  }
+
+.list-title {
+	font-size: 18px;
+	font-weight: bold;
+	color: #666;
+  }
+
+  .list-value {
+	font-size: 14px;
+	color: #999;
+	margin-bottom: 5px;
+}

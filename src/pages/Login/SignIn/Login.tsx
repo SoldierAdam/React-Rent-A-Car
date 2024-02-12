@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect } from "react";
 import { withFormik } from "formik";
 import InnerForm from "./LoginInnerForm";
 import UserService from "../../../services/abstracts/userService";
@@ -6,7 +6,7 @@ import { basicSchema } from "./LoginValidation";
 import { useDispatch } from 'react-redux';
 import { login } from '../../../store/user/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { local } from "d3-selection";
+import tokenService from "../../../services/abstracts/tokenService";
 
 interface FormValues {
     userName: string;
@@ -22,18 +22,19 @@ const LoginForm = withFormik<MyFormProps, FormValues>({
     mapPropsToValues: ({ initialUserName, initialPassword }) => ({
         userName: initialUserName, password: initialPassword}),
     validationSchema: basicSchema,
-    handleSubmit: async (values, { setSubmitting, setFieldError, setStatus, props }) => {
+    handleSubmit: async (values, { setSubmitting, setFieldError, setStatus }) => {
         try {
-            const token = await UserService.loginUser(values.userName, values.password);
-            if (token) {
-                setStatus({ isSubmitSuccessful: true }); // Set status here
-				localStorage.setItem('token', token);
+            const response = await UserService.loginUser(values.userName, values.password);
+			if (response) {
+                setStatus({ isSubmitSuccessful: true });
+				console.log('responseToken:', response.token);
+				tokenService.setToken(response.token);
 				localStorage.setItem('userName', values.userName);
             } else {
                 setFieldError('general', 'Login failed: No token received');
             }
         } catch (error) {
-            setFieldError('general', 'Error during login');
+            setFieldError('general', `Error during login: ${error.message}`);
         } finally {
             setSubmitting(false);
         }
@@ -42,12 +43,12 @@ const LoginForm = withFormik<MyFormProps, FormValues>({
     const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-
-    // Check the submission status using props.status
-    if (props.status?.isSubmitSuccessful) {
-        dispatch(login(props.values.userName));
-		navigate('/');
-    }
+	useEffect(() => {
+    	if (props.status?.isSubmitSuccessful) {
+       		dispatch(login(props.values.userName));
+			navigate('/');
+    	}
+	}, [props.status, dispatch, navigate, props.values.userName]);
 
     return <InnerForm {...props} isSubmitSuccessful={props.status?.isSubmitSuccessful || false} />;
 });

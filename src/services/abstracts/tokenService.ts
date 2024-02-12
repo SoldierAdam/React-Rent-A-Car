@@ -1,13 +1,23 @@
 class TokenService {
 	getToken(){
-		return localStorage.getItem("token");
+		return localStorage.getItem("accessToken");
 	}
 	setToken(token: string){
-		localStorage.setItem("token", token);
+		localStorage.setItem("accessToken", token);
 	}
 	removeToken(){
-		localStorage.removeItem("token");
+		localStorage.removeItem("accessToken");
 	}
+	getRefreshToken(){
+		return localStorage.getItem("refreshToken");
+	}
+	setRefreshToken(token: string){
+		localStorage.setItem("refreshToken", token);
+	}
+	removeRefreshToken(){
+		localStorage.removeItem("refreshToken");
+	}
+
 }
 
 export default new TokenService();

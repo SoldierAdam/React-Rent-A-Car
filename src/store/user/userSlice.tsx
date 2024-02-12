@@ -1,4 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import tokenService from '../../services/abstracts/tokenService';
+import * as jwtDecode from 'jwt-decode';
+import { local } from 'd3-selection';
 
 interface UserState {
 	userName: string | null;
@@ -6,8 +9,8 @@ interface UserState {
 }
 
 const initialState: UserState = {
-	userName: null,
-	isAuthenticated: false,
+  userName: localStorage.getItem('userName') || null,
+  isAuthenticated: tokenService.getToken ? true : false,
 };
 
 const userSlice = createSlice({
