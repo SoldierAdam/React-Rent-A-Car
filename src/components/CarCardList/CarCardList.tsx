@@ -21,7 +21,6 @@ type FilterCriteria = {
 };
 
 
-
 const CarCardList: React.FC = () => {
 	const dispatch = useDispatch();
 	const [data, setData] = useState<Car[] | null>(null);
@@ -184,7 +183,6 @@ const CarCardList: React.FC = () => {
 							: <SearchBar />
 						}
 						
-
 						{/* filter panel yan da değil  */}
 						<div className={`item-container d-none d-md-flex d-lg-none`}>
 							{filterPanel}
@@ -197,7 +195,7 @@ const CarCardList: React.FC = () => {
 							{sortedAndFilteredData ? (
 								sortedAndFilteredData.map((car: Car) => (
 									<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
-										<CarCard car={car} />
+										<CarCard car={car}/>
 									</div>
 								))
 							) : (

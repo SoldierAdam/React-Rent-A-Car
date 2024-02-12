@@ -10,7 +10,7 @@ interface UserState {
 
 const initialState: UserState = {
   userName: localStorage.getItem('userName') || null,
-  isAuthenticated: localStorage.getItem('token') ? true : false,
+  isAuthenticated: tokenService.getToken ? true : false,
 };
 
 const userSlice = createSlice({
