@@ -26,7 +26,7 @@ const SignUpForm = withFormik<MyFormprops, FormValues>({
 		password: initialPassword,
 		userName: initialUserName,
 	}),
-	validationSchema: basicSchemaSignUp,
+	// validationSchema: basicSchemaSignUp,
 	handleSubmit: async ( values, {setSubmitting, setFieldError, setStatus, props}
 	) => {
 		console.log("Submitting form:", values)
