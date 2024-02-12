@@ -1,8 +1,25 @@
-/** @type {import('tailwindcss').Config} */
+// /** @type {import('tailwindcss').Config} */
+// module.exports = {
+//   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+// };
+
+
+// // tailwind.config.js
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
+	theme: {
+	  extend: {
+		spacing: {
+		  '22': '5.5rem', // Custom spacing
+		},
+		colors: {
+		  'custom-green': '#4ade80', // Custom color
+		},
+		// Add other customizations like fonts, sizes, etc.
+	  },
+	},
+  };
+  

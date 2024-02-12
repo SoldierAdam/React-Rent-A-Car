@@ -43,7 +43,7 @@
 }
 
 .underline {
-  width: 61px;
+  width: 10px;
   height: 6px;
   background: #f27a1a;
   border-radius: 9px;
@@ -155,6 +155,7 @@
   display: block !important;
   margin-top: -10px !important;
 }
+
 
 .submit-button {
   width: 150px;

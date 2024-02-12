@@ -2,6 +2,7 @@
 	padding: 10px;
 	display: flex;
 	align-items: center;
+	text-align: center;
 	justify-content: center;
 	box-sizing: border-box;
 }
@@ -91,7 +92,7 @@
     background: #f27a1a;
     border-radius: 9px;
     margin-top: 5px;
-    margin-bottom: 55px;
+    margin-bottom: 10px;
     flex-direction: column;
     cursor: pointer;
 }

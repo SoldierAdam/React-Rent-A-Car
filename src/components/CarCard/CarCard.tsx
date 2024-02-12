@@ -2,6 +2,10 @@ import React from 'react';
 import './CarCard.css';
 import { motion } from 'framer-motion'
 import { Car } from '../../models/model';
+import { useDispatch } from 'react-redux';
+import { setCar } from '../../store/car/carSlice';
+import { useNavigate } from 'react-router-dom';
+import { local } from 'd3';
 
 interface CarListingProps {
 	car: Car;
@@ -58,38 +62,50 @@ const priceCalculate = (price: number) => {
 }
 
 
-const CarCard: React.FC<CarListingProps> = ({ car }) => (
-	<div className="car-listing">
-		{car &&
-			<div key={car.id} className="car-card">
-				<motion.div whileHover={{ scale: 1.05 }}>
-					<img src={car.imagePath} alt={`${car.model.name}`} className="car-image" />
-					<div className="car-info">
-						<b className="car-model">{car.model.brand.name} {car.model.name} {car.modelYear} </b>
-						<span className="car-price">{priceCalculate(car.dailyPrice)} TL</span>
-					</div>
-					<button className="rent-button">
-						<span>Hemen Kirala</span>
-						<i className="icon icon-arrow-right"></i>
-					</button>
-					<div className='item-container d-none d-lg-flex d-xlarge-block ' >
-						<div className="item col-6">
-							{vehicleFeatures}
-						</div>
-						<div className="item col-6">
-							{rentConditions}
-						</div>
-					</div>
-					<div className='item-container d-none d-md-flex d-lg-none ' >
-						<div className="item col-6">
-							{rentConditions}
-						</div>
-					</div>
-				</motion.div>
-			</div>
-		}
-	</div>
 
-);
+const CarCard: React.FC<CarListingProps> = ({ car }) => {
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const handleClickFunc = () => {
+		dispatch(setCar(car));
+		localStorage.setItem('car', JSON.stringify(car));
+		navigate('/rentNow');
+	}
+	return (
+		<div className="car-listing">
+			{car &&
+				<div key={car.id} className="car-card">
+					<motion.div whileHover={{ scale: 1.05 }}>
+						<img src={car.imagePath} alt={`${car.model.name}`} className="carCard-image" />
+						<div className="car-info">
+							<b className="car-model">{car.model.brand.name} {car.model.name} {car.modelYear} </b>
+							<span className="car-price">{priceCalculate(car.dailyPrice)} TL</span>
+						</div>
+						<button className="rent-button" onClick={handleClickFunc}>
+							<span>Hemen Kirala</span>
+							<i className="icon icon-arrow-right"></i>
+						</button>
+						<div className='item-container d-none d-lg-flex d-xlarge-block ' >
+							<div className="item col-6">
+								{vehicleFeatures}
+							</div>
+							<div className="item col-6">
+								{rentConditions}
+							</div>
+						</div>
+						<div className='item-container d-none d-md-flex d-lg-none ' >
+							<div className="item col-6">
+								{rentConditions}
+							</div>
+						</div>
+					</motion.div>
+				</div>
+			}
+		</div>
+	);
+}
+
 
 export default CarCard;
