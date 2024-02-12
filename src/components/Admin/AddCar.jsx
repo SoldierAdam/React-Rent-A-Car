@@ -10,26 +10,38 @@ const AddCar = () => {
     var navigate = useNavigate();
 
     const initialValues = {
-        carname: "",
-        carbrand: "",
-        carmodel: "",
-        carkilometer: 0,
-        caryear: 0,
-        dailyprice: 0,
-        colorid: 0
+      carname: "",
+      carbrand: "",
+      carmodelid: "",
+      carkilometer: 0,
+      caryear: 0,
+      dailyprice: 0,
+      colorid: 0,
+      carplate: "",
+      carfueltype: "",
+      cartransmission_type: "" 
     };
 
     const [car, setCar] = useState({
       carname: "",
       carbrand: "",
-      carmodel: "",
+      carmodelid: "",
       carkilometer: 0,
       caryear: 0,
       dailyprice: 0,
       colorid: 0,
+      carplate: "",
+      carfueltype: "",
+      cartransmission_type: ""
     });
 
     //
+
+    const onInputChange = (e) => {
+      setCar({ ...car, [e.target.name]: e.target.value });
+    };
+
+
     const onSubmit = async (e) => {
       e.preventDefault();
       await axios.post("http://localhost:8080/api/cars/add", car);
@@ -45,47 +57,49 @@ const AddCar = () => {
       });
     };
 
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const userData = {
+          carname: car.carname,
+          carbrand: car.carbrand,
+          dailyprice: car.dailyprice,
+          carmodelid: car.carmodelid,
+          carkilometer: car.carkilometer,
+          caryear: car.caryear,
+          colorid: car.colorid,
+          carplate: car.carplate,
+          carfueltype: car.carfueltype,
+          cartransmission_type: car.cartransmission_type
+      };
+    };
+
+    // useEffect(()=> {
+    //   axios.post("http://localhost:8080/api/cars/add")
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err));
+    // })
 
     const validationSchema = object({
       carname: string().required().min(2).max(50),
       carbrand: string().required().min(2).max(50),
-      carmodel: string().required().min(1).max(50),
+      carmodelid: number().required().min().max(),
       carkilometer: number().required().min(0).max(500000).integer(),
       caryear: number().required().min(1900).max(2024).integer(),
       dailyprice: number().required().min(10).max(100000),
-      colorid:  number().required().integer().min(1).max()
+      colorid:  number().required().integer().min().max(),
+      carplate: string().required().min(7).max(9),
+      carfueltype: string().required().min(4).max(9),
+      cartransmission_type: string().required().min(4).max(50),
     });
 
-
-
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const userData = {
-        carname: car.carname,
-        carbrand: car.carbrand,
-        dailyprice: car.dailyprice,
-        carmodel: car.carmodel,
-        carkilometer: car.carkilometer,
-        caryear: car.caryear,
-        colorid: car.colorid
-    };
-  };
-
-    useEffect(()=> {
-      axios.post("http://localhost:8080/api/cars/add")
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-    })
-
+    
   return (
       <div className="container">
         <Formik initialValues={initialValues} onSubmit={(e) => onSubmit(e)} validationSchema={validationSchema}>
           <Form>
               <div className="mb-3">
                   <label className="form-label">Add Car Name</label>
-                  <Field name="carname" type="text" className="form-control"/>
+                  <Field name="carname" type="text" className="form-control" />
                   <ErrorMessage name="carname">
                     {message => <p className="text-danger">{message}</p>}
                   </ErrorMessage>
@@ -106,8 +120,8 @@ const AddCar = () => {
               </div>
               <div className="mb-3">
                   <label className="form-label">Car Model</label>
-                  <Field name="carmodel" type="text" className="form-control"/>
-                  <ErrorMessage name="carmodel">
+                  <Field name="carmodelid" type="text" className="form-control"/>
+                  <ErrorMessage name="carmodelid">
                   {message => <p className="text-danger">{message}</p>}
                   </ErrorMessage>
               </div>
