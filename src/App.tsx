@@ -11,8 +11,8 @@ import SignUp from './pages/Login/SignUp/SignUp';
 import Login from './pages/Login/SignIn/Login';
 //import Admin from './components/Admin/Admin';
 import OverlayLoader from './components/OverlayLoader/OverlayLoader';
-import Paypal from './pages/PayPal/Payment.1';
 import CreditCard from './components/CreditCard/CreditCard';
+import Payment from './components/CreditCard/Payment/Payment';
 
 
 function App() {
@@ -31,6 +31,8 @@ function App() {
 						<Route path='cars' element={<Cars/>} />
 						<Route path="/login" element={<Login initialUserName="" initialPassword="" />} />
 						<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
+						<Route path='/creditCard' element={<CreditCard/>} />
+						<Route path='/payment' element={<Payment/>} />
 					</Routes>
 				</BrowserRouter>
 			</div>

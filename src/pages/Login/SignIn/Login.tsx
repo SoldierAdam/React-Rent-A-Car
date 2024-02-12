@@ -4,7 +4,7 @@ import InnerForm from "./LoginInnerForm";
 import UserService from "../../../services/abstracts/userService";
 import { basicSchema } from "./LoginValidation";
 import { useDispatch } from 'react-redux';
-import { login } from '../../../store/user/userSlice';
+import { login } from "../../../store/slices/userSlice"
 import { useNavigate } from 'react-router-dom';
 import { local } from "d3-selection";
 
