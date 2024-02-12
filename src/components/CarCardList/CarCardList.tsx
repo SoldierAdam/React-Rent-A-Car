@@ -6,7 +6,7 @@ import CarCard from '../CarCard/CarCard';
 import '../../pages/HomePage/HomePage.css';
 import { Car } from '../../models/model';
 import { useDispatch } from 'react-redux';
-import { decreaseRequestCount, increaseRequestCount } from '../../store/loading/loadingSlice';
+import { decreaseRequestCount, increaseRequestCount } from '../../store/slices/loadingSlice';
 import SearchBar from '../SearchBar/SearchBar';
 import SelectedDates from './SelectedDates';
 
