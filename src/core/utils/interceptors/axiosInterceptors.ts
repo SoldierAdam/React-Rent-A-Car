@@ -1,7 +1,7 @@
 import axios from 'axios';
 import tokenService from '../../../services/abstracts/tokenService';
 import { store } from '../../../store/configureStore'
-import { decreaseRequestCount, increaseRequestCount } from '../../../store/loading/loadingSlice';
+import { decreaseRequestCount, increaseRequestCount } from '../../../store/slices/loadingSlice';
 import { isTokenExpired, refreshToken } from '../../../services/abstracts/authService';
 
 const axiosInstance = axios.create({
