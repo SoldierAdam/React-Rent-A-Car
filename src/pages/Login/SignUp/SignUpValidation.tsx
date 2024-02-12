@@ -9,7 +9,7 @@ export const basicSchemaSignUp = yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .matches(passwordRules, {
       message:
-        "Password must contain at least one uppercase letter, one special character, and be 8-16 characters",
+        "one uppercase letter, one special character, must be 8-16 characters",
     })
     .required("Password is required"),
   userName: yup.string().required("Username is required"),	
