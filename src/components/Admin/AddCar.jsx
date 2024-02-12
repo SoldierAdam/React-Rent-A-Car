@@ -3,8 +3,11 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { number, object, string } from "yup";
 import "../Admin/Admin.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddCar = () => {
+
+    var navigate = useNavigate();
 
     const initialValues = {
         carname: "",
@@ -16,6 +19,33 @@ const AddCar = () => {
         colorid: 0
     };
 
+    const [car, setCar] = useState({
+      carname: "",
+      carbrand: "",
+      carmodel: "",
+      carkilometer: 0,
+      caryear: 0,
+      dailyprice: 0,
+      colorid: 0,
+    });
+
+    //
+    const onSubmit = async (e) => {
+      e.preventDefault();
+      await axios.post("http://localhost:8080/api/cars/add", car);
+      navigate("/cars");
+    };
+    
+
+    const handleChange = (e) => {
+    const value = e.target.value;
+    setCar({
+      ...car,
+      [e.target.car]: value
+      });
+    };
+
+
     const validationSchema = object({
       carname: string().required().min(2).max(50),
       carbrand: string().required().min(2).max(50),
@@ -26,34 +56,20 @@ const AddCar = () => {
       colorid:  number().required().integer().min(1).max()
     });
 
-  const [modalOpen, setModalOpen] = useState({
-    carname: "",
-    carbrand: "",
-    carmodel: "",
-    carkilometer: 0,
-    caryear: 0,
-    dailyprice: 0,
-    colorid: 0,
-  });
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setModalOpen({
-      ...modalOpen,
-      [e.target.CarName]: value
-    });
-  };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
-        carname: modalOpen.carname,
-        carbrand: modalOpen.carbrand,
-        dailyprice: modalOpen.dailyprice,
-        carmodel: modalOpen.carmodel,
-        carkilometer: modalOpen.carkilometer,
-        caryear: modalOpen.caryear,
-        colorid: modalOpen.colorid
+        carname: car.carname,
+        carbrand: car.carbrand,
+        dailyprice: car.dailyprice,
+        carmodel: car.carmodel,
+        carkilometer: car.carkilometer,
+        caryear: car.caryear,
+        colorid: car.colorid
     };
   };
 
@@ -65,7 +81,7 @@ const AddCar = () => {
 
   return (
       <div className="container">
-        <Formik initialValues={initialValues} onSubmit={(values) => {console.log(values)}} validationSchema={validationSchema}>
+        <Formik initialValues={initialValues} onSubmit={(e) => onSubmit(e)} validationSchema={validationSchema}>
           <Form>
               <div className="mb-3">
                   <label className="form-label">Add Car Name</label>
@@ -114,7 +130,8 @@ const AddCar = () => {
                   <Field name="colorid" type="text" as="select" className="form-select"/>
               </div>
               
-              <button type="submit" className="btn btn-primary" onClick={() => {setModalOpen(true)}}>Submit</button>
+              <button type="submit" className="btn btn-primary" onClick={() => {setCar(true)}}>Submit</button>
+              <Link className="btn btn-outline-danger" to="/">Cancel</Link>
           </Form>
         </Formik>
       </div>
