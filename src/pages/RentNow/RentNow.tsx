@@ -13,11 +13,14 @@ export default function RentNow() {
 	  setShowPayment(true);
 	};
 
-	return (
-		<div className='row'>
+	const handleBackClick = () => {
+		setShowPayment(false);
+	};
 
-			<SelectedCarInfo />
-			{showPayment ? <PaymentDetails /> : <CarDetails onButtonClick={handleButtonClick} />}
-		</div>
-	);
+    return (
+        <div className='row'>
+            <SelectedCarInfo />
+            {showPayment ? <PaymentDetails onBackClick={handleBackClick} /> : <CarDetails onButtonClick={handleButtonClick} />}
+        </div>
+    );
 }

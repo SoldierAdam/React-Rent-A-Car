@@ -1,9 +1,11 @@
 import { Formik, Form, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
 import './CarDetails.css';
+import { useDispatch } from 'react-redux';
+import { setCustomerInfo } from '../../store/rentNow/rentSlice';
 
 const CarDetails = ({onButtonClick}) => {
+	const dispatch = useDispatch();
 
 	interface FormValues {
 		firstName: string;
@@ -26,14 +28,26 @@ const CarDetails = ({onButtonClick}) => {
 		birthDate: Yup.date().required('Doğum tarihi zorunludur'),
 	});
 
-	const handleSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
-		// Kullanıcı bilgilerini saklayın
-		// Örneğin, Redux action dispatcher'ı kullanarak
-		// dispatch(saveUserDetails(values));
+	const handleSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
 
-		// Sonraki adıma geçiş veya başka bir işlem
-		// Sonraki form adımınız burada olacak
-	};
+		// Verilerin doğruluğunu kontrol et
+		if (!values.birthDate || !values.firstName || !values.lastName || !values.tcNumber) {
+			alert("Lütfen tüm alanları doldurunuz.");
+			return;
+		}
+
+		try {
+			dispatch(setCustomerInfo(values));
+			alert("Araba detayları başarıyla kaydedildi.");
+			// Sonraki form adımınız burada olacak
+
+		} catch (error) {
+			alert("Bir hata oluştu: " + error.message);
+		}
+
+		// Formik işlemlerini sıfırla
+		actions.resetForm();
+	}
 
 	const FormikInformation = [
 		{
