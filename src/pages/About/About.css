@@ -82,15 +82,21 @@
 .team{
    width:90%;
    margin:auto;
-   padding:5% 5%;
    over-flow:hidden;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+   gap: 20px;
 }
-.team h1{
+
+.our-team h1{
    text-align:center;
    color:#f27a1a;
-   
 }
-.team h1 hr{
+
+.our-team hr{
    width:15%;
    border-top:2px solid #000;
    background-color:transperant;
@@ -98,15 +104,13 @@
    margin-bottom:50px;
 }
 .team .card{
+   padding: 20px;
    padding-bottom:20px;
    padding-top:20px;
    position:relative;
    min-width:20%;
-   height:500px !important;
-   height:auto;
    background-color:#fff;
    display:inline-block;
-   margin:40px 6.5%;
    box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
    text-align:center;
 }

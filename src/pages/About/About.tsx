@@ -31,8 +31,11 @@ const About = () => {
 					<div className="clear"></div>
 				</div>
 
+					<div className="our-team">
+						<h1>Our Team<hr/></h1>
+					</div>
 				<div className="team">
-					<h1>Our Team<hr/></h1>
+
 					<div className="card">
 						<div className="circle-container">
 						</div>
@@ -68,7 +71,7 @@ const About = () => {
 					<div className="card">
 						<div className="circle-container">
 						</div>
-						<h2>Abullah Cemil Vançelik</h2>
+						<h2>A. Cemil Vançelik</h2>
 						<h4>Corporate Partner</h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 					</div>
