@@ -10,6 +10,13 @@ const initialState: Car = {
 	dailyPrice: 0,
 	minFindeksRate: 0,
 	imagePath: "",
+	depositPrice: 0,
+	transmissionType: "",
+	fuelType: "",
+	airbag: false,
+	drivingLicenceAge: 0,
+	minCustomerAge: 0,
+	seatCapacity: 0,
 	model: {
 		id: 0,
 		name: "",

@@ -5,7 +5,6 @@ import { Car } from '../../models/model';
 import { useDispatch } from 'react-redux';
 import { setCar } from '../../store/car/carSlice';
 import { useNavigate } from 'react-router-dom';
-import { local } from 'd3';
 
 
 interface CarListingProps {

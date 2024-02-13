@@ -10,7 +10,6 @@ import Cars from './pages/Cars/Cars';
 import SignUp from './pages/Login/SignUp/SignUp';
 import Login from './pages/Login/SignIn/Login';
 
-import OverlayLoader from './components/OverlayLoader/OverlayLoader';
 import CreditCard from './components/CreditCard/CreditCard';
 import Payment from './components/CreditCard/Payment/Payment';
 import Admin from './components/Admin/Admin';
