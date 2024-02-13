@@ -1,1 +1,1 @@
-export interface AddCarResponse {}
+export interface AddCustomerResponse {}

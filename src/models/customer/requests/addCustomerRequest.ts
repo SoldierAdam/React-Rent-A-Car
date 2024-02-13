@@ -1,1 +1,1 @@
-export interface AddCarRequest {}
+export interface AddCustomerRequest {}

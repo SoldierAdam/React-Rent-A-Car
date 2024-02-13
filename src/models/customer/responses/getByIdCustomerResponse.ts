@@ -1,1 +1,1 @@
-export interface GetByIdCarResponse {}
+export interface GetByIdCustomerResponse {}

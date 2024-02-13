@@ -1,24 +1,22 @@
-import { AddCarRequest } from '../../models/cars/requests/addCarRequest';
-import { UpdateCarRequest } from '../../models/cars/requests/updateCarRequest';
-import { AddCarResponse } from '../../models/cars/responses/addCarResponse';
-import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
-import { GetByIdCarResponse } from '../../models/cars/responses/getByIdCarResponse';
-import { UpdateCarResponse } from '../../models/cars/responses/updateCarResponse';
+import { AddCustomerRequest } from '../../models/customer/requests/addCustomerRequest';
+import { UpdateCustomerRequest } from '../../models/customer/requests/updateCustomerRequest';
+import { AddCustomerResponse } from '../../models/customer/responses/addCustomerResponse';
+import { GetByIdCustomerResponse } from '../../models/customer/responses/getByIdCustomerResponse';
+import { UpdateCustomerResponse } from '../../models/customer/responses/updateCustomerResponse';
+import { GetAllCustomerResponse } from './../../models/customer/responses/getAllCustomerResponse';
 import { BaseService } from "./baseService";
 
-
-class CustomerService extends BaseService <
-GetAllCarResponse,
-	GetByIdCarResponse,
-	AddCarRequest,
-	AddCarResponse,
-	UpdateCarRequest,
-	UpdateCarResponse
-    >
-{
+class CustomerService extends BaseService<
+GetAllCustomerResponse,
+GetByIdCustomerResponse,
+AddCustomerRequest,
+AddCustomerResponse,
+UpdateCustomerRequest,
+UpdateCustomerResponse
+>{
     constructor(){
 		super();
-		this.apiUrl = "customer";
+		this.apiUrl = "customers";
 	}
 }
 export default new CustomerService();
