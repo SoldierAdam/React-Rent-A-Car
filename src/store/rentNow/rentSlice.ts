@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 interface RentCustomerInfo {
 	firstName: string;
 	lastName: string;
-	tcNumber: string;
+	identityNumber: string;
 	birthDate: string;
 	phoneNumber: string;
 	email: string;
@@ -15,7 +15,7 @@ interface RentCustomerInfo {
 const initialState: RentCustomerInfo = {
 	firstName: "",
 	lastName: "",
-	tcNumber: "",
+	identityNumber: "",
 	birthDate: "",
 	phoneNumber: "",
 	email: "",
@@ -28,9 +28,7 @@ const rentInfoSlice = createSlice({
 	name: "rentInfo",
 	initialState: initialState,
 	reducers: {
-		setCustomerInfo: (state, action) => {
-			return action.payload;
-		},
+		setCustomerInfo: (state, action) => action.payload,
 	},
 });
 

@@ -4,9 +4,9 @@
 }
 
 .app {
-	/* background: linear-gradient(to left, rgb(254, 235, 224) 40%, rgb(243, 244, 250) 80%); */
+	background: linear-gradient(to left, rgb(254, 235, 224) 40%, rgb(243, 244, 250) 80%);
 	/* background: repeating-linear-gradient(45deg, #f3f4fa, #f3f4fa 10px, #feebe0 10px, #feebe0 20px); */
-	background: radial-gradient(circle, rgb(251, 247, 245) 40%, rgb(243, 244, 250) 80%);
+	/* background: radial-gradient(circle, rgb(251, 247, 245) 40%, rgb(243, 244, 250) 80%); */
 	min-height: 100vh;
 }
 

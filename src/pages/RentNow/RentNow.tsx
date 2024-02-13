@@ -11,6 +11,7 @@ export default function RentNow() {
 
 	const handleButtonClick = () => {
 	  setShowPayment(true);
+	  
 	};
 
 	const handleBackClick = () => {

@@ -1,124 +1,109 @@
-import React from 'react'
-import * as Yup from 'yup';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
+import { FormikInput, CardFormValues, CardInitialValues, CardValidationSchema, CardFormikInformation } from './FormikInput';
 import './CarDetails.css'
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 function PaymentDetails({ onBackClick }) {
 
-	interface FormValues {
-		fullName: string;
-		creditCardNumber: string;
-		expirationTime: Date;
-		cvv: number
+	// useSelector ile Redux store'dan veri alımı
+	const customerInfoString = useSelector((state: any) => JSON.stringify(state.rent));
+	const userInfo = useSelector((state: any) => state.user);
+
+	// JSON string'ini nesneye çevirme
+	const customerInfo = JSON.parse(customerInfoString);
+
+	interface Customer {
+		firstName: string;
+		lastName: string;
+		identityNumber: string;
+		birthDate: string;
+		city: string;
+		address: string;
+		email: string;
+		drivingLicenseDate: string;
+		postalCode: string;
+		phoneNumber: string;
+		username: number;
 	}
 
-	const initialValues: FormValues = {
-		fullName: '',
-		creditCardNumber: '',
-		expirationTime: new Date(),
-		cvv: 0
+	// Customer nesnesi oluşturma
+	const createCustomerObject = (customerInfo: any, userInfo: any): Customer => {
+		return {
+			firstName: customerInfo.firstName || '',
+			lastName: customerInfo.lastName || '',
+			identityNumber: '99999999999',
+			birthDate: customerInfo.birthDate || '',
+			city: customerInfo.city || '',
+			address: customerInfo.address || '',
+			email: customerInfo.email || '',
+			drivingLicenseDate: customerInfo.drivingLicenseDate || '',
+			postalCode: customerInfo.postalCode || '111',
+			phoneNumber: userInfo.phoneNumber || '1111111111',
+			username: userInfo.userName || 1,
+		};
 	}
 
-	const validationSchema = Yup.object({
-		fullName: Yup.string().required('Ad alanı zorunludur'),
-		creditCardNumber: Yup.string().required('Kredi kartı numarası zorunludur').length(16, 'Kredi kartı numarası 16 haneli olmalıdır'),
-		expirationTime: Yup.date().required('Son kullanma tarihi zorunludur'),
-		cvv: Yup.number().required('CVV zorunludur').min(100, 'CVV 3 haneli olmalıdır').max(999, 'CVV 3 haneli olmalıdır')
-	});
+	// Yeni Customer nesnesi oluştur
+	const customer = createCustomerObject(customerInfo, userInfo);
 
-	const handleSubmit = async (values: FormValues, actions: any) => {
-		// Verilerin doğruluğunu kontrol et
-		if (!values.fullName || !values.creditCardNumber || !values.expirationTime || !values.cvv) {
-			alert("Lütfen tüm alanları doldurunuz.");
-			return;
-		}
-
-		// Verileri ödeme API'sine gönder
+	console.log("Customer:", customer);
+	// Axios ile API isteğini gönderme
+	const handleSubmit = async () => {
 		try {
-			const response = await fetch("http://localhost:8080/api/customers/add", {
-				method: "POST",
+
+			const response = await axios.post('http://localhost:8080/api/customers/add', customer, {
 				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(values)
-			});
+					'Content-Type': 'application/json'
+				}
+			})
 
-			// API'den gelen yanıtı kontrol et
-			if (response.ok) {
-				alert("Ödeme başarıyla gerçekleştirildi.");
-			} else {
-				alert("Ödeme işlemi başarısız oldu. Lütfen bilgilerinizi kontrol ediniz.");
-			}
+			// const [response1, response2] = await Promise.all([
+			// 	axios.post('http://localhost:8080/api/customers/add', customer, {
+			// 		headers: {
+			// 			'Content-Type': 'application/json'
+			// 		}
+			// 	}),
+			// 	axios.post('http://localhost:8080/api/rents/add', customer, {
+			// 		headers: {
+			// 			'Content-Type': 'application/json'
+			// 		}
+			// 	})
+			// ])
+
+			// console.log("API Response 1:", response1.data);
+			// console.log("API Response 2:", response2.data);
+			alert("Müşteri başarıyla kaydedildi.");
 		} catch (error) {
-			alert("Bir hata oluştu: " + error.message);
+			console.error("API Error:", error.response ? error.response.data : error.message);
+			alert("Müşteri kaydı sırasında bir hata oluştu.");
 		}
-
-		// Formik işlemlerini sıfırla
-		actions.resetForm();
 	}
 
-	const FormikInformation = [
-		{
-			label: 'Kart Üzerindeki İsim',
-			name: 'fullName',
-			type: 'text',
-		},
-		{
-			label: 'Kredi Kartı Numarası',
-			name: 'creditCardNumber',
-			type: 'text',
-		},
-		{
-			label: 'Son Kullanma Tarihi',
-			name: 'expirationTime',
-			type: 'date',
-		},
-		{
-			label: 'CVV',
-			name: 'cvv',
-			type: 'number',
-		}
-	]
-
-  return (
-	<div className='col-9'>
-		<h2>Ödeme Bilgileri</h2>
-		<Formik
-			initialValues={initialValues}
-			validationSchema={validationSchema}
-			onSubmit={handleSubmit}
-		>
-			<Form>
-				<div className='grid-container'>
-				{FormikInformation.map((item, index) => (
-								<>
-									<div key={index} className='formik-input'>
-										<label htmlFor={item.name} className='form-label'>
-											{item.label}
-										</label>
-										<Field
-											type={item.type}
-											className='form-control'
-											id={item.name}
-											name={item.name}
-										/>
-									</div>
-								</>
-					))}
-
-				</div>
-				<div className='button'>
-					<button type='submit' className='next-button' onClick={onBackClick}>
-						Müşteri Bilgilerine Geri Dön 
-					</button>
-					<button type='submit' className='next-button'>
-						 Ödeme Yap
-					</button>
-				</div>
-			</Form>
-		</Formik>
-	</div>
-  )
+	return (
+		<div className='col-9'>
+			<h2>Ödeme Bilgileri</h2>
+			<Formik
+				initialValues={CardInitialValues}
+				validationSchema={CardValidationSchema}
+				onSubmit={handleSubmit}
+			>
+				<Form>
+					<div key={0} className='grid-container'>
+						{CardFormikInformation.map((item, index) => (FormikInput({ item, index })))}
+					</div>
+					<div className='button'>
+						<button type='button' className='next-button' onClick={onBackClick}>
+							Müşteri Bilgilerine Geri Dön
+						</button>
+						<button type='submit' className='next-button'>
+							Ödeme Yap
+						</button>
+					</div>
+				</Form>
+			</Formik>
+		</div>
+	)
 }
 
 export default PaymentDetails;
