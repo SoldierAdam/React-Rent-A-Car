@@ -1,51 +1,86 @@
-body {
-    background-color: #fbfbfb;
-  }
-  @media (min-width: 991.98px) {
-    main {
-      padding-left: 240px;
-    }
-  }
-  
-  /* Sidebar */
-  .sidebar {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-    width: 240px;
-    z-index: 600;
-  }
+:root {
+  --orange: #f27a1a;
+  --dark-orange: #ff7300;
+  --background: #081118;
+  --grey: #333;
+  --light-grey: #3b3b3b;
+}
 
-  .height{
-    display: flex;
-    height: 100vh;
-  }
 
-  .addcar-container{
-    display: flex;
-    justify-content: center;
-    /* padding-left: 50vh; */
-    margin: auto;
-    border-radius: 2px;
-  }
-  
-  @media (max-width: 991.98px) {
-    .sidebar {
-      width: 100%;
-    }
-  }
-  .sidebar .active {
-    border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
-  }
-  
-  .sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: 0.5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.accordion {
+  width: 20rem;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+.accordion a {
+  text-decoration: none;
+}
+
+.accordion-item {
+  list-style: none;
+  border-top: 1px solid var(--dark-orange);
+  overflow: hidden;
+}
+
+.btn {
+  display: block;
+  padding: 1rem 1.2rem;
+  background: var(--orange);
+  color: white;
+  position: relative;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background: var(--orange);
+  left: 1.5rem;
+  bottom: -0.5rem;
+  transform: rotate(45deg);
+}
+.btn i {
+  margin-right: 1rem;
+}
+
+.accordion-item__sub {
+  background: var(--grey);
+  overflow: hidden;
+  transition: max-height 0.3s;
+  max-height: 0;
+}
+.accordion-item__sub a {
+  display: block;
+  padding: 1rem 1.6rem;
+  color: white;
+  font-size: 0.9rem;
+  position: relative;
+  border-bottom: 1px solid var(--light-grey);
+}
+.accordion-item__sub a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.4rem;
+  height: 100%;
+  background: var(--orange);
+  transform: translatex(-0.4rem);
+  transition: 0.3s;
+  opacity: 0;
+}
+.accordion-item__sub a:hover::before {
+  opacity: 1;
+  transform: translatex(0);
+}
+
+.accordion-item:target .accordion-item__sub {
+  max-height: 10em;
+}
