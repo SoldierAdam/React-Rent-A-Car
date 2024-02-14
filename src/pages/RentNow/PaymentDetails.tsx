@@ -3,14 +3,19 @@ import { FormikInput, CardFormValues, CardInitialValues, CardValidationSchema, C
 import './CarDetails.css'
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { FormikHelpers } from 'formik';
 
 function PaymentDetails({ onBackClick }) {
 
 	// useSelector ile Redux store'dan veri alımı
 	const customerInfoString = useSelector((state: any) => JSON.stringify(state.rent));
 	const userInfo = useSelector((state: any) => state.user);
-
-	// JSON string'ini nesneye çevirme
+	const car = useSelector((state: any) => state.car);
+	const startDate = localStorage.getItem('pickupDate');
+	const endDate = localStorage.getItem('dropoffDate');
+	const startKilometer = car.kilometer;
+	const userName = localStorage.getItem('userName');
+	const totalPrice = car.dailyPrice * (new Date(endDate).getDate() - new Date(startDate).getDate());
 	const customerInfo = JSON.parse(customerInfoString);
 
 	interface Customer {
@@ -43,41 +48,71 @@ function PaymentDetails({ onBackClick }) {
 			username: userInfo.userName || 1,
 		};
 	}
-
 	// Yeni Customer nesnesi oluştur
 	const customer = createCustomerObject(customerInfo, userInfo);
 
 	console.log("Customer:", customer);
 	// Axios ile API isteğini gönderme
-	const handleSubmit = async () => {
+	const handleSubmit = async (values: CardFormValues, formikHelpers: FormikHelpers<CardFormValues>) => {
+		console.log("Values:", values);
+		const cardNameSurname = values.fullName;
+		const cardNumber = values.creditCardNumber;
+		const expirationDate = values.expirationTime;
+		const cvv = values.cvv;
+		
+		const rental = {
+			startDate: startDate,
+			endDate: endDate,
+			returnDate: null,
+			startKilometer: startKilometer,
+			endKilometer: null,
+			totalPrice: totalPrice,
+			username: userName,
+			carId: car.id
+		};
+
+		const invoice = {
+			cardNameSurname: cardNameSurname,
+			cardNumber: cardNumber,
+			expireDate: expirationDate,
+			cvv: cvv,
+			totalPrice: totalPrice,
+			username: userName,
+			carId: car.id,
+			rentalId: null,
+			startDate: startDate,
+		};
+
+		console.log("Invoice:", invoice);
+
 		try {
-
-			const response = await axios.post('http://localhost:8080/api/customers/add', customer, {
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})
-
-			// const [response1, response2] = await Promise.all([
-			// 	axios.post('http://localhost:8080/api/customers/add', customer, {
-			// 		headers: {
-			// 			'Content-Type': 'application/json'
-			// 		}
-			// 	}),
-			// 	axios.post('http://localhost:8080/api/rents/add', customer, {
-			// 		headers: {
-			// 			'Content-Type': 'application/json'
-			// 		}
-			// 	})
-			// ])
-
-			// console.log("API Response 1:", response1.data);
-			// console.log("API Response 2:", response2.data);
+			const customerResponse = await axios.post('http://localhost:8080/api/customers/add', customer, {
+			  headers: {
+				'Content-Type': 'application/json'
+			  }
+			});
+			console.log("API customerResponse:", customerResponse.data);
+			const rentalResponse = await axios.post('http://localhost:8080/api/rentals/add', rental, {
+			  headers: {
+				'Content-Type': 'application/json'
+			  }
+			});
+			console.log("API rentalResponse :", rentalResponse.data);
+			// rentalResponse'dan gelen id'yi invoice'a ekleyin
+			console.log("rentalResponse.data:", rentalResponse.data);
+			invoice.rentalId = rentalResponse.data.data.id;
+			const invoiceResponse = await axios.post('http://localhost:8080/api/invoices/add', invoice, {
+			  headers: {
+				'Content-Type': 'application/json'
+			  }
+			});
+		  
+			// console.log("API invoiceResponse:", invoiceResponse.data);
 			alert("Müşteri başarıyla kaydedildi.");
-		} catch (error) {
-			console.error("API Error:", error.response ? error.response.data : error.message);
-			alert("Müşteri kaydı sırasında bir hata oluştu.");
-		}
+		  } catch (error) {
+				console.error("API Error:", error.response ? error.response.data : error.message);
+				alert("Müşteri kaydı sırasında bir hata oluştu.");
+			}
 	}
 
 	return (
@@ -88,7 +123,7 @@ function PaymentDetails({ onBackClick }) {
 				validationSchema={CardValidationSchema}
 				onSubmit={handleSubmit}
 			>
-				<Form>
+				<Form  key={1} >
 					<div key={0} className='grid-container'>
 						{CardFormikInformation.map((item, index) => (FormikInput({ item, index })))}
 					</div>
