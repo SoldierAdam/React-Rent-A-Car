@@ -1,50 +1,73 @@
-import "./../../styles/style.css";
+import "../Contact/Contact.css";
+import Icon from '@mdi/react';
+import { mdiTwitter, mdiFacebook, mdiYoutube, mdiLinkedin, mdiWeb, mdiEmail, mdiPhone} from '@mdi/js';
 
 const Contact = () => {
 	return (
-		<div>
-			<section id="contact-form" className="py-3">
-				<div className="container">
-					<h1 className="l-heading"><span className="text-primary">Contact</span> Us</h1>
-					<p>Please fill out the form below to contact us</p>
-					<form action="process.php">
-						<div className="form-group">
-							<label htmlFor="name">Name</label>
-							<input type="text" name="name" id="name" />
-						</div>
-						<div className="form-group">
-							<label htmlFor="email">Email</label>
-							<input type="email" name="email" id="email" />
-						</div>
-						<div className="form-group">
-							<label htmlFor="message">Message</label>
-							<textarea name="message" id="message"></textarea>
-						</div>
-						<button type="submit" className="btn">Submit</button>
-					</form>
-				</div>
-			</section>
-
-			<section id="contact-info" className="bg-dark">
-				<div className="container">
-					<div className="box">
-						<i className="fas fa-hotel fa-3x"></i>
-						<h3>Location</h3>
-						<p>50 Main st, Boston MA</p>
-					</div>
-					<div className="box">
-						<i className="fas fa-phone fa-3x"></i>
-						<h3>Phone Number</h3>
-						<p>(617) 555-5555</p>
-					</div>
-					<div className="box">
-						<i className="fas fa-envelope fa-3x"></i>
-						<h3>Email Address</h3>
-						<p>frontdesk@hotelbt.co</p>
-					</div>
-				</div>
-			</section>
-		</div>
+		<>
+		 <section className="contact-page-section">
+      <div className="container">
+          <div className="sec-title">
+              <div className="title">Contact Us</div>
+                <h2>Let's Get in Touch.</h2>
+            </div>
+            <div className="inner-container">
+              <div className="row clearfix">
+                
+                    <div className="form-column col-md-8 col-sm-12 col-xs-12">
+                      <div className="inner-column">
+                          
+                            <div className="contact-form">
+                                <form method="post" action="sendemail.php" id="contact-form">
+                                    <div className="row clearfix">
+                                        <div className="form-group col-md-6 col-sm-6 co-xs-12">
+                                            <input type="text" name="name" value="" placeholder="Name" required/>
+                                        </div>
+                                        <div className="form-group col-md-6 col-sm-6 co-xs-12">
+                                            <input type="email" name="email" value="" placeholder="Email" required/>
+                                        </div>
+                                        <div className="form-group col-md-6 col-sm-6 co-xs-12">
+                                            <input type="text" name="subject" value="" placeholder="Subject" required/>
+                                        </div>
+                                        <div className="form-group col-md-6 col-sm-6 co-xs-12">
+                                            <input type="text" name="phone" value="" placeholder="Phone" required/>
+                                        </div>
+                                        <div className="form-group col-md-12 col-sm-12 co-xs-12">
+                                            <textarea name="message" placeholder="Massage"></textarea>
+                                        </div>
+                                        <div className="form-group col-md-12 col-sm-12 co-xs-12">
+                                            <button type="submit" className="theme-btn btn-style-one">Send Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div className="info-column col-md-4 col-sm-12 col-xs-12">
+                      <div className="inner-column">
+                          <h2>Contact Info</h2>
+                            <ul className="list-info">
+                              <li><Icon path={mdiWeb} size={1} /> 123 lorem ispum Abc, Street Chandigarh.</li>
+                                <li><Icon path={mdiEmail} size={1} /> example@test</li>
+                                <li><Icon path={mdiPhone} size={1} /> 1-234-567-890</li>
+                            </ul>
+                            <ul className="social-icon-four">
+                                <li className="follow">Follow on: </li>
+                                <li><a href="#"><Icon path={mdiTwitter} size={2} /></a></li>
+                                <li><a href="#"><Icon path={mdiFacebook} size={2} /></a></li>
+                                <li><a href="#"><Icon path={mdiYoutube} size={2} /></a></li>
+                                <li><a href="#"><Icon path={mdiLinkedin} size={2} /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+		</>
 	);
 }
 

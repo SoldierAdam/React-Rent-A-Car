@@ -27,6 +27,7 @@ class UserService {
   
 	static async signUp(email: string, password: string, username: string): Promise<SignUpResponse> {
 	  try {
+		axios.defaults.headers.post["Access-Control-Allow-Origin"]="*";
 		const response = await axios.post("http://localhost:8080/api/auth/signUp", {
 		  email, password, username
 		});
