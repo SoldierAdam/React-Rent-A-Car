@@ -6,6 +6,7 @@ import { RiLockPasswordFill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import FormikInput from '../../../components/FormikInput/FormikInput';
+import '../../../components/Message/Message.css';
 
 
 interface FormValues {

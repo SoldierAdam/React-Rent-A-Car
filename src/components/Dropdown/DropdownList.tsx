@@ -1,6 +1,6 @@
 import { NavDropdown } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
-import './DropdownList.css'
+import './DropdownList.css';
 import tokenService from '../../services/abstracts/tokenService';
 
 

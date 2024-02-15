@@ -33,7 +33,7 @@ const Contact = () => {
                                             <input type="text" name="phone" value="" placeholder="Phone" required/>
                                         </div>
                                         <div className="form-group col-md-12 col-sm-12 co-xs-12">
-                                            <textarea name="message" placeholder="Massage"></textarea>
+                                            <textarea name="message" placeholder="Message"></textarea>
                                         </div>
                                         <div className="form-group col-md-12 col-sm-12 co-xs-12">
                                             <button type="submit" className="theme-btn btn-style-one">Send Now</button>
@@ -49,9 +49,9 @@ const Contact = () => {
                       <div className="inner-column">
                           <h2>Contact Info</h2>
                             <ul className="list-info">
-                              <li><Icon path={mdiWeb} size={1} /> 123 lorem ispum Abc, Street Chandigarh.</li>
-                                <li><Icon path={mdiEmail} size={1} /> example@test</li>
-                                <li><Icon path={mdiPhone} size={1} /> 1-234-567-890</li>
+                              <li><Icon path={mdiWeb} size={1} /> No:15 Şişli/İstanbul</li>
+                                <li><Icon path={mdiEmail} size={1} /> rent_a_car@rentACar</li>
+                                <li><Icon path={mdiPhone} size={1} /> 02125265588</li>
                             </ul>
                             <ul className="social-icon-four">
                                 <li className="follow">Follow on: </li>

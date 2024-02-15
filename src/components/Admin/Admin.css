@@ -84,7 +84,8 @@
 
 .accordion-item:target .accordion-item__sub {
   max-height: 10em;
-=======
+}
+
 .car-details {
 	padding: 10px;
 	display: flex;
