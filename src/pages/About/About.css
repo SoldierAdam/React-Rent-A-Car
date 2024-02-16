@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.container{
+   width:100%;
+}
+.container h1{
+   font-size:50px
+}
+.about{
+   padding:5% 0;
+   width:100%;
+   height:auto;
+   background-color:#fff;
+}
+.about .left{
+   padding:2% 0;
+   float:left;
+   width:50%;
+   display:inline-block;
+}
+.about .right{
+   width:50%;
+   display:inline-block;
+}
+.about .right img{
+   width:100%
+}
+.about .left h1{
+   text-align:center;
+   color:#f27a1a;
+   margin:0 0 10px 0;
+}
+.about .left hr{
+   width:20%;
+   border-top:2px solid #000;
+   border-bottom:none;
+}
+.about .left p{
+   font-size:1rem;
+   margin:40px auto;
+   width:80%
+}
+
+.mission{
+   padding:5% 0;
+   width:100%;
+   height:auto;
+   background-color:#fff;
+}
+.mission .right{
+   padding:2% 0;
+   width:50%;
+
+   display:inline-block;
+}
+.mission .left{
+   float:left;
+   width:50%;
+
+   display:inline-block;
+}
+.mission .left img{
+   width:100%;
+}
+.mission .right h1{
+   text-align:center;
+   color:#f27a1a;
+   margin:0 0 20px 0;
+}
+.mission .right hr{
+   width:35%;
+   border-top:2px solid #000;
+   border-bottom:none;
+}
+.mission .right p{
+   font-size:1rem;
+   margin:40px auto;
+   width:80%
+}
+
+
+.team{
+   width:90%;
+   margin:auto;
+   over-flow:hidden;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+   gap: 20px;
+}
+
+.our-team h1{
+   text-align:center;
+   color:#f27a1a;
+}
+
+.our-team hr{
+   width:15%;
+   border-top:2px solid #000;
+   background-color:transperant;
+   border-bottom:none;
+   margin-bottom:50px;
+}
+.team .card{
+   padding: 20px;
+   padding-bottom:20px;
+   padding-top:20px;
+   position:relative;
+   min-width:20%;
+   background-color:#fff;
+   display:inline-block;
+   box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
+   text-align:center;
+}
+.card .circle-container{
+   position:relative;
+   background-color:#f27a1a;
+   width:250px;
+   height:250px;
+   border:none;
+   border-radius:50%;
+   margin:auto;
+   color:#fff;
+}
+.circle-container h1{
+   position:absolute;
+   top:50%;
+   left:50%;
+   transform:translate(-50%,-50%);
+   margin:0;
+   font-size:60px;
+}
+
+.team .card h2{
+   text-align:center;
+   margin:30px 0 0 0;
+}
+.team .card h4{
+   text-align:center;
+   margin:10px 0 0 0;
+}
+.team .card p{
+   width:250px;
+   margin:30px auto;
+   text-align:center;
+
+}
+.clear{
+    clear: both;			
+}
+
+
+.white{
+   color: #fff;
+}
+
+

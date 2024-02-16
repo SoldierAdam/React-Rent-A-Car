@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 200px;
+  background: #333;
+  color: #fff;
+}
+
+.footer a {
+  color: #fff;
+}
+
+.footer a:hover {
+  color: #f27a1a;
+}
+
+.footer .social>* {
+  margin-right: 30px;
+}

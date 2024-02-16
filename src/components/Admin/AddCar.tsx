@@ -1,79 +1,48 @@
 import axios from "axios";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { number, object, string } from "yup";
 import "../Admin/Admin.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { FormikInputFunction } from "../../components/FormikInput/FormikInput";
+import { ErrorMessage } from "formik";
+import { FormValues, validationSchema, FormikInformation } from "./InputInformation";
+
 
 const AddCar = () => {
 
 	var navigate = useNavigate();
 
-	interface FormValues {
-		brand: string;
-		model: string;
-		year: number;
-		price: number;
-		image: string;
-	}
-
 	const initialValues: FormValues = {
-		brand: '',
-		model: '',
-		year: 0,
-		price: 0,
-		image: '',
+		id: 0,
+		kilometer: 1000,
+		plate: '34ABC34',
+		year: 2021,
+		dailyPrice: 100,
+		minFindeksRate: 1000,
+		transmissionType: 'Auto',
+		fuelType: 'Diesel',
+		airbag: true,
+		drivingLicenseAge: 2,
+		minCustomerAge: 18,
+		seatCapacity: 5,
+		imagePath: 'https://www.google.com',
+		// modelId: 1,
+		// colorId: 1
 	};
 
-	const validationSchema = object({
-		brand: string().required('Brand is required'),
-		model: string().required('Model is required'),
-		year: number().required('Year is required'),
-		price: number().required('Price is required'),
-		image: string().required('Image is required'),
-	});
-
 	const handleSubmit = (values: FormValues) => {
-		axios.post('http://localhost:8080/cars/add', values)
+		console.log(values);
+		axios.post('http://localhost:8080/api/cars/add', values)
 			.then(response => {
 				console.log(response);
-				navigate('/admin');
+				alert("Car added successfully");
+				// navigate('/admin');
 			})
 			.catch(error => {
 				console.log(error);
 			});
 	};
 
-	const onButtonClick = () => {
-		navigate('/admin/payment');
-	};
-
-	const FormikInformation = [
-		{
-			label: 'Brand',
-			name: 'brand',
-			type: 'text',
-		},
-		{
-			label: 'Model',
-			name: 'model',
-			type: 'text',
-		},
-		{
-			label: 'Year',
-			name: 'year',
-			type: 'number',
-		},
-		{
-			label: 'Price',
-			name: 'price',
-			type: 'number',
-		},
-		{
-			label: 'Image',
-			name: 'image',
-			type: 'text',
-		},
-	];
 
 	return (
 		<div className='col-9'>
@@ -83,25 +52,15 @@ const AddCar = () => {
 				onSubmit={handleSubmit}
 			>
 				<Form>
-					<div className='grid-container'>
+					<div key={0} className='grid-container'>
 						{FormikInformation.map((item, index) => (
-							<>
-								<div key={index} className='formik-input'>
-									<label htmlFor={item.name} className='form-label'>
-										{item.label}
-									</label>
-									<Field
-										type={item.type}
-										className='form-control'
-										id={item.name}
-										name={item.name}
-									/>
-								</div>
-							</>
-						))}
-					</div>
+							<div key={index}>
+								<FormikInputFunction item={item} index={index} />
+								<ErrorMessage name={item.name} component="div" />
+							</div>
+						))}							</div>
 					<div className='button'>
-						<button type='submit' className='next-button' onClick={onButtonClick}>
+						<button type='submit' className='next-button' >
 							Post
 						</button>
 					</div>

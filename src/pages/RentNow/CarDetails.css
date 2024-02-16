@@ -27,14 +27,12 @@
 }
 
 .button {
-	align-items: center;
-	display: flex;
-	justify-content: center;
+	/* display: flex; */
 	padding: 50px;
 }
 
 .next-button {
-	width: 30%;
+	width: 20%;
 	height: 50px;
 	background-color:#f27a1a;
 	color: #ffffff;
@@ -43,15 +41,10 @@
 	font-size: 18px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
+	margin : 20px;
   }
 
-/* .formik-inputs {
-	display: none;
-	border: 1px solid red;
-	justify-content: space-between;
-	/* en fazla üç tane input olsun 
 
-} */
 
 .formik-input {
 	width: 60%;
