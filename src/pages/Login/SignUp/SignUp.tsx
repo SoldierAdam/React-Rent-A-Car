@@ -3,10 +3,8 @@ import UserService from "../../../services/abstracts/userService";
 import SignUpInnerForm from "./SignUpInnerForm";
 import { useEffect, useState } from "react";
 import { withFormik } from "formik";
-import { basicSchemaSignUp } from "./SignUpValidation";
-import { Navigate, useNavigate } from "react-router-dom";
-import { stat } from "fs";
-
+import { useNavigate } from "react-router-dom";
+import {basicSchemaSignUp} from './SignUpValidation';
 
 interface FormValues {
 	email: string;
@@ -26,7 +24,7 @@ const SignUpForm = withFormik<MyFormprops, FormValues>({
 		password: initialPassword,
 		userName: initialUserName,
 	}),
-	// validationSchema: basicSchemaSignUp,
+	validationSchema: basicSchemaSignUp,
 	handleSubmit: async ( values, {setSubmitting, setFieldError, setStatus, props}
 	) => {
 		console.log("Submitting form:", values)

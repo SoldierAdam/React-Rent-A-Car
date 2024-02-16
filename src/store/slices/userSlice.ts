@@ -12,6 +12,7 @@ const initialState: UserState = {
   isAuthenticated: tokenService.getToken ? true : false,
 };
 
+
 const userSlice = createSlice({
 	name: 'user',
 	initialState,
@@ -24,7 +25,7 @@ const userSlice = createSlice({
 		{
 			state.userName = null;
 			state.isAuthenticated = false;
-		},
+		}
 	},
 });
 
