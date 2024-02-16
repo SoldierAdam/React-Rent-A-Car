@@ -31,9 +31,9 @@ interface InnerFormProps extends FormikProps<FormValues> {
 
 const header = (
 	<div className="header">
-		<div className="text"><FaUser /></div>
+		<div className="text mt-3"><FaUser /></div>
 		<div className="underline"></div>
-		<div className="login">
+		<div className="login mt-4">
 			Don't have an account?
 			<Link to="/signUp" className="login-button">Sign Up</Link>
 		</div>
@@ -55,7 +55,7 @@ const InnerForm: React.FC<InnerFormProps> = ({
 }) => {
 	return (
 
-		<div className="container">
+		<div className="container ">
 			<Form onSubmit={handleSubmit} className="form card">
 				{header}
 				<SubmitMessage isSubmitSuccessful={isSubmitSuccessful} errors={errors} />
@@ -73,10 +73,10 @@ const InnerForm: React.FC<InnerFormProps> = ({
 					</div>
 					<div className="remember-me">
 						<input type="checkbox" className="checkbox" />
-						Remember me
+						Remember me 
 					</div>
 				</div>
-				<div className="login">
+				<div className="login mb-3">
 					<button
 						disabled={isSubmitting || !!(errors.userName && touched.userName) || !!(errors.password && touched.password)}
 						type="submit"
