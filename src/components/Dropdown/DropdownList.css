@@ -1,5 +1,18 @@
-.dropdown-menu {
-    z-index: 1000;
+#nav-dropdown-dark-example {
+    border-radius: 10px;
+    padding: 12px 24px;
+    background-color: white;
+    color: white; 
+    
 }
+#nav-dropdown-dark-example:hover {
+    background-color: grey;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    
+
+}
+
+
+
 
   
