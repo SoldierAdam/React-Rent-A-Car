@@ -1,4 +1,4 @@
-import "../Footer/Footer.css";
+import './Footer.css';
 import Icon from '@mdi/react';
 import { mdiTwitter, mdiFacebook, mdiYoutube, mdiLinkedin} from '@mdi/js';
 

@@ -3,7 +3,7 @@ import './CarDetails.css';
 import { useDispatch } from 'react-redux';
 import { setCustomerInfo } from '../../store/rentNow/rentSlice';
 import { CustomerFormValues, CustomerFormikInformation, CustomerValidationSchema } from './FormikInput';
-import { FormikInput } from './FormikInput';
+import { FormikInputFunction } from '../../components/FormikInput/FormikInput';
 
 
 
@@ -50,7 +50,7 @@ const CarDetails = ({ onButtonClick }) => {
 							<div key={0} className='grid-container'>
 								{CustomerFormikInformation.map((item, index) => (
 									<div key={index}>
-										<FormikInput item={item} index={index} />
+										<FormikInputFunction item={item} index={index} />
 										<ErrorMessage name={item.name} component="div" />
 									</div>
 								))}							</div>

@@ -1,184 +1,47 @@
-
-:root {
-  --orange: #f27a1a;
-  --dark-orange: #ff7300;
-  --background: #081118;
-  --grey: #333;
-  --light-grey: #3b3b3b;
-}
+.admin-page {
+	display: flex;
+	padding-top: 6%;
+  }
+  
 
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
-
-.accordion {
-  width: 20rem;
-  border-radius: 0.2rem;
-  overflow: hidden;
-}
-.accordion a {
-  text-decoration: none;
-}
-
-.accordion-item {
-  list-style: none;
-  border-top: 1px solid var(--dark-orange);
-  overflow: hidden;
-}
-
-.btn {
-  display: block;
-  padding: 1rem 1.2rem;
-  background: var(--orange);
-  color: white;
-  position: relative;
-}
-.btn::before {
-  content: '';
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  background: var(--orange);
-  left: 1.5rem;
-  bottom: -0.5rem;
-  transform: rotate(45deg);
-}
-.btn i {
-  margin-right: 1rem;
-}
-
-.accordion-item__sub {
-  background: var(--grey);
-  overflow: hidden;
-  transition: max-height 0.3s;
-  max-height: 0;
-}
-.accordion-item__sub a {
-  display: block;
-  padding: 1rem 1.6rem;
-  color: white;
-  font-size: 0.9rem;
-  position: relative;
-  border-bottom: 1px solid var(--light-grey);
-}
-.accordion-item__sub a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0.4rem;
-  height: 100%;
-  background: var(--orange);
-  transform: translatex(-0.4rem);
-  transition: 0.3s;
-  opacity: 0;
-}
-.accordion-item__sub a:hover::before {
-  opacity: 1;
-  transform: translatex(0);
-}
-
-.accordion-item:target .accordion-item__sub {
-  max-height: 10em;
-=======
-.car-details {
+.accordion-panel {
+	border: 1px solid #f27a1a;
+	background-color: #fee;
+	margin-bottom: 10px;
+  }
+  
+  .accordion-header {
+	display: flex;
+	align-items: center;
 	padding: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-}
-  
-.car-image {
-	width: 70%;
-	height: 100%;
-	align-items: center;
-	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-}
-
-.car-image img {
-	width: 90%;
-	height: 90%;
-}
-
-.car-detail{
-	padding-left: 20px;
-	width: 30%;
-	height: 100%;
-	/* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); */
-}
-
-.button {
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	padding: 50px;
-}
-
-.next-button {
-	width: 30%;
-	height: 50px;
-	background-color:#f27a1a;
-	color: #ffffff;
-	border: none;
-	border-radius: 5px;
-	font-size: 18px;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
+	background-color: #f27a1a;
   }
-
-/* .formik-inputs {
-	display: none;
-	border: 1px solid red;
-	justify-content: space-between;
-	/* en fazla üç tane input olsun 
-
-} */
-
-.formik-input {
-	width: 60%;
-	height: 90%;
-	min-width: 90px;
-	padding: 5px;
-
-}
-
-.grid-container {
+  
+  .accordion-title {
+	flex: 1;
+	color: #fff;
+  }
+  
+  .accordion-icon {
+	font-size: 20px;
+	color: #fff;
+  }
+  
+  .accordion-content {
+	padding: 10px;
+  }
+  
+  .crud-header {
+	display: flex;
 	align-items: center;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 10px;
-	padding-top: 70px;
-	padding-left: 50px;
-  }
-
-  /* Form stilini burada tanımlayabilirsiniz */
-  
-
-  /* CarDeliveryInformation.css */
-.delivery-container {
-	padding: 0 25px;
+	text-align: center;
+	justify-content: space-between;
   }
   
-
-.form-control {
-	width: 10px;
-}
-  
-  
-  /* You will need to translate inline styles to these class styles */
-  
-  .underline {
-    width: 90%;
-    height: 2px;
-    background: #f27a1a;
-    border-radius: 9px;
-    margin-top: 5px;
-    margin-bottom: 55px;
-    flex-direction: column;
-    cursor: pointer;
-}
+  .form-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+  }	

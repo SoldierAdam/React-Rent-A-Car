@@ -84,25 +84,3 @@ export const CardValidationSchema = Yup.object({
 	expirationTime: Yup.date().required('Son kullanma tarihi zorunludur'),
 	cvv: Yup.number().required('CVV zorunludur').min(100, 'CVV 3 haneli olmalıdır').max(999, 'CVV 3 haneli olmalıdır')
 });
-
-export const FormikInput = ({ item, index }: any) => {
-
-	return (
-		<>
-		<div key={index} className='formik-input'>
-			<label htmlFor={item.name} className='form-label'>
-				{item.label}
-			</label>
-			<Field
-				type={item.type}
-				className='form-control'
-				id={item.name}
-				name={item.name}
-			/>
-			<div className='error-message'>
-				<ErrorMessage name={item.name} />
-			</div>
-		</div>
-		</>
-	)
-}

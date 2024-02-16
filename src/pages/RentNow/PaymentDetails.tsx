@@ -1,9 +1,10 @@
 import { Formik, Form } from 'formik';
-import { FormikInput, CardFormValues, CardInitialValues, CardValidationSchema, CardFormikInformation } from './FormikInput';
+import { CardFormValues, CardInitialValues, CardValidationSchema, CardFormikInformation } from './FormikInput';
 import './CarDetails.css'
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { FormikHelpers } from 'formik';
+import { FormikInputFunction } from '../../components/FormikInput/FormikInput';
 
 function PaymentDetails({ onBackClick }) {
 
@@ -125,7 +126,7 @@ function PaymentDetails({ onBackClick }) {
 			>
 				<Form  key={1} >
 					<div key={0} className='grid-container'>
-						{CardFormikInformation.map((item, index) => (FormikInput({ item, index })))}
+						{CardFormikInformation.map((item, index) => (FormikInputFunction({ item, index })))}
 					</div>
 					<div className='button'>
 						<button type='button' className='next-button' onClick={onBackClick}>
