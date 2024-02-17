@@ -50,7 +50,7 @@ const Contact = () => {
                           <h2>Contact Info</h2>
                             <ul className="list-info">
                               <li><Icon path={mdiWeb} size={1} /> No:15 Şişli/İstanbul</li>
-                                <li><Icon path={mdiEmail} size={1} /> rent_a_car@rentACar</li>
+                                <li><Icon path={mdiEmail} size={1} /> rentacarpair9@gmail.com</li>
                                 <li><Icon path={mdiPhone} size={1} /> 02125265588</li>
                             </ul>
                             <ul className="social-icon-four">
