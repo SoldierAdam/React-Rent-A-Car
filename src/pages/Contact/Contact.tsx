@@ -1,6 +1,20 @@
 import "../Contact/Contact.css";
 import Icon from '@mdi/react';
 import { mdiTwitter, mdiFacebook, mdiYoutube, mdiLinkedin, mdiWeb, mdiEmail, mdiPhone} from '@mdi/js';
+import { Bounce, toast } from "react-toastify";
+
+const notifySuccess = () => {
+    toast.success("Now Send Successful", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
 
 const Contact = () => {
 	return (
@@ -36,7 +50,7 @@ const Contact = () => {
                                             <textarea name="message" placeholder="Message"></textarea>
                                         </div>
                                         <div className="form-group col-md-12 col-sm-12 co-xs-12">
-                                            <button type="submit" className="theme-btn btn-style-one">Send Now</button>
+                                            <button onClick={notifySuccess} type="submit" className="theme-btn btn-style-one">Send Now</button>
                                         </div>
                                     </div>
                                 </form>
