@@ -12,16 +12,16 @@ const CarDetails = ({ onButtonClick }) => {
 	// const userInfo = useSelector((state: any) => state.user);
 
 	const CustomerinitialValues: CustomerFormValues = {
-		firstName: '',
-		lastName: '',
-		identityNumber: '',
-		birthDate: '',
-		phoneNumber: '',
-		email: '',
-		drivingLicenseDate: '',
-		address: '',
-		city: '',
-		zipCode: ''
+		firstName: 'zeynep',
+		lastName: 'ozan',
+		identityNumber: '11111111111',
+		birthDate: '21/12/2001',
+		phoneNumber: '111111111',
+		email: 'ozanzzeynep@gmail.com',
+		drivingLicenseDate: '22/01/2020',
+		address: 'İstanbul',
+		city: 'Üsküdar',
+		zipCode: '111'
 	};
 
 
@@ -61,7 +61,7 @@ const CarDetails = ({ onButtonClick }) => {
 								</div>
 
 								<div className=''>
-								<button type='submit' className='next-button' >
+								<button type='submit' className='next-button-ödeme' >
 									Ödeme Bilgilerini Gir
 								</button>
 							</div>		

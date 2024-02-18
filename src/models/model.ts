@@ -34,3 +34,11 @@ export type Color = {
 	id: number;
 	name: string;
 };
+
+export type Customer = {
+	identityNumber:number;
+	firstName: string;
+	lastName: string;
+	
+
+};

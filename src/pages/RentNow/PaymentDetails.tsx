@@ -44,6 +44,7 @@ function PaymentDetails({ onBackClick }) {
   // Customer nesnesi oluşturma
   const createCustomerObject = (customerInfo: any, userInfo: any): Customer => {
     return {
+<<<<<<< HEAD
       firstName: customerInfo.firstName || "zeynep",
       lastName: customerInfo.lastName || "ozan",
       identityNumber: "11111111111",
@@ -55,6 +56,19 @@ function PaymentDetails({ onBackClick }) {
       postalCode: customerInfo.postalCode || "",
       phoneNumber: userInfo.phoneNumber || "",
       username: userInfo.userName || 1,
+=======
+      firstName: customerInfo.firstName || "",
+      lastName: customerInfo.lastName || "",
+      identityNumber: "",
+      birthDate: customerInfo.birthDate || "",
+      city: customerInfo.city || "",
+      address: customerInfo.address || "",
+      email: customerInfo.email || "",
+      drivingLicenseDate: customerInfo.drivingLicenseDate || "",
+      postalCode: customerInfo.postalCode || "",
+      phoneNumber: userInfo.phoneNumber || "",
+      username: userInfo.userName || 4,
+>>>>>>> 11b844b474e3d19b301aa88c4fe1cbb6f829209c
     };
   };
   // Yeni Customer nesnesi oluştur
@@ -145,6 +159,10 @@ function PaymentDetails({ onBackClick }) {
   return (
     <div className="col-9">
       <h1 className="title-payment">Ödeme Bilgileri</h1>
+<<<<<<< HEAD
+=======
+	  <div className="underline-payment"></div>
+>>>>>>> 11b844b474e3d19b301aa88c4fe1cbb6f829209c
       <Formik
         initialValues={CardInitialValues}
         validationSchema={CardValidationSchema}
