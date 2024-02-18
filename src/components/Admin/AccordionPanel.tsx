@@ -1,27 +1,37 @@
+// AccordionPanel.tsx
+
 import React, { useState } from 'react';
-import './Admin.css';
+import './AccordionPanel.css';
 
 interface AccordionPanelProps {
   title: string;
-  content: string | JSX.Element;
+  contents: string[];
+  onClick: (content: string) => void;
 }
 
-const AccordionPanel: React.FC<AccordionPanelProps> = ({ title, content }) => {
+const AccordionPanel: React.FC<AccordionPanelProps> = ({ title, contents, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePanel = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleContentClick = (content: string) => {
+    onClick(content);
+  };
+
   return (
-    <div className="accordion-panel">
-      <div className="accordion-header" onClick={togglePanel}>
-        <div className="accordion-title">{title}</div>
-        <div className={`accordion-icon ${isOpen ? 'open' : 'closed'}`}>&#43;</div>
+    <div className={`accordion-panel ${isOpen ? 'active' : ''}`}>
+      <div className={`accordion-header ${isOpen ? 'active' : ''}`} onClick={togglePanel}>
+        <h3>{title}</h3>
       </div>
-      {isOpen && <div className="accordion-content">{content}</div>}
+      <div className={`accordion-content ${isOpen ? 'active' : ''}`}>
+        {contents.map((content, index) => (
+          <button className='btn btn-warning  btn-sm border' key={index} onClick={() => handleContentClick(content)}>{content}</button>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default AccordionPanel;

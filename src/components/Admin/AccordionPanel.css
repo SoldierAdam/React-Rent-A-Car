@@ -1,0 +1,37 @@
+/* AccordionPanel.css */
+
+.accordion-panel {
+	margin-bottom: 10px;
+  }
+  
+  .accordion-header {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+  }
+  
+  .accordion-header:hover {
+	background-color: #f77878; /* Hover rengi */
+  }
+  
+  .accordion-header h3 {
+	margin: 100;
+	flex-grow: 1;
+  }
+  
+  .accordion-content {
+	display: none;
+  }
+  
+  .accordion-content.active {
+	display: block;
+  }
+  
+  .accordion-content p {
+	font-size: 20px;
+	border: #f77878;
+	color: red;
+	background-color: #f77878;
+	padding-left: 5%;	
+}
+  
