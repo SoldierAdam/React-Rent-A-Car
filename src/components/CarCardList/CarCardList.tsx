@@ -34,6 +34,7 @@ const CarCardList: React.FC = () => {
 
 
 	const [days, setDays] = useState(localStorage.getItem('days') || '');
+	const location = localStorage.getItem('location') || '';
  
 	useEffect(() => {
 		const handleStorageChange = () => {
@@ -46,6 +47,9 @@ const CarCardList: React.FC = () => {
 	}
 	, [days]);
 
+<<<<<<< HEAD
+	const sortCars = (cars: Car[]): Car[] => {
+=======
     const removeSelected = () => {
         localStorage.setItem('pickupDate', '');
         localStorage.setItem('dropoffDate', '');
@@ -55,6 +59,7 @@ const CarCardList: React.FC = () => {
     }	
 
 	const sortCars = (cars: GetAllCarResponse[]): GetAllCarResponse[] => {
+>>>>>>> eee026569a286668e0ccb75016274cf6167cdea3
 		if (sortOrder === 'asc') {
 			return [...cars].sort((a, b) => a.dailyPrice - b.dailyPrice);
 		} else if (sortOrder === 'desc') {
@@ -79,6 +84,10 @@ const CarCardList: React.FC = () => {
 		fetchData();
 	}, []);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> eee026569a286668e0ccb75016274cf6167cdea3
 	const handleFilterChange = (minPriceInput, maxPriceInput, selectedBrandInput) => {
 		setFilter({
 			...filter,
@@ -119,8 +128,6 @@ const CarCardList: React.FC = () => {
 		</div>
 	)
 
-
-
 	const filterPanel = (
 		<div className='filter-panel text-center'>
 
@@ -156,6 +163,15 @@ const CarCardList: React.FC = () => {
 
 	const isLargeScreen = window.innerWidth > 1200;
 
+	const SelectedLocation = (car: Car) => {
+		if (!location || location === car.location)
+		{
+			return <CarCard key={car.id} car={car} />
+		}else 
+			return null;
+	}
+
+
 	return (
 		<>
 		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='pt-2'>
@@ -184,10 +200,15 @@ const CarCardList: React.FC = () => {
 						</div>
 						<div className='row row-cols-1 row-cols-sm-2 row-cols-md-3'>
 							{sortedAndFilteredData ? (
+<<<<<<< HEAD
+								sortedAndFilteredData.map((car: Car) => (
+									SelectedLocation(car)
+=======
 								sortedAndFilteredData.map((car: GetAllCarResponse) => (
 									<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
 										<CarCard car={car}/>
 									</div>
+>>>>>>> eee026569a286668e0ccb75016274cf6167cdea3
 								))
 							) : (
 								<p>Loading...</p>
