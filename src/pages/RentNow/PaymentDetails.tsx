@@ -36,13 +36,13 @@ function PaymentDetails({ onBackClick }) {
 	// Customer nesnesi oluşturma
 	const createCustomerObject = (customerInfo: any, userInfo: any): Customer => {
 		return {
-			firstName: customerInfo.firstName || '',
-			lastName: customerInfo.lastName || '',
-			identityNumber: '',
-			birthDate: customerInfo.birthDate || '',
-			city: customerInfo.city || '',
-			address: customerInfo.address || '',
-			email: customerInfo.email || '',
+			firstName: customerInfo.firstName || 'zeynep',
+			lastName: customerInfo.lastName || 'ozan',
+			identityNumber: '11111111111',
+			birthDate: customerInfo.birthDate || '11111111',
+			city: customerInfo.city || 'İstanbul',
+			address: customerInfo.address || 'Üsküdar',
+			email: customerInfo.email || 'pzanzzeynep@gmaill.com',
 			drivingLicenseDate: customerInfo.drivingLicenseDate || '',
 			postalCode: customerInfo.postalCode || '',
 			phoneNumber: userInfo.phoneNumber || '',
