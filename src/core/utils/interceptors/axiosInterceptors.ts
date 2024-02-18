@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 
 
 axiosInstance.interceptors.request.use(async (config) => {
-	store.dispatch(increaseRequestCount());
+	// store.dispatch(increaseRequestCount());
 	const publicPaths = ['/auth/login', '/auth/register', '/auth/refresh-token', '/cars/getAll'];
 	if (!publicPaths.includes(config.url)) {
 		const accessToken = tokenService.getToken();
@@ -30,11 +30,11 @@ axiosInstance.interceptors.request.use(async (config) => {
 
 axiosInstance.interceptors.response.use(
 	response => {
-		store.dispatch(decreaseRequestCount());
+		// store.dispatch(decreaseRequestCount());
 		return response;
 	},
 	error => {
-		store.dispatch(decreaseRequestCount());
+		// store.dispatch(decreaseRequestCount());
 	},
 );
 

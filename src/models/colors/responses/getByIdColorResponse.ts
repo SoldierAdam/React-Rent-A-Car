@@ -1,1 +1,4 @@
-export interface GetByIdColorResponse {}
+export interface GetByIdColorResponse {
+
+}
+

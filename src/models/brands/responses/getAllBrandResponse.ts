@@ -1,1 +1,4 @@
-export interface GetAllBrandResponse {}
+export interface GetAllBrandResponse {
+	id: number;
+	name: string;
+}

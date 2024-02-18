@@ -1,1 +1,15 @@
-export interface GetByIdCarResponse {}
+export interface GetByIdCarResponse {
+	id: 0,
+	kilometer: 0,
+	plate: '',
+	modelYear: 0,
+	dailyPrice: 0,
+	minFindeksRate: 0,
+	transmissionType: '',
+	fuelType: '',
+	airbag: true,
+	drivingLicenseAge: 0,
+	minCustomerAge: 0,
+	seatCapacity: 0,
+	imagePath: '',
+}
