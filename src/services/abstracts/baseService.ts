@@ -16,7 +16,17 @@ export class BaseService<
 	}
 
 	getAll(): Promise<AxiosResponse<GetAllType, any>> {
-		return axiosInstance.get<GetAllType>(this.apiUrl);
+		return axiosInstance.get<GetAllType>(this.apiUrl + "/getAll")
+		.then(response => {
+			// Handle successful response here
+			console.log('Request successful' + this.apiUrl, response);
+			return response;
+		})
+		.catch(error => {
+			// Handle error here
+			console.error('Request failed', error);
+			throw error;
+		});
 	}
 
 	getById(id: number): Promise<AxiosResponse<GetByIdType, any>> {
@@ -24,14 +34,44 @@ export class BaseService<
 	}
 
 	add(request: AddRequestType): Promise<AxiosResponse<AddResponseType, any>> {
-		return axiosInstance.post<AddResponseType>(this.apiUrl, request);
+		return axiosInstance.post<AddResponseType>(this.apiUrl + '/add', request)
+			.then(response => {
+				// Handle successful response here
+				console.log('Request successful', response);
+				alert("Request successful")
+				return response;
+			})
+			.catch(error => {
+				// Handle error here
+				console.error('Request failed', error);
+				alert("Request failed")
+				throw error;
+			});
 	}
 
 	update(request: UpdateRequestType): Promise<AxiosResponse<UpdateResponseType, any>> {
-		return axiosInstance.put<UpdateResponseType>(this.apiUrl, request);
+		return axiosInstance.put<UpdateResponseType>(this.apiUrl, request)
+			.then(response => {
+				// Handle successful response here
+				console.log('Request successful', response);
+				alert("Request successful")
+				return response;
+			})
+			.catch(error => {
+				// Handle error here
+				console.error('Request failed', error);
+				alert("Request failed")
+				throw error;
+			});
 	}
 	
 	delete(id: number){
-		return axiosInstance.delete(this.apiUrl + "/" + id);
+		return axiosInstance.delete(this.apiUrl + "/" + id)
+		.then(response => {
+			// Handle successful response here
+			console.log('Request successful', response);
+			alert("Request successful")
+			return response;
+		})
 	}
 }

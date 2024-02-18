@@ -23,7 +23,7 @@ function App() {
 		<>
 			<div className='app'>
 				<BrowserRouter>
-					<OverlayLoader />
+					{/* <OverlayLoader /> */}
 					<Navbar />
 					<Routes>
 						<Route path="/about" element={<About />} />

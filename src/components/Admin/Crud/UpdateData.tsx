@@ -1,34 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { validationSchema, FormikInformation, FormValues } from './InputInformation'
-import { Formik, Form, Field } from 'formik'
-import { FormikInputFunction } from '../FormikInput/FormikInput'
-import FormikInput from '../FormikInput/FormikInput'
+import { Formik, Form } from 'formik'
+import { FormikInputFunction } from '../../FormikInput/FormikInput'
+import FormikInput from '../../FormikInput/FormikInput'
 import { ErrorMessage } from 'formik'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { modelDropdown, colorDropdown } from './InputInformation'
-import { local } from 'd3'
+import  InputInformation from '../InputInformation'
 
-function UpdateCar() {
-    var navigate = useNavigate();
-    const dispatch = useDispatch();
 
-    const [car, setCar] = useState({
-        id: 0,
-        kilometer: 0,
-        plate: '',
-        year: 0,
-        dailyPrice: 0,
-        minFindeksRate: 0,
-        transmissionType: '',
-        fuelType: '',
-        airbag: true,
-        drivingLicenseAge: 0,
-        minCustomerAge: 0,
-        seatCapacity: 0,
-        imagePath: '',
-    });
+type UpdateDataProps = {
+	service: any;
+	initialValues: any;
+	validationSchema: any;
+	FormikInformation: any;
+}
+
+
+const UpdateData = ({ service, initialValues, validationSchema, FormikInformation }: UpdateDataProps) => {
+
+    const [car, setCar] = useState<typeof initialValues>(initialValues);
 
     const [loadCar, setLoadCar] = useState(true);
 
@@ -39,30 +28,24 @@ function UpdateCar() {
         }
     }, [loadCar]);
 
-    const [initialValues, setInitialValues] = useState<FormValues>({
-        id: car.id || 0,
-        kilometer: car.kilometer || 0,
-        plate: car.plate || '',
-        year: car.year || 0,
-        dailyPrice: car.dailyPrice || 0,
-        minFindeksRate: car.minFindeksRate || 0,
-        transmissionType: car.transmissionType || '',
-        fuelType: car.fuelType || '',
-        airbag: car.airbag || true,
-        drivingLicenseAge: car.drivingLicenseAge || 0,
-        minCustomerAge: car.minCustomerAge || 0,
-        seatCapacity: car.seatCapacity || 0,
-        imagePath: car.imagePath || 'https://www.google.com',
-    });
+	
 
-    useEffect(() => {
-        if (car.id !== undefined)
-            setFormVisible(true);
-        else
-            setFormVisible(false);
-    }, [car.id]);
+    // const [initialValues, setInitialValues] = useState<FormValues>({
+    //     id: car.id || 0,
+    //     kilometer: car.kilometer || 0,
+    //     plate: car.plate || '',
+    //     modelYear: car.modelYear || 0,
+    //     dailyPrice: car.dailyPrice || 0,
+    //     minFindeksRate: car.minFindeksRate || 0,
+    //     transmissionType: car.transmissionType || '',
+    //     fuelType: car.fuelType || '',
+    //     airbag: car.airbag || true,
+    //     drivingLicenseAge: car.drivingLicenseAge || 0,
+    //     minCustomerAge: car.minCustomerAge || 0,
+    //     seatCapacity: car.seatCapacity || 0,
+    //     imagePath: car.imagePath || 'https://www.google.com',
+    // });
 
-    // tüm modelleri ve renkleri getir
     useEffect(() => {
         axios.get('http://localhost:8080/api/models/getAll')
             .then(response => {
@@ -83,16 +66,18 @@ function UpdateCar() {
     }, []);
 
     // State to manage form visibility
-    const [isFormVisible, setFormVisible] = useState(car.id !== undefined);
+    const [isFormVisible, setFormVisible] = useState(false);
 
-    const handleSubmit = (values: FormValues) => {
+    const handleSubmit = (values: any) => {
+		values.id = car.id || 0;
+		values.colorId = parseInt(values.colorId);
+		values.modelId = parseInt(values.modelId);
         console.log(values);
         axios.put('http://localhost:8080/api/cars/update', values)
             .then(response => {
                 console.log(response);
                 alert("Car updated successfully");
                 localStorage.removeItem('car');
-                setInitialValues(response.data.data);
             })
             .catch(error => {
                 alert("Car update failed");
@@ -106,16 +91,14 @@ function UpdateCar() {
 
     const plateHandle = (values: plateValue) => {
         console.log(values);
+		setFormVisible(false);
         axios.get('http://localhost:8080/api/cars/getByPlate?plate=' + values.plate)
             .then(response => {
-                console.log("ben geldim", response.data.data);
+				setLoadCar(true);
                 localStorage.removeItem('car');
                 localStorage.setItem('car', JSON.stringify(response.data.data));
                 alert("Car found successfully");
-                // After car information is retrieved, update the car state and initial values
                 setCar(response.data.data);
-                setInitialValues(response.data.data);
-                // Show the form
                 setFormVisible(true);
             })
             .catch(error => {
@@ -123,6 +106,15 @@ function UpdateCar() {
                 console.log(error);
             });
     };
+
+	const prompt = <>
+		{(service.apiUrl === 'cars') &&
+			 <h6>Güncellemek istediğiniz aracın plakasını giriniz</h6>}
+		{(service.apiUrl === 'brands') &&
+			 <h6>Güncellemek istediğiniz markanın adını giriniz</h6>}
+		{(service.apiUrl === 'models') &&
+			 <h6>Güncellemek istediğiniz modelin adını giriniz</h6>}
+	</>
 
     return (
         <div className='col-9'>
@@ -134,8 +126,8 @@ function UpdateCar() {
                     enableReinitialize={true}
                 >
                     <Form className='form-container'>
-                        <h6>Güncellemek istediğiniz aracın plakasını giriniz</h6>
-                        <FormikInput name="plate" type="text" placeholder="Plaka" icon={<i className="fas fa-car"></i>} />
+                    	{prompt}
+                        <FormikInput name="plate" type="text" placeholder="Değeri giriniz" icon={<i className="fas fa-car"></i>} />
                         <ErrorMessage name="plate" component="div" />
                         <button type='submit' className='next-button' >
                             Post
@@ -158,8 +150,7 @@ function UpdateCar() {
                                     <ErrorMessage name={item.name} component="div" />
                                 </div>
                             ))}
-                            {modelDropdown}
-                            {colorDropdown}
+                            <InputInformation />
                         </div>
                         <div className='button'>
                             <button type='submit' className='next-button' >
@@ -173,4 +164,4 @@ function UpdateCar() {
     );
 }
 
-export default UpdateCar;
+export default UpdateData;
