@@ -37,6 +37,7 @@ const CarDetails = ({ onButtonClick }) => {
 
 	return (
 		<div className='col-9'>
+			<h1 className='title-customer'>Müşteri Bilgileri</h1>
 			<Formik
 				initialValues={CustomerinitialValues}
 				validationSchema={CustomerValidationSchema}
