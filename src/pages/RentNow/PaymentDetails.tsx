@@ -38,14 +38,14 @@ function PaymentDetails({ onBackClick }) {
 		return {
 			firstName: customerInfo.firstName || '',
 			lastName: customerInfo.lastName || '',
-			identityNumber: '99999999999',
+			identityNumber: '',
 			birthDate: customerInfo.birthDate || '',
 			city: customerInfo.city || '',
 			address: customerInfo.address || '',
 			email: customerInfo.email || '',
 			drivingLicenseDate: customerInfo.drivingLicenseDate || '',
-			postalCode: customerInfo.postalCode || '111',
-			phoneNumber: userInfo.phoneNumber || '1111111111',
+			postalCode: customerInfo.postalCode || '',
+			phoneNumber: userInfo.phoneNumber || '',
 			username: userInfo.userName || 1,
 		};
 	}

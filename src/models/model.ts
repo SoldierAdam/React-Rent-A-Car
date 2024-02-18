@@ -9,10 +9,11 @@ export type Car = {
 	transmissionType: string;
 	fuelType: string;
 	airbag: boolean;
-	drivingLicenceAge: number;
+	drivingLicenseAge: number;
 	minCustomerAge: number;
 	seatCapacity: number;
 	imagePath: string;
+	location:string;
 	model: Model;
 	color: Color;
 };

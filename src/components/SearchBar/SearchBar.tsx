@@ -3,16 +3,12 @@ import "./SearchBar.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-interface City {
-	index: number,
-  name: string;
-}
 function SearchBar() {
   const navigate = useNavigate();
   const [pickupDate, setPickupDate] = useState("");
   const [dropoffDate, setDropoffDate] = useState("");
-  const [location, setLocation] = useState();
-  const [cities, setCities] = useState<City[]>([]);
+  const [cities, setCities] = useState<string[]>([]);
+  const [location, setLocation] = useState<number | string>("");
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,7 +18,7 @@ function SearchBar() {
     const days = diff / (1000 * 60 * 60 * 24);
     localStorage.setItem("pickupDate", pickupDate);
     localStorage.setItem("dropoffDate", dropoffDate);
-    localStorage.setItem("location", location);
+    localStorage.setItem("location",location.toString());
     localStorage.setItem("days", days.toString());
     // sayfayı yenile
 
@@ -34,12 +30,20 @@ function SearchBar() {
 
   useEffect(() => {
     const handleCity = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/api/cars/getLocation`
-      );
-      setCities(response.data);
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/cars/getLocation"
+        );
+
+        setCities(response.data);
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      }
     };
+
+    handleCity();
   }, []);
+
   return (
     <form onSubmit={handleSubmit} className="search-bar">
       <label>
@@ -66,16 +70,13 @@ function SearchBar() {
       </label>
       <label>
         Location
-        <select className="form-input-dropdown">
-          <option value="" disabled>
-            Select a Location
-          </option>
-          {cities &&
-            cities.map((city, id) => (
-              <option key={city.index} value={city.index}>
-                {city.name}
-              </option>
-            ))}
+        <select className="form-input-dropdown" onChange={(e) => setLocation(e.target.value)}>
+          <option  value="">Select a Location</option>
+          {cities.map((location, index) => (
+            <option key={index} value={location}>
+              {location}
+            </option>
+          ))}
         </select>
       </label>
       <button type="submit">Search</button>

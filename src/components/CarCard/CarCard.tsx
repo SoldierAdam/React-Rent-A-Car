@@ -9,10 +9,10 @@ import { FaPerson } from "react-icons/fa6";
 import { BsSafeFill } from "react-icons/bs";
 import { GiGearStick } from "react-icons/gi";
 import { BsFillFuelPumpFill } from "react-icons/bs";
-import { IoMdColorFill } from "react-icons/io";
 import { MdPerson } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa6";
-import { MdOutlinePriceChange } from "react-icons/md";
+import { IoLocation } from "react-icons/io5";
+import { FaMoneyCheckAlt } from "react-icons/fa";
 
 interface CarListingProps {
   car: Car;
@@ -21,7 +21,13 @@ interface CarListingProps {
 export const priceCalculate = (price: number) => {
   const day = localStorage.getItem("days");
   day ? (price = price * parseInt(day)) : (price = price);
+  localStorage.setItem("price", price.toString());
   return price;
+};
+
+const totalPrice = (dailyPrice: number) => {
+  const day = localStorage.getItem("days");
+  return parseInt(day) * dailyPrice;
 };
 
 const CarCard: React.FC<CarListingProps> = ({ car }) => {
@@ -29,6 +35,13 @@ const CarCard: React.FC<CarListingProps> = ({ car }) => {
   const navigate = useNavigate();
 
   const handleClickFunc = () => {
+    if (!localStorage.getItem("location")) {
+      alert("Lütfen Seçim yapınız!!");
+      return;
+    }
+
+    const total = totalPrice(car.dailyPrice);
+    localStorage.setItem('total',total.toString());
     dispatch(setCar(car));
     localStorage.setItem("car", JSON.stringify(car));
     navigate("/rentNow");
@@ -53,7 +66,6 @@ const CarCard: React.FC<CarListingProps> = ({ car }) => {
             </div>
             <button className="rent-button" onClick={handleClickFunc}>
               <span>Hemen Kirala</span>
-              <i className="icon icon-arrow-right"></i>
             </button>
             <div className="item-container d-none d-lg-flex d-xlarge-block ">
               <div className="item col-6">
@@ -90,21 +102,27 @@ const CarCard: React.FC<CarListingProps> = ({ car }) => {
                 <ol className="icon-list">
                   <li className="features">
                     <div className="icon-with-text">
+                      <FaMoneyCheckAlt className="depozisite-icon" />
+                      <p className="deposite"> {car.depositPrice} TL</p>
+                    </div>
+                  </li>
+                  <li className="features">
+                    <div className="icon-with-text">
                       <MdPerson />
                       <p>{car.minCustomerAge} ve Üstü</p>
                     </div>
                   </li>
                   <li className="features">
                     <div className="icon-with-text">
-                      <FaAddressCard />
-                      <p>{car.drivingLicenceAge} ve Üzeri</p>
-                      
+                      <FaAddressCard className="icon" />
+                      <p>{car.drivingLicenseAge} ve Üzeri</p>
                     </div>
                   </li>
-                  <li className="features">
+
+                  <li className="location">
                     <div className="icon-with-text">
-                      <MdOutlinePriceChange />
-                      <p>{car.depositPrice} TL</p>
+                      <IoLocation />
+                      <p>{car.location} </p>
                     </div>
                   </li>
                 </ol>

@@ -12,16 +12,16 @@ const CarDetails = ({ onButtonClick }) => {
 	// const userInfo = useSelector((state: any) => state.user);
 
 	const CustomerinitialValues: CustomerFormValues = {
-		firstName: 'Bilal',
-		lastName: 'Ekinci',
-		identityNumber: '12345678901',
-		birthDate: '1998-01-01',
-		phoneNumber: '5555555555',
-		email: 'sn.bilalekinci@gmail.com',
-		drivingLicenseDate: '2021-01-01',
-		address: 'istanbul/Üsküdar',
-		city: 'istabul',
-		zipCode: '333'
+		firstName: '',
+		lastName: '',
+		identityNumber: '',
+		birthDate: '',
+		phoneNumber: '',
+		email: '',
+		drivingLicenseDate: '',
+		address: '',
+		city: '',
+		zipCode: ''
 	};
 
 
@@ -43,7 +43,7 @@ const CarDetails = ({ onButtonClick }) => {
 				onSubmit={handleSubmit}
 			>
 				{formikProps => {
-					const { isValid, dirty, errors } = formikProps;
+					const {errors } = formikProps;
 					console.log('Form errors', errors);
 					return (
 						<Form>
@@ -53,12 +53,18 @@ const CarDetails = ({ onButtonClick }) => {
 										<FormikInputFunction item={item} index={index} />
 										<ErrorMessage name={item.name} component="div" />
 									</div>
-								))}							</div>
-							<div className='button'>
+								))}	
+								
+												
+								
+								</div>
+
+								<div className=''>
 								<button type='submit' className='next-button' >
 									Ödeme Bilgilerini Gir
 								</button>
-							</div>
+							</div>		
+							
 						</Form>
 					);
 				}}
