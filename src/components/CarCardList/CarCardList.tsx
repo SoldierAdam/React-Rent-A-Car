@@ -9,7 +9,8 @@ import SearchBar from '../SearchBar/SearchBar';
 import SelectedDates from './SelectedDates';
 
 import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
-import carService from '../../services/abstracts/carService';
+import carService from '../../services/abstracts/CarService';
+import { Car } from '../../models/model';
 
 type FilterCriteria = {
 	minDailyPrice: number;
@@ -47,9 +48,6 @@ const CarCardList: React.FC = () => {
 	}
 	, [days]);
 
-<<<<<<< HEAD
-	const sortCars = (cars: Car[]): Car[] => {
-=======
     const removeSelected = () => {
         localStorage.setItem('pickupDate', '');
         localStorage.setItem('dropoffDate', '');
@@ -59,7 +57,7 @@ const CarCardList: React.FC = () => {
     }	
 
 	const sortCars = (cars: GetAllCarResponse[]): GetAllCarResponse[] => {
->>>>>>> eee026569a286668e0ccb75016274cf6167cdea3
+
 		if (sortOrder === 'asc') {
 			return [...cars].sort((a, b) => a.dailyPrice - b.dailyPrice);
 		} else if (sortOrder === 'desc') {
@@ -84,10 +82,6 @@ const CarCardList: React.FC = () => {
 		fetchData();
 	}, []);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> eee026569a286668e0ccb75016274cf6167cdea3
 	const handleFilterChange = (minPriceInput, maxPriceInput, selectedBrandInput) => {
 		setFilter({
 			...filter,
@@ -166,7 +160,10 @@ const CarCardList: React.FC = () => {
 	const SelectedLocation = (car: Car) => {
 		if (!location || location === car.location)
 		{
-			return <CarCard key={car.id} car={car} />
+			return (
+			<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
+			<CarCard car={car}/>
+		</div>);
 		}else 
 			return null;
 	}
@@ -200,15 +197,8 @@ const CarCardList: React.FC = () => {
 						</div>
 						<div className='row row-cols-1 row-cols-sm-2 row-cols-md-3'>
 							{sortedAndFilteredData ? (
-<<<<<<< HEAD
-								sortedAndFilteredData.map((car: Car) => (
-									SelectedLocation(car)
-=======
 								sortedAndFilteredData.map((car: GetAllCarResponse) => (
-									<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
-										<CarCard car={car}/>
-									</div>
->>>>>>> eee026569a286668e0ccb75016274cf6167cdea3
+									SelectedLocation(car)
 								))
 							) : (
 								<p>Loading...</p>
