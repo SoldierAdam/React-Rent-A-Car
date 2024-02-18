@@ -49,3 +49,18 @@
 	border-color: #007BFF;
 	outline: none;
 }
+
+.form-input-dropdown{
+	width: 256px;
+	padding: 11px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-top: 6px;
+	height: 45px;
+	border-color: #007BFF;
+	
+}
+.form-input option[disabled] {
+	color: #999; 
+  }
