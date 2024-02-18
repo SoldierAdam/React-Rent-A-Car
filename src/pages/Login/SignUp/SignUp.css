@@ -12,6 +12,7 @@
 	width: 100%;
 	max-width: 700px;
 	margin-bottom: 320px;
+	margin-top: 70px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -20,12 +21,9 @@
 	border-width: 1px; 
 	border-color: #f27a1a;
 	box-shadow: 0 0 5px #f27a1a;
+	background-color: #ffffff;
   }
   
-  .login{
-	margin-top: -20px;
-
-  }
   .header {
 	display: flex;
 	flex-direction: column;
@@ -44,7 +42,7 @@
   }
   
   .underline {
-	width: 61px;
+	width: 10px;
 	height: 6px;
 	background: #f27a1a;
 	border-radius: 9px;
@@ -99,55 +97,11 @@
 	margin-bottom: 10px;
   }
   
-  .forget-password {
-	margin-left: 10px;
-	margin-top: 20px;
-	color: black;
-	font-size: 15px !important;
-  }
   
-  .forget-password.link {
-	
-	color: #f27a1a;
-	cursor: pointer;
-  }
-  
-  .submit-container {
-	display: flex;
-	gap: 30px;
-	margin: 60px auto;
-  
-	align-items: flex-end; 
-	width: 80%;
-	
-  }
-  
-  .submit {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 180px;
-	height: 59px;
-	color: #ffffff;
-	background: #f27a1a;
-	border-radius: 50px;
-	font-size: 19px;
-	font-weight: 700;
-	margin: 50px;
-	border: hidden;
-  }
-  
-  .login{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-  
-  }
   .login .login-button{
 	margin-left: 5px;
 	color: blue ;
 	text-decoration: none;
-	font-weight: bold;
 	cursor: pointer;
   }
   
@@ -167,10 +121,6 @@
 	cursor: pointer;
 	transition: background-color 0.3s ease;  
 	margin-top: 20px;
-  }
-  
-  .submit-button:hover {
-	background-color: #f27a1a;
   }
   
   .submit-button.loading {

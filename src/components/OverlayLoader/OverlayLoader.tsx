@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import "./Overlayloader.css";
+=======
+
+import './overlayloader.css';
+
+>>>>>>> 79631e9730e71e2f600e09ccc682811ae7ef975f
 import { useSelector } from "react-redux";
 
 type Props = {};

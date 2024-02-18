@@ -1,81 +1,74 @@
 import "../Admin/Admin.css";
 import Icon from '@mdi/react';
-import { mdiCarKey, mdiChartAreaspline,mdiAccountAlert,mdiFaceAgent,mdiPalette,mdiBasket, mdiCarInfo, mdiInvoiceText, mdiOfficeBuildingOutline, mdiCash, mdiAccountGroup } from '@mdi/js';
 import AddCar from "./AddCar";
+import UpdateCar from "./UpdateCar";
+import Panel from "./AccordionPanel";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 type Props = {}
 
 function Admin({ }: Props) {
 
-    
+	const location = useLocation();
 
-    return (
-        <div className="height">
+	useEffect(() => {
+		localStorage.removeItem('car');
+		localStorage.removeItem('models');
+		localStorage.removeItem('colors');
+	}, [location.pathname]);
 
-            <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white">
-                <div className="position-sticky">
-                    <div className="list-group list-group-flush mx-3 mt-4">
+	const header = () => {
+		if (location.pathname === "/admin") {
+			return (<h3>Car List</h3>)
+		} else if (location.pathname === "/admin/customers") {
+			return (<h3>Customer List</h3>)
+		} else if (location.pathname === "/admin/rentals") {
+			return (<h3>Rental List</h3>)
+		}
+	}
 
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-                            <Icon path={mdiCarKey} size={1} />
-                            <span>Car dashboard</span>
-                        </a>
+	const page = () => {
+		if (location.pathname === "/admin")
+		{
+			return (
+				<>
+					<Panel title="Add Car" content={<AddCar />} />
+					<Panel title="Update Car" content={<UpdateCar />} />
+				</>
+			)
+		}	else if (location.pathname === "/admin/customers")
+			return (<Panel title="Add Customer" content={<AddCar />} />)
+		else if (location.pathname === "/admin/rentals")
+			return (<Panel title="Add Rental" content={<AddCar />} />)
+	}
 
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiChartAreaspline} size={1} />
-                            <span>Model dashboard</span>
-                        </a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiAccountAlert} size={1} />
-                            <span>User dashboard</span>
-                        </a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiFaceAgent} size={1} />
-                            <span>Customer dashboard</span>
-                        </a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiPalette} size={1} />
-                            <span>Color dashboard</span>
-                        </a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                        <Icon path={mdiBasket} size={1} />
-                        <span>Order dashboard</span></a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiCarInfo} size={1} />
-                        <span>Rental dashboard</span></a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiInvoiceText} size={1} />
-                        <span>Invoice dashboard</span></a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiOfficeBuildingOutline} size={1} />
-                        <span>Corporate dashboard</span></a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiAccountGroup} size={1} />
-                            <span>Users</span>
-                        </a>
-
-                        <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                            <Icon path={mdiCash} size={1} /><span>Sales</span>
-                        </a>
-
-                    </div>
-                </div>
-            </nav>
-
-            <div className="addcar-container">
-            <AddCar/>  
-            </div>
-
-        </div>
-    )
+	return (
+		<div className="admin-page row">
+			<div className="col-1"></div>
+			<div className="col-3">
+				<div>
+					<Panel title="Car" content="Content 1" />
+					<Panel title="Model" content="Content 2" />
+					<Panel title="Brand" content="Content 3" />
+				</div>
+			</div>
+			<div className="col-7">
+				<div className="row">
+					<div className="col-3">
+						<div className="crud-header">
+							{header()}
+						</div>
+					</div>
+					<div className="row">
+						<div>
+							{page()}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default Admin
+export default Admin;

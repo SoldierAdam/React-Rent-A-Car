@@ -3,10 +3,8 @@ import UserService from "../../../services/abstracts/userService";
 import SignUpInnerForm from "./SignUpInnerForm";
 import { useEffect, useState } from "react";
 import { withFormik } from "formik";
-import { basicSchemaSignUp } from "./SignUpValidation";
-import { Navigate, useNavigate } from "react-router-dom";
-import { stat } from "fs";
-
+import { useNavigate } from "react-router-dom";
+import {basicSchemaSignUp} from './SignUpValidation';
 
 interface FormValues {
 	email: string;

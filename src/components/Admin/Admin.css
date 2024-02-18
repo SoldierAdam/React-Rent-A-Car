@@ -1,51 +1,47 @@
-body {
-    background-color: #fbfbfb;
-  }
-  @media (min-width: 991.98px) {
-    main {
-      padding-left: 240px;
-    }
+.admin-page {
+	display: flex;
+	padding-top: 6%;
   }
   
-  /* Sidebar */
-  .sidebar {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-    width: 240px;
-    z-index: 600;
-  }
 
-  .height{
-    display: flex;
-    height: 100vh;
-  }
 
-  .addcar-container{
-    display: flex;
-    justify-content: center;
-    /* padding-left: 50vh; */
-    margin: auto;
-    border-radius: 2px;
+.accordion-panel {
+	border: 1px solid #f27a1a;
+	background-color: #fee;
+	margin-bottom: 10px;
   }
   
-  @media (max-width: 991.98px) {
-    .sidebar {
-      width: 100%;
-    }
-  }
-  .sidebar .active {
-    border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  .accordion-header {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	cursor: pointer;
+	background-color: #f27a1a;
   }
   
-  .sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: 0.5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  .accordion-title {
+	flex: 1;
+	color: #fff;
   }
+  
+  .accordion-icon {
+	font-size: 20px;
+	color: #fff;
+  }
+  
+  .accordion-content {
+	padding: 10px;
+  }
+  
+  .crud-header {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: space-between;
+  }
+  
+  .form-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+  }	

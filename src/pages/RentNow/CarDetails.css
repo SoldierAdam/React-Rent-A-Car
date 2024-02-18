@@ -1,0 +1,91 @@
+.car-details {
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+  
+.car-image {
+	width: 70%;
+	height: 100%;
+	align-items: center;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.car-image img {
+	width: 90%;
+	height: 90%;
+}
+
+.car-detail{
+	padding-left: 20px;
+	width: 30%;
+	height: 100%;
+	/* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); */
+}
+
+.button {
+	/* display: flex; */
+	padding: 50px;
+}
+
+.next-button {
+	width: 20%;
+	height: 50px;
+	background-color:#f27a1a;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin : 20px;
+  }
+
+
+
+.formik-input {
+	width: 60%;
+	height: 90%;
+	min-width: 90px;
+	padding: 5px;
+
+}
+
+.grid-container {
+	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	padding-top: 70px;
+	padding-left: 50px;
+  }
+
+  /* Form stilini burada tanımlayabilirsiniz */
+  
+
+  /* CarDeliveryInformation.css */
+.delivery-container {
+	padding: 0 25px;
+  }
+  
+
+.form-control {
+	width: 10px;
+}
+  
+  
+  /* You will need to translate inline styles to these class styles */
+  
+  .underline {
+    width: 90%;
+    height: 2px;
+    background: #f27a1a;
+    border-radius: 9px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    cursor: pointer;
+}

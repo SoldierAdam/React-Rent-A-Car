@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Cars from './pages/Cars/Cars';
 
 import SignUp from './pages/Login/SignUp/SignUp';
+<<<<<<< HEAD
 import Login from './pages/Login/SignIn/Login';
 //import Admin from './components/Admin/Admin';
 import OverlayLoader from './components/OverlayLoader/OverlayLoader';
@@ -20,6 +21,15 @@ import Customers from './components/Customer/Customers';
 
 
 
+=======
+import Login from './pages/Login/Login/Login';
+
+import Admin from './components/Admin/Admin';
+import OverlayLoader from './components/OverlayLoader/OverlayLoader';
+import CarDetails from './pages/RentNow/RentNow';
+import ForgotPassword from './pages/Login/Login/ForgotPassword/ForgotPassword';
+import ResetPassword from './pages/Login/Login/ForgotPassword/ResetPassword';
+>>>>>>> 79631e9730e71e2f600e09ccc682811ae7ef975f
 
 function App() {
 
@@ -35,10 +45,15 @@ function App() {
 						<Route path="/about" element={<About />} />
 						<Route path="/" element={<Index />} />
 						<Route path="/contact" element={<Contact />} />
-						{/* <Route path="/admin" element={<Admin/>} /> */}
+						<Route path="/rentNow" element={<CarDetails />} />
+						<Route path="/admin" element={<Admin/>} />
 						<Route path='cars' element={<Cars/>} />
 						<Route path="/login" element={<Login initialUserName="" initialPassword="" />} />
 						<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
+						<Route path="/forgot-password" element={<ForgotPassword/>}/>
+						<Route path="/reset-password/:token" element={<ResetPassword/>} />
+						
+
 					</Routes>
 				</BrowserRouter>
 			</div>

@@ -1,5 +1,23 @@
-.dropdown-menu {
-    z-index: 1000;
+#nav-dropdown-dark-example {
+    border-radius: 10px;
+    padding: 12px 24px;
+    background-color: rgb(105, 96, 96);
+    color: white; 
+    font-size: 22px;
+    
+    
 }
+#nav-dropdown-dark-example:hover {
+    background-color: rgb(75, 70, 70);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    
+
+}
+.dropdown-item {
+    font-size: 20px; /* Yazı tipi boyutunu istediğiniz değere ayarlayın */
+}
+
+
+
 
   
