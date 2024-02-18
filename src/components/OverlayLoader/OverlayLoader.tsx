@@ -1,5 +1,4 @@
-import "./OverlayLoader.css"
-
+import  './overlayloader.css';
 import { useSelector } from "react-redux";
 
 type Props = {};
