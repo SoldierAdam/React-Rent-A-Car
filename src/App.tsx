@@ -6,30 +6,15 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Cars from './pages/Cars/Cars';
-
 import SignUp from './pages/Login/SignUp/SignUp';
-<<<<<<< HEAD
-import Login from './pages/Login/SignIn/Login';
-//import Admin from './components/Admin/Admin';
-import OverlayLoader from './components/OverlayLoader/OverlayLoader';
-
-import CreditCard from './components/CreditCard/CreditCard';
-import Admin from './components/Admin/Admin';
-import Customers from './components/Customer/Customers';
-
-
-
-
-
-=======
 import Login from './pages/Login/Login/Login';
-
 import Admin from './components/Admin/Admin';
 import OverlayLoader from './components/OverlayLoader/OverlayLoader';
 import CarDetails from './pages/RentNow/RentNow';
 import ForgotPassword from './pages/Login/Login/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Login/Login/ForgotPassword/ResetPassword';
->>>>>>> 79631e9730e71e2f600e09ccc682811ae7ef975f
+import Customers from './components/Customer/Customers';
+
 
 function App() {
 
