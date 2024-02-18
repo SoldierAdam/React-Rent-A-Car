@@ -50,25 +50,15 @@
 	gap: 10px;
 	border:0px solid #f27a1a;
 	border-color: #f27a1a;
-<<<<<<< HEAD
-	margin-top: 40px;
-	margin-left: 180px;
-	margin-right: 180px;
-	padding-top: 40px;
-=======
-	box-shadow:  1px 1px 1px 1px #797979;
-	margin-top: 100px;
+	margin-top: 20px;
 	margin-left: 160px;
 	margin-right: 230px;
 	padding-left: 200px;
 	padding-top: 50px;
->>>>>>> 11b844b474e3d19b301aa88c4fe1cbb6f829209c
 	padding-bottom: 80px;
 	box-shadow:  1px 1px 4px #f27a1a !important;
 	padding-left: 150px;
   }
-
-    
 
 .form-control {
 	width: 10px;
@@ -137,28 +127,22 @@ margin-top: -5px;
   }
 
   .next-button-previous{
-<<<<<<< HEAD
+
 	width: 270px;
-=======
-	width: 250px;
->>>>>>> 11b844b474e3d19b301aa88c4fe1cbb6f829209c
 	height: 50px;
 	color: #ffffff;
 	border: none;
 	background: #f27a1a;
 	border-radius: 5px;
 	font-size: 18px;
-<<<<<<< HEAD
 	cursor: pointer;
 	margin : 20px;
 	margin-left: 280px;
 	margin-top: 10px;
-
   }
 
 .next-button-payment{
 	width: 270px;
-=======
 	margin : 20px;
 	margin-left: 300px;
 	margin-top: 60px;
@@ -167,28 +151,18 @@ margin-top: -5px;
   }
 
   .next-button-payment{
-	
 	width: 220px;
->>>>>>> 11b844b474e3d19b301aa88c4fe1cbb6f829209c
 	height: 50px;
 	color: #ffffff;
 	border: none;
 	background: #f27a1a;
 	border-radius: 5px;
 	font-size: 18px;
-<<<<<<< HEAD
+
 	cursor: pointer;
 	margin : 20px;
 	margin-left: 300px;
 	margin-top: 100px;
-
-}
-
-=======
-	margin : 20px;
-	margin-left: 300px;
-	margin-top: 60px;
-	margin-right: 50px;
 }
 
   .next-button-ödeme{
@@ -207,12 +181,10 @@ margin-top: -5px;
 
 
 
->>>>>>> 11b844b474e3d19b301aa88c4fe1cbb6f829209c
 .title-payment{
 	display: flex; 
 	align-items: center; 
 	color:  #666;
-<<<<<<< HEAD
 	margin-left: 500px;
 	margin-top: 50px;
 }
@@ -222,8 +194,6 @@ margin-top: -5px;
 	color:  #666;
 	margin-left: 500px;
 	margin-top: 30px;
-	
-=======
 	margin-top: 50px;
 	margin-left: 480px;
 }
@@ -238,5 +208,4 @@ margin-top: -5px;
     flex-direction: column;
     cursor: pointer;
 	margin-left: 340px;
->>>>>>> 11b844b474e3d19b301aa88c4fe1cbb6f829209c
 }
