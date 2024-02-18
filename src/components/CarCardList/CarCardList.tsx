@@ -7,9 +7,9 @@ import { useDispatch } from 'react-redux';
 import { decreaseRequestCount, increaseRequestCount } from '../../store/slices/loadingSlice';
 import SearchBar from '../SearchBar/SearchBar';
 import SelectedDates from './SelectedDates';
+
 import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
 import carService from '../../services/abstracts/carService';
-
 
 type FilterCriteria = {
 	minDailyPrice: number;

@@ -5,3 +5,4 @@ export interface GetAllModelResponse {
 	name: string;
 	brand?: Brand;
 }
+

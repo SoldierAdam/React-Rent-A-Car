@@ -3,3 +3,4 @@ export interface GetAllColorResponse {
   code: string;
   name: string;
 }
+
