@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import AddData from './Crud/AddData';
-import UpdateData from './Crud/UpdateData';
-import DeleteData from './Crud/DeleteData';
 import carService from '../../services/abstracts/CarService';
 import modelService from '../../services/abstracts/modelService';
 import brandService from '../../services/abstracts/brandService';
 import { number, object, string } from 'yup';
-import { Car } from '../../models/model';
+import UpdateData from './Crud/UpdateData';
+import DeleteData from './Crud/DeleteData';
 
 const RenderSelectedContent = (selectedContent: string | null) => {
 
@@ -73,7 +72,6 @@ const RenderSelectedContent = (selectedContent: string | null) => {
 		return null;
 	}
 	const Component = config.component;
-	console.log("car", localStorage.getItem('car'));
 	return <Component {...config} />;
 };
 

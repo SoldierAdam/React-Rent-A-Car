@@ -15,6 +15,8 @@ const DeleteData = ({ service }: DeleteDataProps) => {
 		service.deleteByPlate(values.plate)
     };
 
+	console.log(service.apiUrl);
+
 	const prompt = <>
 	{(service.apiUrl === 'cars') &&
 		 <h6>Silmek istediğiniz aracın plakasını giriniz</h6>}
@@ -33,7 +35,7 @@ const DeleteData = ({ service }: DeleteDataProps) => {
 					enableReinitialize={true}
 				>
 					<Form className='form-container'>
-						<h6>Silmek istediğiniz aracın plakasını giriniz</h6>
+						{prompt}
 						<FormikInput name="plate" type="text" placeholder="Plaka" icon={<i className="fas fa-car"></i>} />
 						<ErrorMessage name="plate" component="div" />
 						<button type='submit' className='next-button' >
