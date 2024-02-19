@@ -18,7 +18,6 @@ export class BaseService<
 	getAll(): Promise<AxiosResponse<GetAllType, any>> {
 		return axiosInstance.get<GetAllType>(this.apiUrl + "/getAll")
 		.then(response => {
-			// Handle successful response here
 			console.log('Request successful' + this.apiUrl, response);
 			return response;
 		})
@@ -36,33 +35,45 @@ export class BaseService<
 	add(request: AddRequestType): Promise<AxiosResponse<AddResponseType, any>> {
 		return axiosInstance.post<AddResponseType>(this.apiUrl + '/add', request)
 			.then(response => {
-				// Handle successful response here
-				console.log('Request successful', response);
-				alert("Request successful")
-				return response;
+				if (response.status === 201	)
+				{
+					console.log('Request successful', response);
+					alert("Request successful")
+					return response;
+				}
+				else
+				{
+					console.error('Model already saved', response);
+					alert("Model already saved")
+					throw response;
+				}
 			})
 			.catch(error => {
-				// Handle error here
-				console.error('Request failed', error);
-				alert("Request failed")
+				console.error('Error', error);
 				throw error;
 			});
 	}
 
 	update(request: UpdateRequestType): Promise<AxiosResponse<UpdateResponseType, any>> {
-		return axiosInstance.put<UpdateResponseType>(this.apiUrl, request)
-			.then(response => {
-				// Handle successful response here
+		return axiosInstance.put<UpdateResponseType>(this.apiUrl + '/update', request)
+		.then(response => {
+			if (response.status === 201	)
+			{
 				console.log('Request successful', response);
 				alert("Request successful")
 				return response;
-			})
-			.catch(error => {
-				// Handle error here
-				console.error('Request failed', error);
-				alert("Request failed")
-				throw error;
-			});
+			}
+			else
+			{
+				console.error('Already saved', response);
+				alert("Already saved")
+				throw response;
+			}
+		})
+		.catch(error => {
+			console.error('Error', error);
+			throw error;
+		});
 	}
 	
 	delete(id: number){

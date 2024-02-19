@@ -35,7 +35,7 @@ const AddData = ({ service, initialValues, validationSchema, FormikInformation }
 								<ErrorMessage name={item.name} component="div" />
 							</div>
 						))}
-						<InputInformation />
+						<InputInformation service={service} />
 					</div>
 					<div className='button'>
 						<button type='submit' className='next-button' >

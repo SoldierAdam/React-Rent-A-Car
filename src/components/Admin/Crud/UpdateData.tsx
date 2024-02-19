@@ -18,6 +18,8 @@ type UpdateDataProps = {
 const UpdateData = ({ service, initialValues, validationSchema, FormikInformation }: UpdateDataProps) => {
 
     const [car, setCar] = useState<typeof initialValues>(initialValues);
+	const [model, setModel] = useState<typeof initialValues>(initialValues);
+	const [color, setColor] = useState<typeof initialValues>(initialValues);
 
     const [loadCar, setLoadCar] = useState(true);
 
@@ -28,42 +30,6 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
         }
     }, [loadCar]);
 
-	
-
-    // const [initialValues, setInitialValues] = useState<FormValues>({
-    //     id: car.id || 0,
-    //     kilometer: car.kilometer || 0,
-    //     plate: car.plate || '',
-    //     modelYear: car.modelYear || 0,
-    //     dailyPrice: car.dailyPrice || 0,
-    //     minFindeksRate: car.minFindeksRate || 0,
-    //     transmissionType: car.transmissionType || '',
-    //     fuelType: car.fuelType || '',
-    //     airbag: car.airbag || true,
-    //     drivingLicenseAge: car.drivingLicenseAge || 0,
-    //     minCustomerAge: car.minCustomerAge || 0,
-    //     seatCapacity: car.seatCapacity || 0,
-    //     imagePath: car.imagePath || 'https://www.google.com',
-    // });
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/models/getAll')
-            .then(response => {
-                console.log(response.data.data);
-                localStorage.setItem('models', JSON.stringify(response.data.data));
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        axios.get('http://localhost:8080/api/colors/getAll')
-            .then(response => {
-                console.log(response.data.data);
-                localStorage.setItem('colors', JSON.stringify(response.data.data));
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
 
     // State to manage form visibility
     const [isFormVisible, setFormVisible] = useState(false);
@@ -73,16 +39,7 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
 		values.colorId = parseInt(values.colorId);
 		values.modelId = parseInt(values.modelId);
         console.log(values);
-        axios.put('http://localhost:8080/api/cars/update', values)
-            .then(response => {
-                console.log(response);
-                alert("Car updated successfully");
-                localStorage.removeItem('car');
-            })
-            .catch(error => {
-                alert("Car update failed");
-                console.log(error);
-            });
+		service.update(values);
     };
 
     interface plateValue {
@@ -92,21 +49,18 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
     const plateHandle = (values: plateValue) => {
         console.log(values);
 		setFormVisible(false);
-        axios.get('http://localhost:8080/api/cars/getByPlate?plate=' + values.plate)
-            .then(response => {
-				setLoadCar(true);
-                localStorage.removeItem('car');
-                localStorage.setItem('car', JSON.stringify(response.data.data));
-                alert("Car found successfully");
-                setCar(response.data.data);
-                setFormVisible(true);
-            })
-            .catch(error => {
-                alert("Car not found");
-                console.log(error);
-            });
+		service.getByPlateOrName(values.plate).then((response: any) => {
+			setLoadCar(true);
+			setCar(response.data.data);
+			setFormVisible(true);
+		}
+		).catch((error: any) => {
+			alert("Car not found");
+			console.log(error);
+		});
     };
 
+	console.log('service', service.apiUrl);
 	const prompt = <>
 		{(service.apiUrl === 'cars') &&
 			 <h6>Güncellemek istediğiniz aracın plakasını giriniz</h6>}
@@ -150,7 +104,7 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
                                     <ErrorMessage name={item.name} component="div" />
                                 </div>
                             ))}
-                            <InputInformation />
+                            <InputInformation service={service} />
                         </div>
                         <div className='button'>
                             <button type='submit' className='next-button' >

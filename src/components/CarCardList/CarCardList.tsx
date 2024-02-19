@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { m, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import './CarCardList.css';
 import CarCard from '../CarCard/CarCard';
 import '../../pages/HomePage/HomePage.css';
@@ -10,7 +10,6 @@ import SelectedDates from './SelectedDates';
 
 import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
 import carService from '../../services/abstracts/CarService';
-import { Car } from '../../models/model';
 
 type FilterCriteria = {
 	minDailyPrice: number;
