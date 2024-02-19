@@ -3,7 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 import AddData from './Crud/AddData';
 import UpdateCar from './Crud/UpdateData';
 import DeleteCar from './Crud/DeleteData';
-import carService from '../../services/abstracts/carService';
+import carService from '../../services/abstracts/CarService';
 import modelService from '../../services/abstracts/modelService';
 import brandService from '../../services/abstracts/brandService';
 import UpdateData from './Crud/UpdateData';
@@ -12,58 +12,76 @@ import { useEffect, useState } from 'react';
 
 
 
-const InputInformation = () => {
+const InputInformation = (services: any) => {
 
 	// name ve id braberinde tutulacak
 	const [model, setModel] = useState<any>([]);
 	const [color, setColor] = useState<any>([]);
-	
-  
+	const [brand, setBrand] = useState<any>([]);
+
+
 	useEffect(() => {
 		let models = Array.isArray(JSON.parse(localStorage.getItem('models'))) ? JSON.parse(localStorage.getItem('models')) : [];
 		let colors = Array.isArray(JSON.parse(localStorage.getItem('colors'))) ? JSON.parse(localStorage.getItem('colors')) : [];
-	
+		let brands = Array.isArray(JSON.parse(localStorage.getItem('brands'))) ? JSON.parse(localStorage.getItem('brands')) : [];
+
 		setModel(models);
 		setColor(colors);
-	  }, []);
-  
+		setBrand(brands);
+	}, []);
+
 	// Dropdown for models names
 	const modelDropdown =
-	  <>
-		<div>
-		  <label htmlFor="selectedModel">Model:</label>
-		  <Field as="select" id="selectedModel" name="modelId">
-			<option value="">Seçiniz</option>
-			{model.map((model: any, index: any) => (
-			  <option key={index} value={model.id}>{model.name}</option>
-			  
-			))}
-		  </Field>
-		  <ErrorMessage name="selectedModel" component="div" />
-		</div>
-	  </>
-  
+		<>
+			<div className=''>
+				<label htmlFor="selectedModel">Model:</label>
+				<Field as="select" id="selectedModel" name="modelId">
+					<option value="">Seçiniz</option>
+					{model.map((model: any, index: any) => (
+						<option key={index} value={model.id}>{model.name}</option>
+
+					))}
+				</Field>
+				<ErrorMessage name="selectedModel" component="div" />
+			</div>
+		</>
+
 	const colorDropdown =
-	  <>
-		<div>
-		  <label htmlFor="selectedColor">Renk:</label>
-		  <Field as="select" id="selectedColor" name="colorId">
-			<option value="">Seçiniz</option>
-			{color.map((color: any, index: any) => (
-			  <option key={index} value={color.id}>{color.name}</option>
-			))}
-		  </Field>
-		  <ErrorMessage name="selectedColor" component="div" />
-		</div>
-	  </>
-  
+		<>
+			<div className=''>
+				<label htmlFor="selectedColor">Renk:</label>
+				<Field as="select" id="selectedColor" name="colorId">
+					<option value="">Seçiniz</option>
+					{color.map((color: any, index: any) => (
+						<option key={index} value={color.id}>{color.name}</option>
+					))}
+				</Field>
+				<ErrorMessage name="selectedColor" component="div" />
+			</div>
+		</>
+
+	const brandDropdown =
+		<>
+			<div>
+				<label htmlFor="selectedBrand">Marka:</label>
+				<Field as="select" id="selectedBrand" name="brandId">
+					<option value="">Seçiniz</option>
+					{brand.map((brand: any, index: any) => (
+						<option key={index} value={brand.id}>{brand.name}</option>
+					))}
+				</Field>
+				<ErrorMessage name="selectedBrand" component="div" />
+			</div>
+		</>
+
 	return (
-	  <div>
-		{modelDropdown}
-		{colorDropdown}
-	  </div>
+		<div>
+			{services.service.apiUrl === "cars" ? modelDropdown : null}
+			{services.service.apiUrl === "cars" ? colorDropdown : null}
+			{services.service.apiUrl === "models" ? brandDropdown : null}
+		</div>
 	)
-  }
+}
 
 export default InputInformation;
 

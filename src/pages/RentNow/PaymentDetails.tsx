@@ -84,8 +84,6 @@ function PaymentDetails({ onBackClick }) {
 			startDate: startDate,
 		};
 
-		console.log("Invoice:", invoice);
-
 		try {
 			const customerResponse = await axios.post('http://localhost:8080/api/customers/add', customer, {
 			  headers: {
@@ -93,23 +91,24 @@ function PaymentDetails({ onBackClick }) {
 			  }
 			});
 			console.log("API customerResponse:", customerResponse.data);
+			console.log("seçtiğimiz tarih", rental)
 			const rentalResponse = await axios.post('http://localhost:8080/api/rentals/add', rental, {
 			  headers: {
 				'Content-Type': 'application/json'
 			  }
 			});
-			console.log("API rentalResponse :", rentalResponse.data);
-			// rentalResponse'dan gelen id'yi invoice'a ekleyin
 			console.log("rentalResponse.data:", rentalResponse.data);
 			invoice.rentalId = rentalResponse.data.data.id;
-			const invoiceResponse = await axios.post('http://localhost:8080/api/invoices/add', invoice, {
-			  headers: {
-				'Content-Type': 'application/json'
-			  }
-			});
+			console.log("Invoice:", invoice);
+
+			// const invoiceResponse = await axios.post('http://localhost:8080/api/invoices/add', invoice, {
+			//   headers: {
+			// 	'Content-Type': 'application/json'
+			//   }
+			// });
 		  
 			// console.log("API invoiceResponse:", invoiceResponse.data);
-			alert("Müşteri başarıyla kaydedildi.");
+			// alert("Müşteri başarıyla kaydedildi.");
 		  } catch (error) {
 				console.error("API Error:", error.response ? error.response.data : error.message);
 				alert("Müşteri kaydı sırasında bir hata oluştu.");

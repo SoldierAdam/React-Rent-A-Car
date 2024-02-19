@@ -5,6 +5,8 @@ import Panel from "./AccordionPanel";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { contentConfig } from './InputInformation';
+import axios from 'axios';
+import RenderSelectedContent from './RenderSelectedContent';
 
 
 
@@ -20,6 +22,33 @@ function Admin({ }: Props) {
 		localStorage.removeItem('models');
 		localStorage.removeItem('colors');
 	}, [location.pathname]);
+
+	useEffect(() => {
+        axios.get('http://localhost:8080/api/models/getAll')
+            .then(response => {
+                console.log(response.data.data);
+                localStorage.setItem('models', JSON.stringify(response.data.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        axios.get('http://localhost:8080/api/colors/getAll')
+            .then(response => {
+                console.log(response.data.data);
+                localStorage.setItem('colors', JSON.stringify(response.data.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+		axios.get('http://localhost:8080/api/brands/getAll')
+			.then(response => {
+				console.log(response.data.data);
+				localStorage.setItem('brands', JSON.stringify(response.data.data));
+			})
+			.catch(error => {
+				console.log(error);
+			});
+    }, []);
 
 	const header =
 			<div className="col-3">
@@ -56,7 +85,7 @@ function Admin({ }: Props) {
 					{header}
 				</div>
 				<div className="row">
-						{renderSelectedContent()}
+						{RenderSelectedContent(selectedContent)}
 				</div>
 			</div>
 		</div>

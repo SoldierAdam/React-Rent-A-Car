@@ -22,7 +22,7 @@ class CarService extends BaseService<
 		super();
 		this.apiUrl = "cars";
 	}
-	getByPlate(plate: string): Promise<GetByIdCarResponse> {
+	getByPlateOrName(plate: string): Promise<GetByIdCarResponse> {
 		return axiosInstance.get<GetByIdCarResponse>(this.apiUrl + "/getByPlate?plate=" + plate)
 		.then(response => {
 			localStorage.removeItem('car');
