@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import AddData from './Crud/AddData';
 import carService from '../../services/abstracts/CarService';
 import modelService from '../../services/abstracts/modelService';
@@ -14,7 +13,7 @@ const RenderSelectedContent = (selectedContent: string | null) => {
 		'Add Car': {
 			component: AddData,
 			service: carService,
-			initialValues: null,
+			initialValues: initialValuesCar,
 			validationSchema: validationSchemaCar,
 			FormikInformation: FormikInformationCar
 		},
@@ -182,10 +181,10 @@ export const FormikInformationColor = [
 
 const initialValuesModel: FormValuesModel = {
 	id: 0,
-	name: 'Astra',
+	name: '',
 };
 
 const initialValuesBrand: FormValuesBrand = {
 	id: 0,
-	name: 'Opel',
+	name: '',
 };
