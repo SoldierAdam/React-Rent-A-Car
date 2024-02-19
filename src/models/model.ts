@@ -9,10 +9,11 @@ export type Car = {
 	transmissionType: string;
 	fuelType: string;
 	airbag: boolean;
-	drivingLicenceAge: number;
+	drivingLicenseAge: number;
 	minCustomerAge: number;
 	seatCapacity: number;
 	imagePath: string;
+	location:string;
 	model: Model;
 	color: Color;
 };
@@ -32,4 +33,12 @@ export type Brand = {
 export type Color = {
 	id: number;
 	name: string;
+};
+
+export type Customer = {
+	identityNumber:number;
+	firstName: string;
+	lastName: string;
+	
+
 };

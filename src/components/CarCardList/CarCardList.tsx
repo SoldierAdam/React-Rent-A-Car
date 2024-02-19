@@ -1,18 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import axios from 'axios';
 import { m, motion } from 'framer-motion';
 import './CarCardList.css';
 import CarCard from '../CarCard/CarCard';
 import '../../pages/HomePage/HomePage.css';
-import { Car } from '../../models/model';
 import { useDispatch } from 'react-redux';
 import { decreaseRequestCount, increaseRequestCount } from '../../store/slices/loadingSlice';
 import SearchBar from '../SearchBar/SearchBar';
 import SelectedDates from './SelectedDates';
 
-import VehicleSelector from './Vehicleselector';
-import { local } from 'd3';
-import axiosInstance from '../../core/utils/interceptors/axiosInterceptors';
+import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
+import carService from '../../services/abstracts/CarService';
+import { Car } from '../../models/model';
 
 type FilterCriteria = {
 	minDailyPrice: number;
@@ -23,7 +21,7 @@ type FilterCriteria = {
 
 const CarCardList: React.FC = () => {
 	const dispatch = useDispatch();
-	const [data, setData] = useState<Car[] | null>(null);
+	const [data, setData] = useState<GetAllCarResponse[] | null>(null);
 	const [filter, setFilter] = useState<FilterCriteria>({
 		minDailyPrice: 0,
 		maxDailyPrice: 10000,
@@ -37,6 +35,7 @@ const CarCardList: React.FC = () => {
 
 
 	const [days, setDays] = useState(localStorage.getItem('days') || '');
+	const location = localStorage.getItem('location') || '';
  
 	useEffect(() => {
 		const handleStorageChange = () => {
@@ -57,7 +56,8 @@ const CarCardList: React.FC = () => {
         window.location.reload();
     }	
 
-	const sortCars = (cars: Car[]): Car[] => {
+	const sortCars = (cars: GetAllCarResponse[]): GetAllCarResponse[] => {
+
 		if (sortOrder === 'asc') {
 			return [...cars].sort((a, b) => a.dailyPrice - b.dailyPrice);
 		} else if (sortOrder === 'desc') {
@@ -70,8 +70,7 @@ const CarCardList: React.FC = () => {
 		const fetchData = async () => {
 			try {
 				dispatch(increaseRequestCount());
-				const response = await axiosInstance.get('/cars/getAll');
-				// const response = await axios.get('http://localhost:8080/api/cars/getAll');
+				const response = await carService.getAll();
 				setData(response.data.data);
 				console.log(response.data);
 			} catch (error) {
@@ -82,11 +81,6 @@ const CarCardList: React.FC = () => {
 
 		fetchData();
 	}, []);
-
-	//eklenecek
-	// useEffect(() => {
-	// 	carService.getAll().then(response => console.log(response));
-	// }, []);
 
 	const handleFilterChange = (minPriceInput, maxPriceInput, selectedBrandInput) => {
 		setFilter({
@@ -108,7 +102,7 @@ const CarCardList: React.FC = () => {
 		);
 	}, [data, filter]);
 
-	const brandFilter = (data: Car[]) => {
+	const brandFilter = (data: GetAllCarResponse[]) => {
 		const brandNames = data.map(car => car.model.brand.name);
 		const uniqueBrandNames = brandNames.filter((value, index, self) => {
 			return self.indexOf(value) === index;
@@ -127,8 +121,6 @@ const CarCardList: React.FC = () => {
 			</select>
 		</div>
 	)
-
-
 
 	const filterPanel = (
 		<div className='filter-panel text-center'>
@@ -165,6 +157,18 @@ const CarCardList: React.FC = () => {
 
 	const isLargeScreen = window.innerWidth > 1200;
 
+	const SelectedLocation = (car: Car) => {
+		if (!location || location === car.location)
+		{
+			return (
+			<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
+			<CarCard car={car}/>
+		</div>);
+		}else 
+			return null;
+	}
+
+
 	return (
 		<>
 		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='pt-2'>
@@ -193,10 +197,8 @@ const CarCardList: React.FC = () => {
 						</div>
 						<div className='row row-cols-1 row-cols-sm-2 row-cols-md-3'>
 							{sortedAndFilteredData ? (
-								sortedAndFilteredData.map((car: Car) => (
-									<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
-										<CarCard car={car}/>
-									</div>
+								sortedAndFilteredData.map((car: GetAllCarResponse) => (
+									SelectedLocation(car)
 								))
 							) : (
 								<p>Loading...</p>

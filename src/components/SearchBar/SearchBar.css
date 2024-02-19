@@ -4,16 +4,16 @@
 	justify-content: center;
 	gap: 10px;
 	margin: 50px auto;
-	width: 80%; /* Adjust this value to change the width of the form */
-	max-width: 800px; /* This will prevent the form from becoming too wide on large screens */
-	flex-wrap: wrap; /* This will allow the form elements to wrap to the next line on small screens */
+	width: 80%; 
+	max-width: 800px;
+	flex-wrap: wrap; 
 }
 
 .search-bar label {
 	display: flex;
 	flex-direction: column;
 	align-items: start;
-	flex: 1 1 200px; /* This will make the labels and input fields flexible */
+	flex: 1 1 200px; 
 }
 
 .search-bar input,
@@ -24,7 +24,7 @@
 }
 
 .search-bar button {
-	flex: 0 0 auto; /* This will prevent the button from growing and shrinking */
+	flex: 0 0 auto; 
 	background-color:  #333;
 	color: white;
 	border: none;
@@ -49,3 +49,17 @@
 	border-color: #007BFF;
 	outline: none;
 }
+
+.form-input-dropdown{
+	width: 256px;
+	padding: 11px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-top: 5px;
+	height: 46px;
+
+}
+.form-input option[disabled] {
+	color: #999; 
+  }

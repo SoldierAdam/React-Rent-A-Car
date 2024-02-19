@@ -1,1 +1,2 @@
-export interface AddCarResponse {}
+export interface AddCarResponse {
+}
