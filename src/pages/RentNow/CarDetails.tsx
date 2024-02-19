@@ -15,10 +15,10 @@ const CarDetails = ({ onButtonClick }) => {
 		firstName: 'zeynep',
 		lastName: 'ozan',
 		identityNumber: '11111111111',
-		birthDate: '21/12/2001',
+		birthDate: new Date(),
 		phoneNumber: '111111111',
 		email: 'ozanzzeynep@gmail.com',
-		drivingLicenseDate: '22/01/2020',
+		drivingLicenseDate: new Date(),
 		address: 'İstanbul',
 		city: 'Üsküdar',
 		zipCode: '111'
@@ -52,7 +52,7 @@ const CarDetails = ({ onButtonClick }) => {
 								{CustomerFormikInformation.map((item, index) => (
 									<div key={index}>
 										<FormikInputFunction item={item} index={index} />
-										<ErrorMessage name={item.name} component="div" />
+										{/* <ErrorMessage name={item.name} component="div" /> */}
 									</div>
 								))}	
 								
