@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface RentCustomerInfo {
+export interface RentCustomerInfo {
 	firstName: string;
 	lastName: string;
 	identityNumber: string;
