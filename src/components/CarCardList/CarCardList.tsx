@@ -8,8 +8,10 @@ import { decreaseRequestCount, increaseRequestCount } from '../../store/slices/l
 import SearchBar from '../SearchBar/SearchBar';
 import SelectedDates from './SelectedDates';
 
+
 import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
 import carService from '../../services/abstracts/CarService';
+import { Car } from '../../models/model';
 
 type FilterCriteria = {
 	minDailyPrice: number;

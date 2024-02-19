@@ -6,10 +6,10 @@ export interface CustomerFormValues {
 	firstName: string;
 	lastName: string;
 	identityNumber: string;
-	birthDate: string;
+	birthDate: Date;
 	phoneNumber: string;
 	email: string;
-	drivingLicenseDate: string;
+	drivingLicenseDate: Date;
 	address: string;
 	city: string;
 	zipCode: string;
@@ -70,7 +70,7 @@ export const CustomerValidationSchema = Yup.object({
 	firstName: Yup.string().required('Ad alanı zorunludur'),
 	lastName: Yup.string().required('Soyad alanı zorunludur'),
 	identityNumber: Yup.string().required('TC kimlik no zorunludur').length(11, 'TC kimlik no 11 haneli olmalıdır'),
-	birthDate: Yup.date().required('Doğum tarihi zorunludur'),
+	birthDate: Yup.string().required('Doğum tarihi zorunludur'),
 	phoneNumber: Yup.string().required('Telefon numarası zorunludur'),
 	email: Yup.string().required('E-posta zorunludur'),
 	address: Yup.string().required('Adres zorunludur'),
