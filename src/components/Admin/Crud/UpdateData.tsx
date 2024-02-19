@@ -27,6 +27,8 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
         if (loadCar) {
             setCar(JSON.parse(localStorage.getItem('car') || '{}'));
             setLoadCar(false);
+			setFormVisible(true);
+
         }
     }, [loadCar]);
 
@@ -52,7 +54,6 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
 		service.getByPlateOrName(values.plate).then((response: any) => {
 			setLoadCar(true);
 			setCar(response.data.data);
-			setFormVisible(true);
 		}
 		).catch((error: any) => {
 			alert("Car not found");

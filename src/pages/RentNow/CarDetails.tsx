@@ -45,7 +45,6 @@ const CarDetails = ({ onButtonClick }) => {
 			>
 				{formikProps => {
 					const {errors } = formikProps;
-					console.log('Form errors', errors);
 					return (
 						<Form>
 							<div key={0} className='grid-container'>
@@ -54,10 +53,7 @@ const CarDetails = ({ onButtonClick }) => {
 										<FormikInputFunction item={item} index={index} />
 										{/* <ErrorMessage name={item.name} component="div" /> */}
 									</div>
-								))}	
-								
-												
-								
+								))}					
 								</div>
 
 								<div className=''>

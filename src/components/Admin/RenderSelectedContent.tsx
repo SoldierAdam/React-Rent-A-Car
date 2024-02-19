@@ -35,7 +35,7 @@ const RenderSelectedContent = (selectedContent: string | null) => {
 		'Update Car': {
 			component: UpdateData,
 			service: carService,
-			initialValues: null,
+			initialValues: initialValuesCar,
 			validationSchema: validationSchemaCar,
 			FormikInformation: FormikInformationCar
 		},
@@ -96,6 +96,23 @@ export interface FormValuesCar {
 	modelId: number;
 	colorId: number;
 }
+
+const initialValuesCar: FormValuesCar = {
+	kilometer: 0,
+	plate: '',
+	modelYear: 0,
+	dailyPrice: 0,
+	minFindeksRate: 0,
+	transmissionType: '',
+	fuelType: '',
+	airbag: false,
+	drivingLicenseAge: 0,
+	minCustomerAge: 0,
+	seatCapacity: 0,
+	imagePath: '',
+	modelId: 0,
+	colorId: 0,
+};
 
 export interface FormValuesModel {
 	id: number;
