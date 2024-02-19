@@ -34,6 +34,7 @@ const CarCardList: React.FC = () => {
 
 
 	const [days, setDays] = useState(localStorage.getItem('days') || '');
+	const location = localStorage.getItem('location') || '';
  
 	useEffect(() => {
 		const handleStorageChange = () => {
@@ -55,6 +56,7 @@ const CarCardList: React.FC = () => {
     }	
 
 	const sortCars = (cars: GetAllCarResponse[]): GetAllCarResponse[] => {
+
 		if (sortOrder === 'asc') {
 			return [...cars].sort((a, b) => a.dailyPrice - b.dailyPrice);
 		} else if (sortOrder === 'desc') {
@@ -119,8 +121,6 @@ const CarCardList: React.FC = () => {
 		</div>
 	)
 
-
-
 	const filterPanel = (
 		<div className='filter-panel text-center'>
 
@@ -156,6 +156,18 @@ const CarCardList: React.FC = () => {
 
 	const isLargeScreen = window.innerWidth > 1200;
 
+	const SelectedLocation = (car: Car) => {
+		if (!location || location === car.location)
+		{
+			return (
+			<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
+			<CarCard car={car}/>
+		</div>);
+		}else 
+			return null;
+	}
+
+
 	return (
 		<>
 		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='pt-2'>
@@ -185,9 +197,7 @@ const CarCardList: React.FC = () => {
 						<div className='row row-cols-1 row-cols-sm-2 row-cols-md-3'>
 							{sortedAndFilteredData ? (
 								sortedAndFilteredData.map((car: GetAllCarResponse) => (
-									<div className='col-9 col-sm-6 col-md-6 col-lg-4' key={car.id}>
-										<CarCard car={car}/>
-									</div>
+									SelectedLocation(car)
 								))
 							) : (
 								<p>Loading...</p>
