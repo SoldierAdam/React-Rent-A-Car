@@ -13,6 +13,7 @@ function Footer() {
 					<a href="#"><Icon path={mdiLinkedin} size={2} /></a>
 				</div>
 				<p>Copyright &copy; 2024 - CarRent USA, Inc. All Rights Reserved. </p>
+				<div><img src={require("../../assets/images/navbarlogo.png")} className="logo" /></div>
 			</footer>
 		</div>
 	)

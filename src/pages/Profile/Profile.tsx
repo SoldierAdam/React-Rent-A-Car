@@ -6,7 +6,7 @@ const Profile = (props: Props) => {
   return (
     <div>
         <div className="container-xl px-4 mt-4">
-    <hr className="mt-0 mb-4"/>
+    {/* <hr className="mt-0 mb-4"/> */}
     <div className="row">
       <div className="col-xl-4">
 
@@ -18,10 +18,10 @@ const Profile = (props: Props) => {
 
             <div className="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
 
-            <form id="image-upload-form">
+            {/* <form id="image-upload-form">
               <input type="file" id="image-upload"/>
               <label className="btn btn-dark">Upload new image</label>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>
