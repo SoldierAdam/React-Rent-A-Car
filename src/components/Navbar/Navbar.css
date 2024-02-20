@@ -62,7 +62,7 @@
   
   #navbar .menu-link:hover, 
   #navbar .menu-link.current {
-	background: #444;
+	/* background: #444; */
 	color: #f7c08a;
   }
 
