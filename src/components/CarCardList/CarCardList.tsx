@@ -54,7 +54,7 @@ const CarCardList: React.FC = () => {
         localStorage.setItem('dropoffDate', '');
         localStorage.setItem('location', '');
         localStorage.setItem('days', '');
-        window.location.reload();
+        window.location.reload(); // reload yapma
     }	
 
 	const sortCars = (cars: GetAllCarResponse[]): GetAllCarResponse[] => {
