@@ -10,7 +10,6 @@ const decodeToken = (token: string) => {
 
 // Token'ın süresi dolmuş mu diye kontrol eden fonksiyon
 const isTokenExpired = (token: string) => {
-	console.log('isTokenExpired:', token);
 	const decoded: any = decodeToken(token);
 	const currentUnixTimestamp = Math.floor(Date.now() / 1000);
 	return decoded.exp < currentUnixTimestamp;

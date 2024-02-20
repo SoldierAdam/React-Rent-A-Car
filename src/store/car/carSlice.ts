@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Car } from "../../models/model";import CarCard from "../../components/CarCard/CarCard";
+import { boolean } from "yargs";
 
 
 const initialState: Car = {
@@ -8,15 +9,16 @@ const initialState: Car = {
 	plate: "",
 	modelYear: 0,
 	dailyPrice: 0,
-	minFindeksRate: 0,
-	imagePath: "",
 	depositPrice: 0,
+	minFindeksRate: 0,
 	transmissionType: "",
 	fuelType: "",
-	airbag: false,
-	drivingLicenceAge: 0,
+	airbag: true,
+	drivingLicenseAge: 0,
 	minCustomerAge: 0,
 	seatCapacity: 0,
+	imagePath: "",
+	location:"",
 	model: {
 		id: 0,
 		name: "",

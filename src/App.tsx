@@ -24,7 +24,7 @@ function App() {
 
 			<div className='app'>
 				<BrowserRouter>
-					<OverlayLoader />
+					{/* <OverlayLoader /> */}
 					<Navbar />
 					<Routes>
 						<Route path="/customer" element={<Customers />} />
@@ -39,6 +39,7 @@ function App() {
 						<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
 						<Route path="/forgot-password" element={<ForgotPassword/>}/>
 						<Route path="/reset-password/:token" element={<ResetPassword/>} />
+						
 						
 
 					</Routes>
