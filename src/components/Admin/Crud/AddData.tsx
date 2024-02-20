@@ -19,7 +19,7 @@ const AddData = ({ service, initialValues, validationSchema, FormikInformation }
 
 	const handleSubmit = (values: any) => {
 		service.add(values).then((response) => {
-			alert('Car added');
+			alert('Added');
 			navigate('/admin');
 		});		
 	};
