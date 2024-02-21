@@ -80,7 +80,7 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
                     onSubmit={plateHandle}
                     enableReinitialize={true}
                 >
-                    <Form className='form-container'>
+                    <Form className='form-container'  style={{margin: 0}}>
                     	{prompt}
                         <FormikInput name="plate" type="text" placeholder="Değeri giriniz" icon={<i className="fas fa-car"></i>} />
                         <ErrorMessage name="plate" component="div" />
@@ -98,7 +98,7 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
                     onSubmit={handleSubmit}
                 >
                     <Form>
-                        <div key={0} className='grid-container'>
+                        <div key={0} className='grid-container'  style={{margin: 0}}>
                             {FormikInformation.map((item, index) => (
                                 <div key={index}>
                                     <FormikInputFunction item={item} index={index} />
