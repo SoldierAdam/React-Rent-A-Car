@@ -4,23 +4,26 @@ import { mdiTwitter, mdiFacebook, mdiYoutube, mdiLinkedin, mdiWeb, mdiEmail, mdi
 import { Bounce, toast } from "react-toastify";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
-const notifySuccess = () => {
-    toast.success("Now Send Successful", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-        transition: Bounce,
-    });
-};
 
 const Contact = () => {
 
-    const form = useRef();
+    const notifySuccess = () => {
+        toast.success("Now Send Successful", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+            transition: Bounce,
+        });
+    };
+
+  const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -40,8 +43,16 @@ const Contact = () => {
       );
   };
 
+
+  const ContactValidationSchema = Yup.object({
+    name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Required!"),
+    email: Yup.string().email("Please enter a valid email information").min(2, "Too Short!").max(50, "Too Long!").required("Required!"),
+    message: Yup.string().min(2, "Too Short!").max(500, "Too Long!").required("Required!")
+  })
+
     return (
         <>
+        <Formik initialValues={{ name: '', email: '', message: '' }} ContactValidationSchema={ContactValidationSchema}>
             <section className="contact-page-section">
                 <div className="container">
                     <div className="sec-title">
@@ -53,15 +64,14 @@ const Contact = () => {
 
                             <div className="form-column col-md-8 col-sm-12 col-xs-12">
                                 <div className="inner-column">
-
                                     <div className="contact-form">
                                         <form ref={form} onSubmit={sendEmail} method="post" id="contact-form">
                                             <div className="row clearfix">
                                                 <div className="form-group col-md-6 col-sm-6 co-xs-12">
-                                                    <input type="text" name="name" placeholder="Name" />
+                                                    <input type="text" name="name" placeholder="Name"/>
                                                 </div>
                                                 <div className="form-group col-md-6 col-sm-6 co-xs-12">
-                                                    <input type="email" name="email" placeholder="Email" />
+                                                    <input type="email" name="email" placeholder="Email"/>
                                                 </div>
                                                 <div className="form-group col-md-12 col-sm-12 co-xs-12">
                                                     <textarea name="message" placeholder="Message"></textarea>
@@ -96,7 +106,8 @@ const Contact = () => {
                     </div>
                 </div>
             </section>
-        </>
+            </Formik>
+            </>
     );
 }
 
