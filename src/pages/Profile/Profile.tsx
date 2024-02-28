@@ -3,6 +3,9 @@ import "../Profile/Profile.css"
 type Props = {}
 
 const Profile = (props: Props) => {
+
+  
+
   return (
     <div>
         <div className="container-xl px-4 mt-4">
