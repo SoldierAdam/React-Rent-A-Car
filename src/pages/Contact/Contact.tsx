@@ -4,7 +4,7 @@ import { mdiTwitter, mdiFacebook, mdiYoutube, mdiLinkedin, mdiWeb, mdiEmail, mdi
 import { Bounce, toast } from "react-toastify";
 
 const notifySuccess = () => {
-    toast.success("Now Send Successful", {
+    toast.success("Message sent", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,

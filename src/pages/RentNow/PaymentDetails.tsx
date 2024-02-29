@@ -5,10 +5,12 @@ import {
 	CardFormikInformation,
 } from "./FormikInput";
 import "./CarDetails.css";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { FormikInputFunction } from "../../components/FormikInput/FormikInput";
 import { Formik, Form, FormikHelpers } from "formik";
+import PaymentNotification from "./PaymentNotification";
 
 function PaymentDetails({ onBackClick }) {
 	// useSelector ile Redux store'dan veri alımı
@@ -25,6 +27,7 @@ function PaymentDetails({ onBackClick }) {
 		car.dailyPrice *
 		(new Date(endDate).getDate() - new Date(startDate).getDate());
 	const customerInfo = JSON.parse(customerInfoString);
+	const navigate = useNavigate();
 
 	interface Customer {
 		firstName: string;
@@ -70,6 +73,7 @@ function PaymentDetails({ onBackClick }) {
 		const cardNumber = values.creditCardNumber;
 		const expirationDate = values.expirationTime;
 		const cvv = values.cvv;
+	
 
 		const rental = {
 			startDate: startDate,
@@ -125,6 +129,7 @@ function PaymentDetails({ onBackClick }) {
 			console.error("API Error:", error.response ? error.response.data : error.message);
 			alert("Müşteri kaydı sırasında bir hata oluştu.");
 		}
+		navigate("/profile");
 	}
 
 
@@ -133,8 +138,12 @@ function PaymentDetails({ onBackClick }) {
 
 
 return (
+	
 	<div className="col-9">
+		<PaymentNotification />
 		<h1 className="title-payment">Ödeme Bilgileri</h1>
+
+	 
 
 		<Formik
 			initialValues={CardInitialValues}

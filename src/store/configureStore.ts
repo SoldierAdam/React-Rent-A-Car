@@ -1,5 +1,5 @@
 import { Invoice } from './payment/paymentSlice';
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore,ThunkAction,Action } from "@reduxjs/toolkit";
 import carReducer from "./car/carSlice";
 import rentReducer from "./rentNow/rentSlice";
 import userReducer from "./slices/userSlice";
@@ -8,6 +8,13 @@ import forgetPasswordReducer from "./slices/forgetPasswordSlice"
 import resetPasswordReducer from "./slices/resetPasswordSlice";
 import {invoiceReducer} from "./payment/paymentSlice";
 
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
 
 const rootReducer = combineReducers({
 	loading: loadingReducer,

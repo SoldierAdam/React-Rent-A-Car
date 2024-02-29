@@ -1,4 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { GetByIdCustomerResponse } from './../../models/customer/responses/getByIdCustomerResponse';
+import { GetAllCustomerResponse } from './../../models/customer/responses/getAllCustomerResponse';
+import { Dispatch, createSlice } from "@reduxjs/toolkit";
+import { AppThunk } from '../configureStore';
+
 
 export interface RentCustomerInfo {
 	firstName: string;
@@ -28,6 +32,7 @@ const rentInfoSlice = createSlice({
 	name: "rentInfo",
 	initialState: initialState,
 	reducers: {
+	
 		setCustomerInfo: (state, action) => action.payload,
 	},
 });
