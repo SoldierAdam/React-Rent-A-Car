@@ -14,6 +14,7 @@ import CarDetails from './pages/RentNow/RentNow';
 import ForgotPassword from './pages/Login/Login/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Login/Login/ForgotPassword/ResetPassword';
 import Customers from './components/Customer/Customers';
+import Profile from './pages/Profile/Profile';
 
 import Profile from './pages/Profile/Profile';
 
@@ -34,6 +35,7 @@ function App() {
 						<Route path="/rentNow" element={<CarDetails />} />
 						<Route path="/admin" element={<Admin/>} />
 						<Route path='cars' element={<Cars/>} />
+						<Route path='profile' element={<Profile/>} />
 						<Route path="/login" element={<Login initialUserName="" initialPassword="" />} />
 						<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
 						<Route path="/forgot-password" element={<ForgotPassword/>}/>

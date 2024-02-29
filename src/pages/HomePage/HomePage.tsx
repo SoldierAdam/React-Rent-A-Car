@@ -11,10 +11,10 @@ const HomePage = () => {
 		<div className="home-page">
 			<div className='home-header'>
 				<img src={require("../../assets/images/backgroundwebsite.png")} className='image-header' />
-				<div className='header-text'>
+				{/* <div className='header-text'>
 				<h1 className='showcase-content'><span className='header-colored-text'>Fast & Easy</span> Way To Rent A Car</h1>
 				<p className='lead'>We offer a wide range of cars for your convenience. Choose the one that suits your needs the best.</p>
-				</div>
+				</div> */}
 			</div>
 			<SearchBar />
 			{/* <Slider /> */}

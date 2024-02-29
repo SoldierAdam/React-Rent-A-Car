@@ -65,7 +65,7 @@ const Contact = () => {
                             <ul className="list-info">
                               <li><Icon path={mdiWeb} size={1} /> No:15 Şişli/İstanbul</li>
                                 <li><Icon path={mdiEmail} size={1} /> rentacarpair9@gmail.com</li>
-                                <li><Icon path={mdiPhone} size={1} /> 02125265588</li>
+                                <li><Icon path={mdiPhone} size={1} /> 0212 526 55 88 </li>
                             </ul>
                             <ul className="social-icon-four">
                                 <li className="follow">Follow on: </li>
