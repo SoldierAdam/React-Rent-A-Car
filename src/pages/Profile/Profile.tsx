@@ -1,82 +1,90 @@
-import "../Profile/Profile.css"
 
-type Props = {}
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Invoice } from "../../store/payment/paymentSlice";
 
-const Profile = (props: Props) => {
-  return (
-    <div>
-        <div className="container-xl px-4 mt-4">
-    {/* <hr className="mt-0 mb-4"/> */}
-    <div className="row">
-      <div className="col-xl-4">
+import axios from "axios";
+import { RootState } from "../../store/configureStore";
+import './profile.css';
 
-        <div className="card mb-4 mb-xl-0">
-          <div className="card-header">Profile Picture</div>
-          <div className="card-body text-center">
+const Profile: React.FC = () => {
+    const [invoices, setInvoices] = useState<Invoice[]>([]);
+    const { firstName, lastName } = useSelector((state: RootState) => state.rent);
+    const { userName } = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+   
 
-            <img className="img-account-profile rounded-circle mb-2" id="profile-image" src="https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"/>
+    useEffect(() => {
+        if (firstName && lastName) {
+            axios.get('http://localhost:8080/api/invoices/getAll')
+                .then(response => {
+                    const data = response.data.data;
+                    const userInvoices = data.filter((invoice: Invoice) => invoice.cardNameSurname === `${firstName} ${lastName}`);
+                    setInvoices(userInvoices);
+                })
+                .catch(error => {
+                    console.error('Error fetching invoices:', error);
+                });
+        }
+    }, [firstName, lastName]);
 
-            <div className="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+    return (
+        <div>
+            <h1 className="ml-5">Profil Sayfası</h1>
+            <div>
+                <h2 className="ml-5">Müşteri Bilgileri</h2>
+                <br/>
+                {firstName && lastName ? (
+                    <table className="table-fill">
+                        <tbody className="table-hover">
+                            <tr>
+                                <th className="text-left">Müşteri Adı Soyadı</th>
+                                <th className="text-left">Kullanıcı Adı</th>
+                            </tr>
+                            <tr>
+                                <td className="text-left">{firstName} {lastName}</td>
+                                <td className="text-left">{userName}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                ) : (
+                    <p className="ml-5">Müşteri Bilgisi Yoktur</p>
+                )}
+                <br/>
 
-            {/* <form id="image-upload-form">
-              <input type="file" id="image-upload"/>
-              <label className="btn btn-dark">Upload new image</label>
-            </form> */}
-          </div>
+                <h2 className="ml-5">Fatura Bilgileri</h2>
+                <br/>
+                {invoices.length > 0 ? (
+                    <table className="table-fill">
+                        <thead>
+                            <tr>
+                                <th className="text-left">Kart Adı Soyadı</th>
+                                <th className="text-left">Kart Numarası</th>
+                                <th className="text-left">Son Kullanma Tarihi</th>
+                                <th className="text-left">CVV</th>
+                                <th className="text-left">Toplam Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody className="table-hover">
+                            {invoices.map((invoice, index) => (
+                                <tr key={index}>
+                                    <td className="text-left">{invoice.cardNameSurname}</td>
+                                    <td className="text-left">{invoice.cardNumber}</td>
+                                    <td className="text-left">{invoice.expireDate}</td>
+                                    <td className="text-left">{invoice.cvv}</td>
+                                    <td className="text-left">{invoice.totalPrice}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p className="ml-5">Fatura bulunamadı.</p>
+                )}
+            </div>
         </div>
-      </div>
-      <div className="col-xl-8">
-        <div className="card mb-4">
-          <div className="card-header">Account Details</div>
-          <div className="card-body">
-            <form action="your_action_url_here" method="POST">
-              <div className="mb-3">
-                <label className="small mb-1">Username</label>
-                <input className="form-control" id="inputUsername" name="username" type="text" placeholder=""/>
-              </div>
-              <div className="row gx-3 mb-3">
-                <div className="col-md-6">
-                  <label className="small mb-1">First name</label>
-                  <input className="form-control" id="inputFirstName" name="first_name" type="text" placeholder="Enter your first name"/>
-                </div>
-                <div className="col-md-6">
-                  <label className="small mb-1">Last name</label>
-                  <input className="form-control" id="inputLastName" name="last_name" type="text" placeholder="Enter your last name"/>
-                </div>
-              </div>
-              <div className="row gx-3 mb-3">
-                <div className="col-md-6">
-                  <label className="small mb-1">Organization name</label>
-                  <input className="form-control" id="inputOrgName" name="organization_name" type="text" placeholder="Enter your organization name"/>
-                </div>
-                <div className="col-md-6">
-                  <label className="small mb-1">Location</label>
-                  <input className="form-control" id="inputLocation" name="location" type="text" placeholder="Enter your location"/>
-                </div>
-              </div>
-              <div className="mb-3">
-                <label className="small mb-1">Email address</label>
-                <input className="form-control" id="inputEmailAddress" name="email" type="email"/>
-              </div>
-              <div className="row gx-3 mb-3">
-                <div className="col-md-6">
-                  <label className="small mb-1">Phone number</label>
-                  <input className="form-control" id="inputPhone" name="phone" type="tel" placeholder="Enter your phone number"/>
-                </div>
-                <div className="col-md-6">
-                  <label className="small mb-1">Birthday</label>
-                  <input className="form-control" id="inputBirthday" name="birthday" type="text" placeholder="Enter your birthday"/>
-                </div>
-              </div>
-              <button className="btn btn-dark" type="submit">Save changes</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    </div>
-  )
+    );
 }
 
 export default Profile;
+
+

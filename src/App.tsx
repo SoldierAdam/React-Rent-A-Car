@@ -16,6 +16,7 @@ import ResetPassword from './pages/Login/Login/ForgotPassword/ResetPassword';
 import Customers from './components/Customer/Customers';
 import Profile from './pages/Profile/Profile';
 
+import Profile from './pages/Profile/Profile';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
 						<Route path='/signUp' element={<SignUp initialEmail="" initialPassword="" initialUserName="" />} />
 						<Route path="/forgot-password" element={<ForgotPassword/>}/>
 						<Route path="/reset-password/:token" element={<ResetPassword/>} />
+						<Route path="/profile" element={<Profile/>} />
 						
 						
 
