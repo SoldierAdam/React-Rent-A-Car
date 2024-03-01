@@ -35,7 +35,11 @@ const CarCard: React.FC<CarListingProps> = ({ car }) => {
   const navigate = useNavigate();
 
   const handleClickFunc = () => {
-    if (!localStorage.getItem("location")) {
+	if (!localStorage.getItem("userName")){
+		alert("Lütfen Giriş Yapınız!!");
+		return;
+	}
+    else if (!localStorage.getItem("location")) {
       alert("Lütfen Seçim yapınız!!");
       return;
     }

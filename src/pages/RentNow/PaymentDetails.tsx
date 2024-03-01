@@ -1,17 +1,20 @@
-import {
-	CardFormValues,
-	CardInitialValues,
-	CardValidationSchema,
-	CardFormikInformation,
-} from "./FormikInput";
+import { CardFormValues, CardInitialValues, CardValidationSchema, CardFormikInformation } from "./FormikInput";
 import "./CarDetails.css";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { FormikInputFunction } from "../../components/FormikInput/FormikInput";
 import { Formik, Form, FormikHelpers } from "formik";
 
+import PaymentNotification from "./PaymentNotification";
+
+import { useNavigate } from "react-router-dom";
+
+
 function PaymentDetails({ onBackClick }) {
-	// useSelector ile Redux store'dan veri alımı
+
+	const navigate = useNavigate();
+
 	const customerInfoString = useSelector((state: any) =>
 		JSON.stringify(state.rent)
 	);
@@ -25,6 +28,7 @@ function PaymentDetails({ onBackClick }) {
 		car.dailyPrice *
 		(new Date(endDate).getDate() - new Date(startDate).getDate());
 	const customerInfo = JSON.parse(customerInfoString);
+	const navigate = useNavigate();
 
 	interface Customer {
 		firstName: string;
@@ -40,7 +44,6 @@ function PaymentDetails({ onBackClick }) {
 		username: number;
 	}
 
-	// Customer nesnesi oluşturma
 	const createCustomerObject = (customerInfo: any, userInfo: any): Customer => {
 		return {
 			firstName: customerInfo.firstName || "zeynep",
@@ -70,6 +73,7 @@ function PaymentDetails({ onBackClick }) {
 		const cardNumber = values.creditCardNumber;
 		const expirationDate = values.expirationTime;
 		const cvv = values.cvv;
+	
 
 		const rental = {
 			startDate: startDate,
@@ -100,31 +104,25 @@ function PaymentDetails({ onBackClick }) {
 					'Content-Type': 'application/json'
 				}
 			});
-			console.log("API customerResponse:", customerResponse.data);
-			console.log("seçtiğimiz tarih", rental)
 			const rentalResponse = await axios.post('http://localhost:8080/api/rentals/add', rental, {
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			});
-			console.log("rentalResponse.data:", rentalResponse.data);
 			invoice.rentalId = rentalResponse.data.data.id;
-
-
-			console.log("Invoice:", invoice);
-
 			const invoiceResponse = await axios.post('http://localhost:8080/api/invoices/add', invoice, {
 			  headers: {
 				'Content-Type': 'application/json'
 			  }
 			});
 
-			console.log("API invoiceResponse:", invoiceResponse.data);
-			alert("Müşteri başarıyla kaydedildi.");
+			alert("İşleminiz başarıyla tamamlanmıştır.");
+			navigate("/profile");
 		} catch (error) {
 			console.error("API Error:", error.response ? error.response.data : error.message);
 			alert("Müşteri kaydı sırasında bir hata oluştu.");
 		}
+		navigate("/profile");
 	}
 
 
@@ -133,8 +131,12 @@ function PaymentDetails({ onBackClick }) {
 
 
 return (
+	
 	<div className="col-9">
+		<PaymentNotification />
 		<h1 className="title-payment">Ödeme Bilgileri</h1>
+
+	 
 
 		<Formik
 			initialValues={CardInitialValues}

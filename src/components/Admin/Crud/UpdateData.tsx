@@ -27,6 +27,7 @@ const UpdateData = ({ service, initialValues, validationSchema, FormikInformatio
         if (loadCar) {
             setCar(JSON.parse(localStorage.getItem('car') || '{}'));
             setLoadCar(false);
+			// setFormVisible(true);
         }
     }, [loadCar]);
 
