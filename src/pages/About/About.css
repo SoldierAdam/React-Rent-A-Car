@@ -156,4 +156,7 @@
    color: #fff;
 }
 
-
+.profile{
+   clip-path: circle();
+   width: 250px;
+}
