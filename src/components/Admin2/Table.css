@@ -1,0 +1,59 @@
+/* BaseTable.css */
+
+.admin {
+	max-width: 99%;
+	/* overflow-x: auto; */
+  }
+
+.table-title {
+	text-align: center;
+	margin-top: 50px;
+  }
+  
+  .table-container {
+	display: flex;
+	flex-direction: column;
+  }
+
+  .add-button {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 5%;
+	margin: 10px 0;
+  }
+
+  .add-button button {
+	width: 80px;
+  }
+  
+  .table-header {
+	display: flex;
+	flex-wrap: nowrap;
+  }
+  
+  .table-content {
+	flex: 1;
+	overflow-x: auto;
+  }
+  
+  .table {
+	width: 100%;
+	border-collapse: collapse;
+  }
+  
+  th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+  }
+
+  .pagination-numbers {
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;
+	padding-bottom: 50px;
+	}
+  
+	.table-info {
+		font-family: Arial, sans-serif;
+	}

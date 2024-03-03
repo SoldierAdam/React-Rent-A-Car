@@ -1,3 +1,5 @@
+import { Model, Color } from "../../model";
+
 export interface AddCarRequest {
 	id: number;
 	kilometer: number;
@@ -12,4 +14,8 @@ export interface AddCarRequest {
 	minCustomerAge: number;
 	seatCapacity: number;
 	imagePath: string;
+	location: string;
+	depositPrice: number;
+	model: Model;
+	color: Color;
 }

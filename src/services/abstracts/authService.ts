@@ -2,6 +2,7 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import tokenService from './tokenService';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // Token decode eden fonksiyon
 const decodeToken = (token: string) => {
@@ -28,7 +29,7 @@ const refreshToken = async () => {
 			tokenService.setToken(response.data);
 			return response.data.accessToken;
 		} catch (error) {
-			alert('Oturumunuzun süresi doldu. Lütfen tekrar giriş yapınız.');
+			toast.error('Lütfen tekrar giriş yapınız');
 			tokenService.removeToken();
 			tokenService.removeRefreshToken();
 			localStorage.removeItem('userName');

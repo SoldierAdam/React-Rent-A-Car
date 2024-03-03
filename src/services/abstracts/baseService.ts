@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import axiosInstance from "../../core/utils/interceptors/axiosInterceptors";
+import { toast } from "react-toastify";
 
 export class BaseService<
   GetAllType,
@@ -37,14 +38,13 @@ export class BaseService<
 			.then(response => {
 				if (response.status === 201	)
 				{
-					console.log('Request successful', response);
-					alert("Request successful")
+					toast.success("Added successful")
 					return response;
 				}
 				else
 				{
 					console.error('Model already saved', response);
-					alert("Model already saved")
+					toast.error("Already saved")
 					throw response;
 				}
 			})
@@ -57,32 +57,36 @@ export class BaseService<
 	update(request: UpdateRequestType): Promise<AxiosResponse<UpdateResponseType, any>> {
 		return axiosInstance.put<UpdateResponseType>(this.apiUrl + '/update', request)
 		.then(response => {
-			if (response.status === 201	)
-			{
-				console.log('Request successful', response);
-				alert("Request successful")
+			if (response.status === 200	)
 				return response;
-			}
 			else
 			{
-				console.error('Already saved', response);
-				alert("Already saved")
-				throw response;
+				toast.error("Already saved")
+				return null;
 			}
 		})
 		.catch(error => {
 			console.error('Error', error);
-			throw error;
+			toast.error("Error")
+			return null;
 		});
 	}
 	
 	delete(id: number){
 		return axiosInstance.delete(this.apiUrl + "/" + id)
 		.then(response => {
-			// Handle successful response here
-			console.log('Request successful', response);
-			alert("Request successful")
-			return response;
+			if (response.status === 200	)
+			{
+				console.log('Request successful', response);
+				toast.success("Request successful")
+				return response;
+			}
+			else
+			{
+				console.error('Already saved', response);
+				toast.error("Already saved")
+				return response;
+			}
 		})
 	}
 }

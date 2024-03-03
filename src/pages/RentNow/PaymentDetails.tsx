@@ -9,6 +9,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import PaymentNotification from "./PaymentNotification";
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 function PaymentDetails({ onBackClick }) {
@@ -116,11 +117,11 @@ function PaymentDetails({ onBackClick }) {
 			  }
 			});
 
-			alert("İşleminiz başarıyla tamamlanmıştır.");
+			toast.success("Ödeme başarılı. Müşteri kaydı oluşturuldu.");
 			navigate("/profile");
 		} catch (error) {
 			console.error("API Error:", error.response ? error.response.data : error.message);
-			alert("Müşteri kaydı sırasında bir hata oluştu.");
+			toast.error("Ödeme sırasında bir hata oluştu.");
 		}
 		navigate("/profile");
 	}

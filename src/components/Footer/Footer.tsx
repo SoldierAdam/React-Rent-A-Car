@@ -4,7 +4,7 @@ import { mdiTwitter, mdiFacebook, mdiYoutube, mdiLinkedin} from '@mdi/js';
 
 function Footer() {
 	return (
-		<div>
+		<div className="footer-container">
 			<footer className="footer bg-dark">
 				<div className="social">
 					<a href="#"><Icon path={mdiTwitter} size={2} /></a>

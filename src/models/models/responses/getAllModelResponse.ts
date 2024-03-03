@@ -1,8 +1,5 @@
-import { Brand } from "../../model";
-
+import {Model} from "../../model";
 export interface GetAllModelResponse {
-	id: number;
-	name: string;
-	brand?: Brand;
+	data: Model[];
 }
 
