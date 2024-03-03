@@ -1,8 +1,7 @@
 
 
 
-import './OverlayLoader.css';
-
+import './Overlayloader.css';
 
 
 import { useSelector } from "react-redux";
