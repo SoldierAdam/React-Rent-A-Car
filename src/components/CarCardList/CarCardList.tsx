@@ -10,7 +10,7 @@ import SelectedDates from './SelectedDates';
 
 
 import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
-import carService from '../../services/abstracts/CarService';
+import carService from '../../services/abstracts/carService';
 import { Car } from '../../models/model';
 
 type FilterCriteria = {

@@ -19,7 +19,7 @@ const AddData = ({ service, initialValues, validationSchema, FormikInformation }
 
 	const handleSubmit = (values: any) => {
 		service.add(values).then((response) => {
-			alert('Car added');
+			alert('Added');
 			navigate('/admin');
 		});		
 	};
@@ -28,7 +28,7 @@ const AddData = ({ service, initialValues, validationSchema, FormikInformation }
 		<div className='col-9'>
 			<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 				<Form>
-					<div key={0} className='grid-container'>
+					<div key={0} className='grid-container' style={{margin: 0}}>
 						{FormikInformation.map((item, index) => (
 							<div key={index}>
 								<FormikInputFunction item={item} index={index} />

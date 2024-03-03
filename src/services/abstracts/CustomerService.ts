@@ -3,7 +3,7 @@ import { UpdateCustomerRequest } from '../../models/customer/requests/updateCust
 import { AddCustomerResponse } from '../../models/customer/responses/addCustomerResponse';
 import { GetByIdCustomerResponse } from '../../models/customer/responses/getByIdCustomerResponse';
 import { UpdateCustomerResponse } from '../../models/customer/responses/updateCustomerResponse';
-import { GetAllCustomerResponse } from './../../models/customer/responses/getAllCustomerResponse';
+import { GetAllCustomerResponse } from '../../models/customer/responses/getAllCustomerResponse';
 import { BaseService } from "./baseService";
 
 class CustomerService extends BaseService<

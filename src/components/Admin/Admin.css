@@ -1,47 +1,57 @@
 .admin-page {
 	display: flex;
-	padding-top: 6%;
-  }
-  
+	padding-top: 4%;
+}
 
 
 .accordion-panel {
 	border: 1px solid #f27a1a;
 	background-color: #fee;
 	margin-bottom: 10px;
-  }
-  
-  .accordion-header {
+}
+
+.accordion-header {
 	display: flex;
 	align-items: center;
 	padding: 10px;
 	cursor: pointer;
 	background-color: #f27a1a;
-  }
-  
-  .accordion-title {
+}
+
+.accordion-title {
 	flex: 1;
 	color: #fff;
-  }
-  
-  .accordion-icon {
+}
+
+.accordion-icon {
 	font-size: 20px;
 	color: #fff;
-  }
-  
-  .accordion-content {
+}
+
+.accordion-content {
 	padding: 10px;
-  }
-  
-  .crud-header {
+}
+
+.crud-header {
 	display: flex;
 	align-items: center;
 	text-align: center;
 	justify-content: center;
-  }
-  
-  .form-container {
+}
+
+.form-container {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-  }	
+}
+
+.next-button {
+	background-color: #f27a1a;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
