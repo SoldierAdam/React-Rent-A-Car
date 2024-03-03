@@ -1,6 +1,6 @@
 import { CardFormValues, CardInitialValues, CardValidationSchema, CardFormikInformation } from "./FormikInput";
 import "./CarDetails.css";
-import { useNavigate } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { FormikInputFunction } from "../../components/FormikInput/FormikInput";
@@ -28,7 +28,7 @@ function PaymentDetails({ onBackClick }) {
 		car.dailyPrice *
 		(new Date(endDate).getDate() - new Date(startDate).getDate());
 	const customerInfo = JSON.parse(customerInfoString);
-	const navigate = useNavigate();
+	
 
 	interface Customer {
 		firstName: string;
