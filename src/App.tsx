@@ -37,7 +37,7 @@ function AppContent() {
 	return (
 		<>
 		<div className='app'>
-			{/* <OverlayLoader /> */}
+			 <OverlayLoader /> 
 			{/* {isAdminPage ? null : <Navbar />} */}
 			<Navbar />
 			<Routes>
