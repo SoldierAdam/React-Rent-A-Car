@@ -14,7 +14,7 @@ import CarDetails from './pages/RentNow/RentNow';
 import ForgotPassword from './pages/Login/Login/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Login/Login/ForgotPassword/ResetPassword';
 import Customers from './components/Customer/Customers';
-import Profile from './pages/Profile/Profile';
+import Profile from './pages/ProfilePage/Profile';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
