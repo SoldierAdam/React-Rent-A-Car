@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setCustomerInfo } from '../../store/rentNow/rentSlice';
 import { CustomerFormValues, CustomerFormikInformation, CustomerValidationSchema } from './FormikInput';
 import { FormikInputFunction } from '../../components/FormikInput/FormikInput';
+import { toast } from 'react-toastify';
 
 
 
@@ -28,10 +29,10 @@ const CarDetails = ({ onButtonClick }) => {
 	const handleSubmit = async (values: CustomerFormValues, formikHelpers: FormikHelpers<CustomerFormValues>) => {
 		try {
 			dispatch(setCustomerInfo(values));
-			alert("Araba detayları başarıyla kaydedildi.");
+			toast.success('Müşteri bilgileri kaydedildi');
 			onButtonClick(); // Ödeme bilgileri formuna geç
 		} catch (error) {
-			alert("Bir hata oluştu: " + error.message);
+			toast.error('Müşteri bilgileri kaydedilirken hata oluştu');
 		}
 	}
 

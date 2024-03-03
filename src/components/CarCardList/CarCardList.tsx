@@ -9,7 +9,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SelectedDates from './SelectedDates';
 
 
-import { GetAllCarResponse } from '../../models/cars/responses/getAllCarResponse';
+import { AddCarRequest } from '../../models/cars/requests/addCarRequest';
 import carService from '../../services/abstracts/carService';
 import { Car } from '../../models/model';
 
@@ -22,7 +22,7 @@ type FilterCriteria = {
 
 const CarCardList: React.FC = () => {
 	const dispatch = useDispatch();
-	const [data, setData] = useState<GetAllCarResponse[] | null>(null);
+	const [data, setData] = useState<AddCarRequest[] | null>(null);
 	const [filter, setFilter] = useState<FilterCriteria>({
 		minDailyPrice: 0,
 		maxDailyPrice: 10000,
@@ -57,7 +57,7 @@ const CarCardList: React.FC = () => {
         window.location.reload(); // reload yapma
     }	
 
-	const sortCars = (cars: GetAllCarResponse[]): GetAllCarResponse[] => {
+	const sortCars = (cars: AddCarRequest[]): AddCarRequest[] => {
 
 		if (sortOrder === 'asc') {
 			return [...cars].sort((a, b) => a.dailyPrice - b.dailyPrice);
@@ -103,7 +103,7 @@ const CarCardList: React.FC = () => {
 		);
 	}, [data, filter]);
 
-	const brandFilter = (data: GetAllCarResponse[]) => {
+	const brandFilter = (data: AddCarRequest[]) => {
 		const brandNames = data.map(car => car.model.brand.name);
 		const uniqueBrandNames = brandNames.filter((value, index, self) => {
 			return self.indexOf(value) === index;
@@ -158,7 +158,7 @@ const CarCardList: React.FC = () => {
 
 	const isLargeScreen = window.innerWidth > 1200;
 
-	const SelectedLocation = (car: Car) => {
+	const SelectedLocation = (car: AddCarRequest) => {
 		if (!location || location === car.location)
 		{
 			return (
@@ -198,7 +198,7 @@ const CarCardList: React.FC = () => {
 						</div>
 						<div className='row row-cols-1 row-cols-sm-2 row-cols-md-3'>
 							{sortedAndFilteredData ? (
-								sortedAndFilteredData.map((car: GetAllCarResponse) => (
+								sortedAndFilteredData.map((car: AddCarRequest) => (
 									SelectedLocation(car)
 								))
 							) : (

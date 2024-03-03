@@ -3,6 +3,7 @@
 	background: #333;
 	color: #fff;
 	overflow: visible;
+	width: '100%';
 	padding-right: 310px;
 	padding-left: 250px;
 
@@ -69,6 +70,7 @@
   @media (max-width: 1200px) {
 	
 	#navbar {
+		width: 100%;
 	  padding-right: 20px;
 	  padding-left: 20px;
 	}

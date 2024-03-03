@@ -8,10 +8,11 @@ import { GetByIdCarResponse } from '../../models/cars/responses/getByIdCarRespon
 import { UpdateCarResponse } from '../../models/cars/responses/updateCarResponse';
 import { BaseService } from './baseService';
 import { setCar } from '../../store/car/carSlice';
+import { toast } from 'react-toastify';
 
 
 class CarService extends BaseService<
-	any,
+	GetAllCarResponse,
 	GetByIdCarResponse,
 	AddCarRequest,
 	AddCarResponse,
@@ -27,7 +28,7 @@ class CarService extends BaseService<
 		.then(response => {
 			localStorage.removeItem('car');
 			localStorage.setItem('car', JSON.stringify(response.data));
-			alert("Car found successfully");
+			toast.success("Car found");
 			return response.data;
 		})
 	}
@@ -35,7 +36,7 @@ class CarService extends BaseService<
 	deleteByPlate(plate: string): Promise<any> {
 		return axiosInstance.delete(this.apiUrl + "/deleteByPlate?plate=" + plate)
 		.then(response => {
-			alert("Car deleted successfully");
+			toast.success("Car deleted");
 			return response.data;
 		})
 	}

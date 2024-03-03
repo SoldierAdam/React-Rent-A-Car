@@ -1,4 +1,5 @@
+import { Brand } from '../../model';
+
 export interface GetAllBrandResponse {
-	id: number;
-	name: string;
+	data: Brand[];
 }

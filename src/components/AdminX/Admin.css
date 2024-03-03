@@ -1,0 +1,58 @@
+.admin-page {
+	display: flex;
+	padding-top: 4%;
+}
+
+
+.accordion-panel {
+	border: 1px solid #f27a1a;
+	background-color: #fee;
+	margin-bottom: 10px;
+}
+
+.accordion-header {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	cursor: pointer;
+	background-color: #f27a1a;
+}
+
+.accordion-title {
+	flex: 1;
+	color: #fff;
+}
+
+.accordion-icon {
+	font-size: 20px;
+	color: #fff;
+}
+
+.accordion-content {
+	padding: 10px;
+}
+
+.crud-header {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.next-button {
+	background-color: #f27a1a;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
+

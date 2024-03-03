@@ -1,7 +1,5 @@
 import axios from 'axios';
 import tokenService from '../../../services/abstracts/tokenService';
-import { store } from '../../../store/configureStore'
-import { decreaseRequestCount, increaseRequestCount } from '../../../store/slices/loadingSlice';
 import { isTokenExpired, refreshToken } from '../../../services/abstracts/authService';
 
 const axiosInstance = axios.create({
@@ -14,6 +12,7 @@ axiosInstance.interceptors.request.use(async (config) => {
 	const publicPaths = ['/auth/login', '/auth/register', '/auth/refresh-token', '/cars/getAll'];
 	if (!publicPaths.includes(config.url)) {
 		const accessToken = tokenService.getToken();
+		// accesstoken bilgileri alma
 		if (accessToken && isTokenExpired(accessToken)) {
 			await refreshToken();
 			config.headers['Authorization'] = `Bearer ${tokenService.getToken()}`;

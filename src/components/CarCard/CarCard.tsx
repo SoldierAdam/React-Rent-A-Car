@@ -13,9 +13,11 @@ import { MdPerson } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa6";
 import { IoLocation } from "react-icons/io5";
 import { FaMoneyCheckAlt } from "react-icons/fa";
+import { AddCarRequest } from "../../models/cars/requests/addCarRequest";
+import { toast } from "react-toastify";
 
 interface CarListingProps {
-  car: Car;
+  car: AddCarRequest;
 }
 
 export const priceCalculate = (price: number) => {
@@ -36,11 +38,11 @@ const CarCard: React.FC<CarListingProps> = ({ car }) => {
 
   const handleClickFunc = () => {
 	if (!localStorage.getItem("userName")){
-		alert("Lütfen Giriş Yapınız!!");
+		toast.error("Lütfen Giriş Yapınız!!");
 		return;
 	}
     else if (!localStorage.getItem("location")) {
-      alert("Lütfen Seçim yapınız!!");
+      toast.error("Lütfen Tarih Seçiniz!!");
       return;
     }
 
