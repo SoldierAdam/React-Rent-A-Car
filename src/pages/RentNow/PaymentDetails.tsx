@@ -1,11 +1,16 @@
 import { CardFormValues, CardInitialValues, CardValidationSchema, CardFormikInformation } from "./FormikInput";
 import "./CarDetails.css";
+
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { FormikInputFunction } from "../../components/FormikInput/FormikInput";
 import { Formik, Form, FormikHelpers } from "formik";
+
+import PaymentNotification from "./PaymentNotification";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 
 function PaymentDetails({ onBackClick }) {
 
@@ -24,6 +29,7 @@ function PaymentDetails({ onBackClick }) {
 		car.dailyPrice *
 		(new Date(endDate).getDate() - new Date(startDate).getDate());
 	const customerInfo = JSON.parse(customerInfoString);
+	
 
 	interface Customer {
 		firstName: string;
@@ -68,6 +74,7 @@ function PaymentDetails({ onBackClick }) {
 		const cardNumber = values.creditCardNumber;
 		const expirationDate = values.expirationTime;
 		const cvv = values.cvv;
+	
 
 		const rental = {
 			startDate: startDate,
@@ -116,6 +123,7 @@ function PaymentDetails({ onBackClick }) {
 			console.error("API Error:", error.response ? error.response.data : error.message);
 			toast.error("Ödeme sırasında bir hata oluştu.");
 		}
+		navigate("/profile");
 	}
 
 
@@ -124,8 +132,12 @@ function PaymentDetails({ onBackClick }) {
 
 
 return (
+	
 	<div className="col-9">
+		<PaymentNotification />
 		<h1 className="title-payment">Ödeme Bilgileri</h1>
+
+	 
 
 		<Formik
 			initialValues={CardInitialValues}
