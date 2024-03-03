@@ -2,7 +2,7 @@ import React from 'react';
 import CarDetails from './CarDetails';
 import SelectedCarInfo from './SelectedCarInfo';
 import { useState} from 'react';
-import PaymentDetails from "./PaymentDetails"
+import PaymentDetails from './PaymentDetails';
 import { useDispatch } from 'react-redux';
 import { setCustomerInfo } from '../../store/rentNow/rentSlice';
 

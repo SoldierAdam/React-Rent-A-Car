@@ -91,11 +91,6 @@
    gap: 20px;
 }
 
-.profile {
-   width: 250px;
-   clip-path: circle();
-}
-
 .our-team h1{
    text-align:center;
    color:#f27a1a;
