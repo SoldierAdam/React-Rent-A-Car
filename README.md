@@ -1,6 +1,6 @@
 # Rent A Car Projesi
 
-Bu proje, araç kiralama işlemlerini yönetmek için geliştirilmiş bir web uygulamasıdır. Kullanıcılar, araçları görüntüleyebilir, rezervasyon yapabilir ve mevcut kiralamalarını yönetebilirler.
+Bu proje, araç kiralama işlemlerini yönetmek için geliştirilmiş bir web uygulamasıdır. Kullanıcılar, araçları görüntüleyebilir, rezervasyon yapabilir ve mevcut kiralamalarını yönetebilirler.  Bu projede HTML, CSS, Bootstrap, React , Java ve PostgreSQL teknolojileri kullanılmıştır.
 
 ## Proje Özellikleri
 
