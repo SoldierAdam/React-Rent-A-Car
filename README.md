@@ -1,6 +1,9 @@
 # Rent A Car Projesi
 
-Bu proje, araç kiralama işlemlerini yönetmek için geliştirilmiş bir web uygulamasıdır. Kullanıcılar, araçları görüntüleyebilir, rezervasyon yapabilir ve mevcut kiralamalarını yönetebilirler.  Bu projede HTML, CSS, Bootstrap, React , Java ve PostgreSQL teknolojileri kullanılmıştır.
+Bu proje, araç kiralama işlemlerini yönetmek için geliştir
+ilmiş bir web uygulamasıdır. Kullanıcılar, araçları görüntüleyebilir, rezervasyon yapabilir ve mevcut kiralamalarını yönetebilirler.  Bu projede HTML, CSS, Bootstrap, React , Java ve PostgreSQL teknolojileri kullanılmıştır.
+
+![IMG-20240218-WA0004](https://github.com/SoldierAdam/React-Rent-A-Car/assets/45319030/68e20d96-4c33-42e7-99ab-8f3a003ef17a)
 
 ## Proje Özellikleri
 
@@ -35,6 +38,9 @@ Bu proje, araç kiralama işlemlerini yönetmek için geliştirilmiş bir web uy
     ```bash
     npm start
     ```
+
+    ![b47d965a-a6bb-45b9-9f16-02f450f6686d](https://github.com/SoldierAdam/React-Rent-A-Car/assets/45319030/8937c65f-6738-4874-ba5a-76d11aeda924)
+
 
 ## Kullanım
 
