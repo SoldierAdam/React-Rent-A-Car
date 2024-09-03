@@ -47,3 +47,6 @@ Bu proje, araç kiralama işlemlerini yönetmek için geliştirilmiş bir web uy
 - Giriş yaptıktan sonra, mevcut araçları görüntüleyebilir ve rezervasyon yapabilirsiniz.
 - Yönetici olarak giriş yaptıysanız, yeni araçlar ekleyebilir, mevcut araçları güncelleyebilir veya silebilirsiniz.
 
+--------------------------------------------------------------------
+
+Veri tabanı için kişilere ulaşınız.
